@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 				rb.angularDrag = maxAngularDrag;
 			} else {
 				rb.drag = minLinearDrag;
-				rb.angularDrag = minLinearDrag;
+				rb.angularDrag = minAngularDrag;
 			}
 		}
 
