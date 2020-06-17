@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     // public SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
-    Animator animator;
 
     [SerializeField] int maxSpeed = 15;
     [SerializeField] int force = 250;
@@ -22,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         lerpAngle = 360 - transform.rotation.z;
     }
 
@@ -56,19 +54,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        UpdateAnimator();
-
     }
 
-    private void UpdateAnimator()
-    {
-        if (isAccelerating)
-        {
-            animator.SetBool("moving", true);
-        }
-        else
-        {
-            animator.SetBool("moving", false);
-        }
-    }
 }
