@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float minAngularDrag = 0;
 
     float lerpAngle;
+    bool isAccelerating;
 
     void Start()
     {
@@ -25,34 +26,49 @@ public class PlayerMovement : MonoBehaviour
         lerpAngle = 360 - transform.rotation.z;
     }
 
-    void FixedUpdate() {
-        
-        Vector2 input = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        float magnitude = input.magnitude;
+    void FixedUpdate()
+    {
+
+        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        isAccelerating = input.magnitude > 0 ? true : false;
         float angle = 360 - Mathf.Atan2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * Mathf.Rad2Deg;
-        lerpAngle = Mathf.LerpAngle(lerpAngle, angle, rotation_speed * Time.fixedDeltaTime * magnitude);
+        lerpAngle = Mathf.LerpAngle(lerpAngle, angle, rotation_speed * Time.fixedDeltaTime * input.magnitude);
 
         rb.MoveRotation(lerpAngle);
 
-        rb.AddForce (input * force * Time.fixedDeltaTime);
+        rb.AddForce(input * force * Time.fixedDeltaTime);
 
-        if (Mathf.Abs(rb.velocity.x) > maxSpeed || Mathf.Abs(rb.velocity.y) > maxSpeed) {
-			rb.drag = 10;
-		} else {
-			if (magnitude != 0) {
-				rb.drag = maxLinearDrag;
-				rb.angularDrag = maxAngularDrag;
-			} else {
-				rb.drag = minLinearDrag;
-				rb.angularDrag = minAngularDrag;
-			}
-		}
-
-        if(magnitude != 0){
-            animator.SetBool("moving", true);
-        } else {
-            animator.SetBool("moving", false);
+        if (Mathf.Abs(rb.velocity.x) > maxSpeed || Mathf.Abs(rb.velocity.y) > maxSpeed)
+        {
+            rb.drag = 10;
+        }
+        else
+        {
+            if (isAccelerating)
+            {
+                rb.drag = maxLinearDrag;
+                rb.angularDrag = maxAngularDrag;
+            }
+            else
+            {
+                rb.drag = minLinearDrag;
+                rb.angularDrag = minAngularDrag;
+            }
         }
 
+        UpdateAnimator();
+
+    }
+
+    private void UpdateAnimator()
+    {
+        if (isAccelerating)
+        {
+            animator.SetBool("moving", true);
+        }
+        else
+        {
+            animator.SetBool("moving", false);
+        }
     }
 }
