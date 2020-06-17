@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     // public SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
+    Animator animator;
 
     [SerializeField] int maxSpeed = 15;
     [SerializeField] int force = 250;
@@ -14,11 +15,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float minLinearDrag = 0;
     [SerializeField] float maxAngularDrag = 1;
     [SerializeField] float minAngularDrag = 0;
+
     float lerpAngle;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         lerpAngle = 360 - transform.rotation.z;
     }
 
@@ -44,6 +47,12 @@ public class PlayerMovement : MonoBehaviour
 				rb.angularDrag = minAngularDrag;
 			}
 		}
+
+        if(magnitude != 0){
+            animator.SetBool("moving", true);
+        } else {
+            animator.SetBool("moving", false);
+        }
 
     }
 }
