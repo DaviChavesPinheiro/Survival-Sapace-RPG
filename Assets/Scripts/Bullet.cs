@@ -11,7 +11,15 @@ public class Bullet : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        GiveDemage(collider);
+        switch (collider.tag)
+        {            
+            case "Player":
+                
+                break;
+            default:
+                GiveDemage(collider);
+                break;
+        }
     }
 
     private void GiveDemage(Collider2D collider)
