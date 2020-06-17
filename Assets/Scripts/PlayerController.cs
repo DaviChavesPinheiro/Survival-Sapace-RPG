@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("space")){
+        if(Input.GetMouseButton(0)){
             GetComponent<Shooter>().Shoot();
         }
     }
@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        GetComponent<Movement>().Move(input);
+        GetComponent<Movement>().Rotate(input);
+
+        GetComponent<Movement>().Accelerate(Input.GetButton("space"));
     }
 }

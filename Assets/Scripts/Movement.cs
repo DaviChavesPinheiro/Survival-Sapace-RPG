@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    // public SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
 
     [SerializeField] int maxSpeed = 15;
@@ -16,7 +15,6 @@ public class Movement : MonoBehaviour
     [SerializeField] float minAngularDrag = 0;
 
     float lerpAngle;
-    bool isAccelerating;
 
     void Start()
     {
@@ -24,31 +22,37 @@ public class Movement : MonoBehaviour
         lerpAngle = 360 - transform.rotation.z;
     }
 
-    public void Move(Vector2 direction){
-        isAccelerating = direction.magnitude > 0 ? true : false;
-        float angle = 360 - Mathf.Atan2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * Mathf.Rad2Deg;
+    public void Rotate(Vector2 direction)
+    {
+        float angle = 360 - Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
         lerpAngle = Mathf.LerpAngle(lerpAngle, angle, rotation_speed * Time.fixedDeltaTime * direction.magnitude);
-
         rb.MoveRotation(lerpAngle);
 
-        rb.AddForce(direction * force * Time.fixedDeltaTime);
-
-        if (Mathf.Abs(rb.velocity.x) > maxSpeed || Mathf.Abs(rb.velocity.y) > maxSpeed)
+        bool isRotating = direction.magnitude > 0 ? true : false;
+        if (isRotating)
         {
-            rb.drag = 10;
+            rb.angularDrag = maxAngularDrag;
         }
         else
         {
-            if (isAccelerating)
+            rb.angularDrag = minAngularDrag;
+        }
+    }
+
+    public void Accelerate(bool isAccelerating){
+        if (isAccelerating)
+        {
+            if (Mathf.Abs(rb.velocity.x) > maxSpeed || Mathf.Abs(rb.velocity.y) > maxSpeed)
             {
+                rb.drag = 10;
+            } else {
+                rb.AddForce(transform.up * force * Time.fixedDeltaTime);
                 rb.drag = maxLinearDrag;
-                rb.angularDrag = maxAngularDrag;
             }
-            else
-            {
-                rb.drag = minLinearDrag;
-                rb.angularDrag = minAngularDrag;
-            }
+        }
+        else
+        {
+            rb.drag = minLinearDrag;
         }
     }
 
