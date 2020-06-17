@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     // public SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
@@ -24,17 +24,14 @@ public class PlayerMovement : MonoBehaviour
         lerpAngle = 360 - transform.rotation.z;
     }
 
-    void FixedUpdate()
-    {
-
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        isAccelerating = input.magnitude > 0 ? true : false;
+    public void Move(Vector2 direction){
+        isAccelerating = direction.magnitude > 0 ? true : false;
         float angle = 360 - Mathf.Atan2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * Mathf.Rad2Deg;
-        lerpAngle = Mathf.LerpAngle(lerpAngle, angle, rotation_speed * Time.fixedDeltaTime * input.magnitude);
+        lerpAngle = Mathf.LerpAngle(lerpAngle, angle, rotation_speed * Time.fixedDeltaTime * direction.magnitude);
 
         rb.MoveRotation(lerpAngle);
 
-        rb.AddForce(input * force * Time.fixedDeltaTime);
+        rb.AddForce(direction * force * Time.fixedDeltaTime);
 
         if (Mathf.Abs(rb.velocity.x) > maxSpeed || Mathf.Abs(rb.velocity.y) > maxSpeed)
         {
@@ -53,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.angularDrag = minAngularDrag;
             }
         }
-
     }
 
 }

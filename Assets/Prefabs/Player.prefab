@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1225484377967176183}
   - component: {fileID: 1225484377967176180}
   - component: {fileID: 1225484377967176176}
-  - component: {fileID: 1225484377967176177}
   - component: {fileID: -4447496222620087083}
   - component: {fileID: 3387674817375607602}
+  - component: {fileID: 4324436598025248022}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -194,25 +194,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &1225484377967176177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225484377967176181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0debfe6938834f348b9b4709e194ac97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 6
-  force: 500
-  rotation_speed: 7
-  maxLinearDrag: 1
-  minLinearDrag: 0
-  maxAngularDrag: 1
-  minAngularDrag: 0
 --- !u!114 &-4447496222620087083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +220,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b84b8239c24e545a33fa02978ec139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4324436598025248022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225484377967176181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38168f32f5e8d7478a2dfa3b98af703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 6
+  force: 500
+  rotation_speed: 7
+  maxLinearDrag: 1
+  minLinearDrag: 0
+  maxAngularDrag: 1
+  minAngularDrag: 0
 --- !u!1 &7882930655957660587
 GameObject:
   m_ObjectHideFlags: 0

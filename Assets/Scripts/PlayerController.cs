@@ -17,4 +17,10 @@ public class PlayerController : MonoBehaviour
             GetComponent<Shooter>().Shoot();
         }
     }
+
+    void FixedUpdate()
+    {
+        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        GetComponent<Movement>().Move(input);
+    }
 }
