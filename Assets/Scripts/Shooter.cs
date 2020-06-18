@@ -34,6 +34,7 @@ public class Shooter : MonoBehaviour
             foreach (Transform gun in guns)
             {
                 GameObject bulletInst = Instantiate(bullet, gun.position, gun.rotation) as GameObject;
+                bulletInst.GetComponent<Bullet>().SetFriend(gameObject);
                 bulletInst.GetComponent<Rigidbody2D>().velocity = bulletInst.transform.up * bullet.GetComponent<Bullet>().velocity;
                 Destroy(bulletInst, bulletInst.GetComponent<Bullet>().life_time);
             }

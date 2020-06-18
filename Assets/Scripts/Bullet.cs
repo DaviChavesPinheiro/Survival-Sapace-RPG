@@ -8,18 +8,29 @@ public class Bullet : MonoBehaviour
     public float velocity = 15;
     public float life_time = 5;
     public float coolDown = 0.5f;
+    [SerializeField] List<string> friendlyTags;
     
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        switch (collider.tag)
-        {            
-            case "Player":
-                
-                break;
-            default:
-                GiveDemage(collider);
-                break;
+        if(!isFriendly(collider.tag)){
+            GiveDemage(collider);
         }
+    }
+
+    private bool isFriendly(string tag)
+    {
+        foreach (string friendlyTag in friendlyTags)
+        {
+            if (friendlyTag == tag)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void SetFriend(GameObject friend){
+        friendlyTags.Add(friend.tag);
     }
 
     private void GiveDemage(Collider2D collider)
