@@ -56,4 +56,12 @@ public class Movement : MonoBehaviour
         }
     }
 
+    public void RotateToPosition(Vector2 position){
+        Rotate((position - new Vector2(transform.position.x, transform.position.y)).normalized);
+    }
+
+    public void RotateToPosition(Vector3 position){
+        Rotate((new Vector2(position.x, position.y) - new Vector2(transform.position.x, transform.position.y)).normalized);
+    }
+
 }

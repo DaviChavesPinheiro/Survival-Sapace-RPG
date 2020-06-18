@@ -8,6 +8,18 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage){
         health = Mathf.Max(health - damage, 0);
-        print(health);
+        if(health == 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        print(gameObject.name + " Morreu!");
+        if (gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }
