@@ -24,6 +24,11 @@ public class Chunk : MonoBehaviour
     public void SetNoiseScale(float noiseScale){
         this.noiseScale = noiseScale;
     }
+
+    public void SetBlock(Vector2 position){
+        Vector2 localPosition = position - new Vector2(transform.position.x, transform.position.y);
+        map[Mathf.FloorToInt(localPosition.x), Mathf.FloorToInt(localPosition.y)] = 0;
+    }
     
     private void GenereteMap(){
 
@@ -56,5 +61,7 @@ public class Chunk : MonoBehaviour
     {
         Gizmos.DrawWireCube(transform.position + new Vector3(width / 2, height / 2, 0), new Vector3(width, height, 1));        
     }
+
+
 
 }

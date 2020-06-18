@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
     private void Die()
     {
         print(gameObject.name + " Morreu!");
-        if (gameObject.tag == "Enemy")
+        if (gameObject.tag != "Player")
         {
             Destroy(gameObject);
         }

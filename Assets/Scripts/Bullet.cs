@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     {
         if(!isFriendly(collider.tag)){
             GiveDemage(collider);
+            Explode();
         }
     }
 
@@ -41,5 +42,9 @@ public class Bullet : MonoBehaviour
         {
             healthComponent.TakeDamage(demage);
         }
+    }
+    
+    private void Explode(){
+        Destroy(gameObject);
     }
 }
