@@ -22,4 +22,8 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public bool isAlive(){
+        return health > 0;
+    }
 }
