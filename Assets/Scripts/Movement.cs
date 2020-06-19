@@ -66,12 +66,25 @@ public class Movement : MonoBehaviour, ISaveable
 
     public object CaptureState()
     {
-        return new SerializableVector3(transform.position);
+        MovementSaveData data = new MovementSaveData();
+        data.position = new SerializableVector3(transform.position);
+        data.rotation = new SerializableVector3(transform.eulerAngles);
+        data.acceleration = new SerializableVector3(new Vector3(rb.velocity.x, rb.velocity.y, 0));
+        return data;
     }
 
     public void RestoreState(object state)
     {
-        SerializableVector3 position = (SerializableVector3)state;
-        transform.position = position.ToVector();
+        MovementSaveData data =  (MovementSaveData)state;
+        transform.position = data.position.ToVector();
+        transform.eulerAngles = data.rotation.ToVector();
+        rb.velocity = new Vector2(data.acceleration.ToVector().x, data.acceleration.ToVector().y);
+    }
+
+    [System.Serializable]
+    struct MovementSaveData{
+        public SerializableVector3 position;
+        public SerializableVector3 rotation;
+        public SerializableVector3 acceleration;
     }
 }

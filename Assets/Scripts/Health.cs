@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, ISaveable
 {
     [SerializeField] float health = 20f;
 
@@ -19,11 +19,26 @@ public class Health : MonoBehaviour
         print(gameObject.name + " Morreu!");
         if (gameObject.tag != "Player")
         {
-            Destroy(gameObject);
+            // gameObject.SetActive(false);
         }
     }
 
     public bool isAlive(){
         return health > 0;
+    }
+
+    public object CaptureState()
+    {
+        return health;
+    }
+
+    public void RestoreState(object state)
+    {
+        health = (float)state;
+
+        if(health == 0)
+        {
+            Die();
+        }
     }
 }
