@@ -6,6 +6,9 @@ public class Block : MonoBehaviour
 {
     void OnDestroy()
     {
-        transform.GetComponentInParent<Chunk>().SetBlock(new Vector2(transform.position.x, transform.position.y));
+        Chunk chunk = transform.GetComponentInParent<Chunk>();
+        if(chunk != null){
+            chunk.SetBlock(new Vector2(transform.position.x, transform.position.y));
+        }
     }
 }

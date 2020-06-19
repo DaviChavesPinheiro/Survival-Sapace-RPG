@@ -5,7 +5,7 @@ using UnityEngine;
 public class Chunk : MonoBehaviour
 {
     
-    public static int height = 50, width = 50;
+    public static int height = 25, width = 25;
 
     [SerializeField] GameObject block;
 

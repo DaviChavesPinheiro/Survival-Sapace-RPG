@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunk: {fileID: 2526676956202165948, guid: afce304020f51224c908955da1a5e206, type: 3}
-  viewDistance: 100
+  viewDistance: 50
   noiseScale: 20
