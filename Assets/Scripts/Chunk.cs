@@ -4,20 +4,36 @@ using UnityEngine;
 
 public class Chunk : MonoBehaviour
 {
-    
+    GameObject chunkObject;
     public static int height = 25, width = 25;
+    Vector2 position;
+	Bounds bounds;
 
     [SerializeField] GameObject block;
 
     float[,] map;
     float noiseScale;
-    // Start is called before the first frame update
+    
+    public void UpdateTerrainChunk() {
+        float viewerDstFromNearestEdge = Mathf.Sqrt(bounds.SqrDistance (ChunkGenerator.viewerPosition));
+        bool visible = viewerDstFromNearestEdge <= ChunkGenerator.maxViewDst;
+        SetVisible (visible);
+    }
+
+    public void SetVisible(bool visible) {
+        gameObject.SetActive (visible);
+    }
+
+    public bool IsVisible() {
+        return gameObject.activeSelf;
+    }
+
+
     void Start()
     {   
-
-        ChunkGenerator.chunks.Add(this);
-
+        bounds = new Bounds(transform.position, Vector2.one * height);
         GenereteMap();
+        SetVisible(false);
 
     }
 

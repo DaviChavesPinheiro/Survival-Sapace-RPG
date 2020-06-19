@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ab7d71ffb45b5448ca5d39f50ad7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunk: {fileID: 2526676956202165948, guid: afce304020f51224c908955da1a5e206, type: 3}
-  viewDistance: 50
+  chunkObject: {fileID: 2526676956202165948, guid: afce304020f51224c908955da1a5e206,
+    type: 3}
   noiseScale: 20
