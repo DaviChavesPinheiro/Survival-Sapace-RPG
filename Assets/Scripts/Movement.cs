@@ -76,7 +76,7 @@ public class Movement : MonoBehaviour, ISaveable
 
     public void RestoreState(object state)
     {
-        MovementSaveData data =  (MovementSaveData)state;
+        MovementSaveData data = (MovementSaveData)state;
         transform.position = data.position.ToVector();
         transform.eulerAngles = data.rotation.ToVector();
         rb.velocity = new Vector2(data.acceleration.ToVector().x, data.acceleration.ToVector().y);

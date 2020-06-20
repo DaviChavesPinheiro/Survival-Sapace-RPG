@@ -11,7 +11,7 @@ public class Chunk : MonoBehaviour
 
     [SerializeField] GameObject block;
 
-    float[,] map;
+    float[,] map = new float[width, height];
     float noiseScale;
     
     public void UpdateTerrainChunk() {
@@ -28,11 +28,9 @@ public class Chunk : MonoBehaviour
         return gameObject.activeSelf;
     }
 
-
     void Start()
     {   
         bounds = new Bounds(transform.position, Vector2.one * height);
-        GenereteMap();
         SetVisible(false);
 
     }
@@ -46,8 +44,7 @@ public class Chunk : MonoBehaviour
         map[Mathf.FloorToInt(localPosition.x), Mathf.FloorToInt(localPosition.y)] = 0;
     }
     
-    private void GenereteMap(){
-
+    public void GenereteMap(){
         map = Noise.GenerateNoiseMap (width, height, noiseScale, transform.position.x, transform.position.y);
         GenereteBlocks();
     }
@@ -67,17 +64,42 @@ public class Chunk : MonoBehaviour
         }
     }
 
-    public static Vector2Int ToChunkScale(Vector2 position){
-        int x = Mathf.FloorToInt(position.x / Chunk.width) * Chunk.width;
-        int y = Mathf.FloorToInt(position.y / Chunk.height) * Chunk.height;
-        return new Vector2Int(x, y);
-    }
-
     void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireCube(transform.position + new Vector3(width / 2, height / 2, 0), new Vector3(width, height, 1));        
     }
 
+    public void SetMap(float[,] map){
+        this.map = map;
+        GenereteBlocks();
+    }
 
+    public float[,] GetMap(){
+        return map;
+    }
+    
+    public void SetMap(float[] map1d){
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                map[x, y] = map1d[width * x + y];
+            }
+        }
+        GenereteBlocks();
+    }
+
+
+    public static float[] MapToOneDimensionalMap(float[,] map){
+        float[] map1d = new float[width * height];
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                map1d[width * x + y] = map[x, y];
+            }
+        }
+        return map1d;
+    }
 
 }

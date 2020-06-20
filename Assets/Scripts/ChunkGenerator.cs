@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using RPG.Saving;
 using UnityEngine;
 
-public class ChunkGenerator : MonoBehaviour
+public class ChunkGenerator : MonoBehaviour, ISaveable
 {
     public static int maxViewDst = 50;
     Transform viewer;
@@ -11,6 +12,7 @@ public class ChunkGenerator : MonoBehaviour
     int chunkSize;
     int chunkVisibleInViewDst;
     
+    Dictionary<string, float[]> data = new Dictionary<string, float[]>();
     Dictionary<Vector2, Chunk> terrainChunkDictionary = new Dictionary<Vector2, Chunk>();
     List<Chunk> terrainChunksVisibleLastUpdate = new List<Chunk>();
 
@@ -49,52 +51,58 @@ public class ChunkGenerator : MonoBehaviour
 					if (terrainChunkDictionary[viewedChunkCoord].IsVisible()) {
 						terrainChunksVisibleLastUpdate.Add(terrainChunkDictionary[viewedChunkCoord]);
 					}
-                } else {
-                    Chunk chunk = Instantiate(chunkObject, new Vector3(viewedChunkCoord.x * chunkSize, viewedChunkCoord.y  * chunkSize, 0), Quaternion.identity).GetComponent<Chunk>();
-                    chunk.transform.SetParent(transform);
-                    chunk.SetNoiseScale(noiseScale + 0.123f);
+                } else
+                {
+                    Chunk chunk = SpawnChunk(viewedChunkCoord);
+                    if (data.ContainsKey(viewedChunkCoord.ToString()))
+                    {
+                        chunk.SetMap(data[viewedChunkCoord.ToString()]);
+                    }
+                    else
+                    {
+                        chunk.GenereteMap();
+                    }
                     terrainChunkDictionary.Add(viewedChunkCoord, chunk);
                 }
             }
         }
     }
 
-    // // Update is called once per frame
-    // void Update()
-    // {
-    //     for (float x = viewer.position.x - maxViewDst; x < viewer.position.x + maxViewDst; x += Chunk.width){
-    //         for (float y = viewer.position.y - maxViewDst; y < viewer.position.y + maxViewDst; y += Chunk.height){
-                
-    //             Chunk chunck = GetChunk(new Vector2(x, y));
-    //             if (chunck == null)
-    //             {   
-    //                 Vector2Int chunkPosition = Chunk.ToChunkScale(new Vector2(x, y));
-    //                 SpawnChunk(chunkPosition);
-    //             }
-    //         }
-    //     }
-    // }
-
-    private void SpawnChunk(Vector2 position)
+    private Chunk SpawnChunk(Vector2 viewedChunkCoord)
     {
-        Chunk chunk = Instantiate(chunkObject, new Vector3(position.x, position.y, 0), Quaternion.identity).GetComponent<Chunk>();
+        Chunk chunk = Instantiate(chunkObject, new Vector3(viewedChunkCoord.x * chunkSize, viewedChunkCoord.y * chunkSize, 0), Quaternion.identity).GetComponent<Chunk>();
         chunk.transform.SetParent(transform);
         chunk.SetNoiseScale(noiseScale + 0.123f);
+        return chunk;
     }
 
-    // public static Chunk GetChunk(Vector2 position){
-    //     int x = Mathf.FloorToInt(position.x / Chunk.width) * Chunk.width;
-    //     int y = Mathf.FloorToInt(position.y / Chunk.height) * Chunk.height;
-        
-    //     foreach (Chunk chunk in chunks)
-    //     {
-    //         if (chunk.transform.position == new Vector3(x, y, 0))
-    //         {
-    //             return chunk;
-    //         }
-    //     }
-    //     return null;
-    // }
+    public object CaptureState()
+    {
+        foreach (Vector2 chunkCoord in terrainChunkDictionary.Keys)
+        {
+            data[chunkCoord.ToString()] = Chunk.MapToOneDimensionalMap(terrainChunkDictionary[chunkCoord].GetMap());
+        }
+        return data;
+    }
 
+    public void RestoreState(object state)
+    {
+        data = (Dictionary<string, float[]>)state;
+    }
+
+    public static Vector2 StringToVector2(string sVector)
+     {
+         if (sVector.StartsWith ("(") && sVector.EndsWith (")")) {
+             sVector = sVector.Substring(1, sVector.Length-2);
+         }
+
+         string[] sArray = sVector.Split(',');
+ 
+         Vector2 result = new Vector2(
+             float.Parse(sArray[0]),
+             float.Parse(sArray[1]));
+ 
+         return result;
+     }
 
 }

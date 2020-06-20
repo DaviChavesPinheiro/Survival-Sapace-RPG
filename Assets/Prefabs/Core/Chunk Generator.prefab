@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5330358978330302011}
   - component: {fileID: 7131159218449981975}
+  - component: {fileID: -7958609298571247085}
   m_Layer: 0
   m_Name: Chunk Generator
   m_TagString: Untagged
@@ -46,3 +47,16 @@ MonoBehaviour:
   chunkObject: {fileID: 2526676956202165948, guid: afce304020f51224c908955da1a5e206,
     type: 3}
   noiseScale: 20
+--- !u!114 &-7958609298571247085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3954162817569615776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
