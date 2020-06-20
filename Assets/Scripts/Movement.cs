@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour, ISaveable
+public class Movement : MonoBehaviour
 {
     Rigidbody2D rb;
 
@@ -64,27 +64,4 @@ public class Movement : MonoBehaviour, ISaveable
         Rotate((new Vector2(position.x, position.y) - new Vector2(transform.position.x, transform.position.y)).normalized);
     }
 
-    public object CaptureState()
-    {
-        MovementSaveData data = new MovementSaveData();
-        data.position = new SerializableVector3(transform.position);
-        data.rotation = new SerializableVector3(transform.eulerAngles);
-        data.acceleration = new SerializableVector3(new Vector3(rb.velocity.x, rb.velocity.y, 0));
-        return data;
-    }
-
-    public void RestoreState(object state)
-    {
-        MovementSaveData data =  (MovementSaveData)state;
-        transform.position = data.position.ToVector();
-        transform.eulerAngles = data.rotation.ToVector();
-        rb.velocity = new Vector2(data.acceleration.ToVector().x, data.acceleration.ToVector().y);
-    }
-
-    [System.Serializable]
-    struct MovementSaveData{
-        public SerializableVector3 position;
-        public SerializableVector3 rotation;
-        public SerializableVector3 acceleration;
-    }
 }
