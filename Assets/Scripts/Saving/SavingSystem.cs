@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -23,14 +23,21 @@ namespace RPG.Saving
             RestoreState(state);
         }
 
-        public void Save(string saveFile){
+        public void Save(string saveFile)
+        {
             Dictionary<string, object> state = LoadFile(saveFile);
             CaptureState(state);
             SaveFile(saveFile, state);
         }
 
-        public void Load(string saveFile){
+        public void Load(string saveFile)
+        {
             RestoreState(LoadFile(saveFile));
+        }
+
+        public void Delete(string saveFile)
+        {
+            File.Delete(GetPathFromSaveFile(saveFile));
         }
 
         private Dictionary<string, object> LoadFile(string saveFile)
@@ -58,13 +65,13 @@ namespace RPG.Saving
             }
         }
 
-
         private void CaptureState(Dictionary<string, object> state)
         {
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
             {
-                state[saveable.GetUniqueIdentifier()] = saveable.CaptureState(); 
+                state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
             }
+
             state["lastSceneBuildIndex"] = SceneManager.GetActiveScene().buildIndex;
         }
 
@@ -78,12 +85,11 @@ namespace RPG.Saving
                     saveable.RestoreState(state[id]);
                 }
             }
-
         }
 
-        private string GetPathFromSaveFile(string saveFile){
+        private string GetPathFromSaveFile(string saveFile)
+        {
             return Path.Combine(Application.persistentDataPath, saveFile + ".sav");
         }
-        
     }
 }
