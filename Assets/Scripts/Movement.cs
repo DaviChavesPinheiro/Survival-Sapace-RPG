@@ -6,6 +6,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour, ISaveable
 {
     Rigidbody2D rb;
+    [SerializeField] TrailRenderer[] trails;
 
     [SerializeField] int maxSpeed = 15;
     [SerializeField] int force = 250;
@@ -20,6 +21,7 @@ public class Movement : MonoBehaviour, ISaveable
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        trails = GetComponentsInChildren<TrailRenderer>();
         lerpAngle = 360 - transform.rotation.z;
     }
 
@@ -40,13 +42,16 @@ public class Movement : MonoBehaviour, ISaveable
         }
     }
 
-    public void Accelerate(bool isAccelerating){
+    public void Accelerate(bool isAccelerating)
+    {
         if (isAccelerating)
         {
             if (Mathf.Abs(rb.velocity.x) > maxSpeed || Mathf.Abs(rb.velocity.y) > maxSpeed)
             {
                 rb.drag = 10;
-            } else {
+            }
+            else
+            {
                 rb.AddForce(transform.up * force * Time.fixedDeltaTime);
                 rb.drag = maxLinearDrag;
             }
@@ -54,6 +59,16 @@ public class Movement : MonoBehaviour, ISaveable
         else
         {
             rb.drag = minLinearDrag;
+        }
+
+        UpdateTrails(isAccelerating);
+    }
+
+    private void UpdateTrails(bool isAccelerating)
+    {
+        foreach (TrailRenderer trail in trails)
+        {
+            trail.emitting = isAccelerating;
         }
     }
 

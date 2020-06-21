@@ -26,6 +26,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2842762246764507948, guid: ab664038a575daa4db68d6a42c177c7c,
         type: 3}
+    - target: {fileID: 976357992493660521, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 976357992493660521, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 976357992493660521, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 976357992493660521, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 976357992493660521, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1225484377967176181, guid: 9627cc563ecde464685d5b493e032930,
         type: 3}
       propertyPath: m_Name
@@ -101,6 +126,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720583718763027301, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720583718763027301, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720583718763027301, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720583718763027301, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720583718763027301, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9627cc563ecde464685d5b493e032930, type: 3}
