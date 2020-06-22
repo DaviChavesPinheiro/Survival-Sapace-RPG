@@ -6,13 +6,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, ISaveable
 {
-    [SerializeField] float health = 20f;
+    [SerializeField] float initialHealth = 20f;
+    float health = 20f;
 
     void Start()
     {
         if(GetComponent<BaseStats>()){
-            health = GetComponent<BaseStats>().GetHealth();        
+            initialHealth = GetComponent<BaseStats>().GetHealth();        
         }
+        health = initialHealth;
     }
 
     public void TakeDamage(float damage){
@@ -21,6 +23,10 @@ public class Health : MonoBehaviour, ISaveable
         {
             Die();
         }
+    }
+
+    public float GetPercetage(){
+        return 100 * (health / initialHealth);
     }
 
     private void Die()
