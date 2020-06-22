@@ -7,16 +7,21 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, ISaveable
 {
-    [SerializeField] float initialHealth = 20f;
+    [SerializeField] float initialHealth = -1f;
     [SerializeField] HealthBar healthBar = null;
-    float health = 20f;
+    [SerializeField] float health = -1f;
 
     void Start()
     {
-        if(GetComponent<BaseStats>()){
-            initialHealth = GetComponent<BaseStats>().GetStat(Stat.Health);        
+        if(initialHealth == -1){
+            if(GetComponent<BaseStats>()){
+                initialHealth = GetComponent<BaseStats>().GetStat(Stat.Health);     
+            }
         }
-        health = initialHealth;
+        if(health == -1){
+            health = GetComponent<BaseStats>().GetStat(Stat.Health);     
+        }
+        // health = initialHealth;
         if(healthBar){
             healthBar.SetMaxHealth(initialHealth);
         }
@@ -50,6 +55,7 @@ public class Health : MonoBehaviour, ISaveable
     {
         Experience experience = instigator.GetComponent<Experience>();
         if (experience == null) return;
+        if(!GetComponent<BaseStats>()) return;
 
         experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
     }

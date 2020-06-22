@@ -6,6 +6,7 @@
         Ship,
         Spike,
         Buffer,
-        Mon
+        Mon,
+        Rock
     }
 }
