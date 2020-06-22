@@ -22,4 +22,8 @@ public class Experience : MonoBehaviour, ISaveable
     {
         experiencePoints = (float)state;
     }
+
+    public float GetPoints(){
+        return experiencePoints;
+    }
 }
