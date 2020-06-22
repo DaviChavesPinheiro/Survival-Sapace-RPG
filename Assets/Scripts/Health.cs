@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using RPG.Saving;
 using RPG.Stats;
@@ -21,13 +22,14 @@ public class Health : MonoBehaviour, ISaveable
         }
     }
 
-    public void TakeDamage(float damage){
+    public void TakeDamage(GameObject instigator, float damage){
         health = Mathf.Max(health - damage, 0);
         if(healthBar){
             healthBar.SetHealth(health);
         }
         if(health == 0)
         {
+            AwardExperience(instigator);
             Die();
         }
     }
@@ -42,6 +44,14 @@ public class Health : MonoBehaviour, ISaveable
         if (gameObject.tag == "Block"){
             Destroy(gameObject);
         }
+    }
+
+    private void AwardExperience(GameObject instigator)
+    {
+        Experience experience = instigator.GetComponent<Experience>();
+        if (experience == null) return;
+
+        experience.GainExperience(GetComponent<BaseStats>().GetExperienceReward());
     }
 
     public bool isAlive(){

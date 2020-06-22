@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     public float coolDown = 0.5f;
     [SerializeField] List<string> friendlyTags;
     
+    GameObject instigator;
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if(!isFriendly(collider.tag)){
@@ -34,13 +35,17 @@ public class Bullet : MonoBehaviour
         friendlyTags.Add(friend.tag);
     }
 
+    public void SetInstigator(GameObject instigator){
+        this.instigator = instigator;
+    }
+
     private void GiveDemage(Collider2D collider)
     {
         Health healthComponent = collider.GetComponent<Health>();
 
         if (healthComponent)
         {
-            healthComponent.TakeDamage(demage);
+            healthComponent.TakeDamage(instigator, demage);
         }
     }
     
