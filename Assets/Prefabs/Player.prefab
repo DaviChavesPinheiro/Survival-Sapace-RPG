@@ -60,6 +60,16 @@ PrefabInstance:
       propertyPath: m_Parameters.colorGradient.key1.b
       value: 0.7763831
       objectReference: {fileID: 0}
+    - target: {fileID: 1027652877502349771, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1027652877502349771, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1225484377967176181, guid: 9627cc563ecde464685d5b493e032930,
         type: 3}
       propertyPath: m_Name
@@ -140,6 +150,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682018980173223803, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2530219352631092556, guid: 9627cc563ecde464685d5b493e032930,
         type: 3}

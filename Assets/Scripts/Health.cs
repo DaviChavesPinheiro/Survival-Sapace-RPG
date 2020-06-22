@@ -7,6 +7,7 @@ using UnityEngine;
 public class Health : MonoBehaviour, ISaveable
 {
     [SerializeField] float initialHealth = 20f;
+    [SerializeField] HealthBar healthBar = null;
     float health = 20f;
 
     void Start()
@@ -15,10 +16,16 @@ public class Health : MonoBehaviour, ISaveable
             initialHealth = GetComponent<BaseStats>().GetHealth();        
         }
         health = initialHealth;
+        if(healthBar){
+            healthBar.SetMaxHealth(initialHealth);
+        }
     }
 
     public void TakeDamage(float damage){
         health = Mathf.Max(health - damage, 0);
+        if(healthBar){
+            healthBar.SetHealth(health);
+        }
         if(health == 0)
         {
             Die();
@@ -49,6 +56,10 @@ public class Health : MonoBehaviour, ISaveable
     public void RestoreState(object state)
     {
         health = (float)state;
+
+        if(healthBar){
+            healthBar.SetHealth(health);
+        }
 
         if(health == 0)
         {
