@@ -14,7 +14,7 @@ public class Health : MonoBehaviour, ISaveable
     void Start()
     {
         if(GetComponent<BaseStats>()){
-            initialHealth = GetComponent<BaseStats>().GetHealth();        
+            initialHealth = GetComponent<BaseStats>().GetStat(Stat.Health);        
         }
         health = initialHealth;
         if(healthBar){
@@ -51,7 +51,7 @@ public class Health : MonoBehaviour, ISaveable
         Experience experience = instigator.GetComponent<Experience>();
         if (experience == null) return;
 
-        experience.GainExperience(GetComponent<BaseStats>().GetExperienceReward());
+        experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
     }
 
     public bool isAlive(){
