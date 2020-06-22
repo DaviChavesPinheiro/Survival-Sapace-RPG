@@ -25,6 +25,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8116769621445307735, guid: 43068d4bc8dd6c0459b47dd924d010aa,
         type: 3}
+    - target: {fileID: -1775647954002608261, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: characterClass
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 976357992493660521, guid: 9627cc563ecde464685d5b493e032930,
         type: 3}
       propertyPath: m_Parameters.colorGradient.key0.r
