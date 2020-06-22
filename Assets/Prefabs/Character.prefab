@@ -285,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingLevel: 1
   characterClass: 1
+  progression: {fileID: 11400000, guid: d6e9b69cb2a74b449b4606336b2fa56a, type: 2}
 --- !u!1 &2038839983907250614
 GameObject:
   m_ObjectHideFlags: 0
