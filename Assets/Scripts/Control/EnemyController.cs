@@ -7,15 +7,27 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float chaseDistance = 5f;
     GameObject player;
     Health health;
-    void Start()
+    bool isEnemyAlive = true;
+
+    void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         health = GetComponent<Health>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
-    // Update is called once per frame
+
+    private void OnEnable()
+    {
+        GetComponent<Health>().onDie += onEnemyDie;
+    }
+
+    private void OnDisable()
+    {
+        GetComponent<Health>().onDie -= onEnemyDie;
+    }
+
     void Update()
     {
-        if(!health.isAlive()) return;
+        if(!isEnemyAlive) return;
         if(InAttackRange()){
             GetComponent<Movement>().RotateToPosition(player.transform.position);
             GetComponent<Shooter>().Shoot();
@@ -30,5 +42,10 @@ public class EnemyController : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, chaseDistance);        
+    }
+
+    private void onEnemyDie()
+    {
+        isEnemyAlive = false;
     }
 }

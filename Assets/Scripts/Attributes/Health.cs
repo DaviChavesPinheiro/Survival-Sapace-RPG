@@ -11,6 +11,8 @@ public class Health : MonoBehaviour, ISaveable
     [SerializeField] HealthBar healthBar = null;
     [SerializeField] float health = -1f;
 
+    public event Action onDie;
+
     void Start()
     {
         if (initialHealth == -1)
@@ -28,6 +30,13 @@ public class Health : MonoBehaviour, ISaveable
         if (healthBar)
         {
             healthBar.SetMaxHealth(initialHealth);
+            healthBar.SetHealth(health);
+
+        }
+
+        if (health == 0)
+        {
+            Die();
         }
         
     }
@@ -64,6 +73,7 @@ public class Health : MonoBehaviour, ISaveable
     private void Die()
     {
         print(gameObject.name + " Morreu!");
+        onDie();
         if (gameObject.tag == "Block")
         {
             Destroy(gameObject);
@@ -97,16 +107,6 @@ public class Health : MonoBehaviour, ISaveable
     public void RestoreState(object state)
     {
         health = (float)state;
-
-        if (healthBar)
-        {
-            healthBar.SetHealth(health);
-        }
-
-        if (health == 0)
-        {
-            Die();
-        }
     }
 
 }
