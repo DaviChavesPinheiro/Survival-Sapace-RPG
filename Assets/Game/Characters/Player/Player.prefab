@@ -12,19 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b84b8239c24e545a33fa02978ec139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7656079536537816890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8808219964959094531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c560019e1c5b43347a920ae37a9b5971, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  experiencePoints: 0
 --- !u!1001 &7727296180356767478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -172,6 +159,11 @@ PrefabInstance:
     - target: {fileID: 2530219352631092556, guid: 9627cc563ecde464685d5b493e032930,
         type: 3}
       propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2530219352631092556, guid: 9627cc563ecde464685d5b493e032930,
+        type: 3}
+      propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2720583718763027301, guid: 9627cc563ecde464685d5b493e032930,

@@ -94,7 +94,7 @@ public class Movement : MonoBehaviour, ISaveable
         MovementSaveData data = (MovementSaveData)state;
         transform.position = data.position.ToVector();
         transform.eulerAngles = data.rotation.ToVector();
-        rb.velocity = new Vector2(data.acceleration.ToVector().x, data.acceleration.ToVector().y);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(data.acceleration.ToVector().x, data.acceleration.ToVector().y);
     }
 
     [System.Serializable]

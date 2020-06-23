@@ -35,17 +35,13 @@ public class Bullet : MonoBehaviour
         friendlyTags.Add(friend.tag);
     }
 
-    public void SetInstigator(GameObject instigator){
-        this.instigator = instigator;
-    }
-
     private void GiveDemage(Collider2D collider)
     {
         Health healthComponent = collider.GetComponent<Health>();
 
         if (healthComponent)
         {
-            healthComponent.TakeDamage(instigator, demage);
+            healthComponent.TakeDamage(demage);
         }
     }
     

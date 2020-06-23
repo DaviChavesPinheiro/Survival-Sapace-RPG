@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: 2530219352631092556}
   - component: {fileID: 3618213113784547300}
   - component: {fileID: -2317507664202016810}
-  - component: {fileID: -1775647954002608261}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -290,7 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251d010872d3a1945a9c642cabd20b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 20
+  maxHealth: 20
+  health: 20
   healthBar: {fileID: 7047788612446736478}
 --- !u!60 &3618213113784547300
 PolygonCollider2D:
@@ -405,21 +405,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueIdentifier: 
---- !u!114 &-1775647954002608261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225484377967176181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a483591e20c02f743b988b89530c39b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingLevel: 1
-  characterClass: 1
-  progression: {fileID: 11400000, guid: d6e9b69cb2a74b449b4606336b2fa56a, type: 2}
 --- !u!1 &1682018980173223803
 GameObject:
   m_ObjectHideFlags: 0

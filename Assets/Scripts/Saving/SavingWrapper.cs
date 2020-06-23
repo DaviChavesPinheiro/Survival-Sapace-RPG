@@ -8,7 +8,7 @@ namespace RPG.Saving
     {
         const string defaultSaveFile = "save";
 
-        private void Start()
+        private void Awake()
         {
            Load();
         }
@@ -23,6 +23,10 @@ namespace RPG.Saving
             {
                 Load();
             }
+            if (Input.GetKeyDown(KeyCode.Delete))
+            {
+                Delete();
+            }
         }
 
         public void Load()
@@ -33,6 +37,10 @@ namespace RPG.Saving
         public void Save()
         {
             GetComponent<SavingSystem>().Save(defaultSaveFile);
+        }
+        public void Delete()
+        {
+            GetComponent<SavingSystem>().Delete(defaultSaveFile);
         }
     }
 }

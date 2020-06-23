@@ -2,36 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using RPG.Saving;
-using RPG.Stats;
 using UnityEngine;
 
 public class Health : MonoBehaviour, ISaveable
 {
-    [SerializeField] float initialHealth = -1f;
+    [SerializeField] float maxHealth = 20f;
+    float health = -1f;
     [SerializeField] HealthBar healthBar = null;
-    [SerializeField] float health = -1f;
 
     public event Action onDie;
+    public event Action onHealthChange;
 
     void Start()
     {
-        if (initialHealth == -1)
-        {
-            if (GetComponent<BaseStats>())
-            {
-                initialHealth = GetComponent<BaseStats>().GetStat(Stat.Health);
-            }
-        }
-        if (health == -1)
-        {
-            health = GetComponent<BaseStats>().GetStat(Stat.Health);
-        }
-
-        if (healthBar)
-        {
-            healthBar.SetMaxHealth(initialHealth);
-            healthBar.SetHealth(health);
-
+        if(health == -1f){
+            SetHealth(maxHealth);
         }
 
         if (health == 0)
@@ -41,33 +26,27 @@ public class Health : MonoBehaviour, ISaveable
         
     }
 
-    private void OnEnable()
+    public void TakeDamage(float damage)
     {
-        GetComponent<BaseStats>().onLevelUp += onLevelUp;
+        SetHealth(health - damage);
     }
 
-    private void OnDisable()
-    {
-        GetComponent<BaseStats>().onLevelUp -= onLevelUp;
-    }
-
-    public void TakeDamage(GameObject instigator, float damage)
-    {
-        health = Mathf.Max(health - damage, 0);
-        if (healthBar)
-        {
-            healthBar.SetHealth(health);
-        }
+    public void SetHealth(float value){
+        health = Mathf.Max(value, 0);
+        health = Mathf.Min(health, maxHealth);
+        
+        if(onHealthChange != null) onHealthChange();
+        
+        UpdateHealthBar();
         if (health == 0)
         {
-            AwardExperience(instigator);
             Die();
         }
     }
 
     public float GetPercetage()
     {
-        return 100 * (health / initialHealth);
+        return 100 * (health / maxHealth);
     }
 
     private void Die()
@@ -84,18 +63,12 @@ public class Health : MonoBehaviour, ISaveable
         }
     }
 
-    private void onLevelUp()
-    {
-        health = initialHealth;
-    }
-
-    private void AwardExperience(GameObject instigator)
-    {
-        Experience experience = instigator.GetComponent<Experience>();
-        if (experience == null) return;
-        if (!GetComponent<BaseStats>()) return;
-
-        experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
+    private void UpdateHealthBar(){
+        if (healthBar)
+        {
+            healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetHealth(health);
+        }
     }
 
     public object CaptureState()
