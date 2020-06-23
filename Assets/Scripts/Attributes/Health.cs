@@ -18,7 +18,7 @@ public class Health : MonoBehaviour, ISaveable
         if(health == -1f){
             SetHealth(maxHealth);
         }
-
+        UpdateHealthBar();
         if (health == 0)
         {
             Die();
