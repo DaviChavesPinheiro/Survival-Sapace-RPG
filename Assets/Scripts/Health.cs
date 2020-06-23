@@ -13,46 +13,65 @@ public class Health : MonoBehaviour, ISaveable
 
     void Start()
     {
-        if(initialHealth == -1){
-            if(GetComponent<BaseStats>()){
-                initialHealth = GetComponent<BaseStats>().GetStat(Stat.Health);     
+        if (initialHealth == -1)
+        {
+            if (GetComponent<BaseStats>())
+            {
+                initialHealth = GetComponent<BaseStats>().GetStat(Stat.Health);
             }
         }
-        if(health == -1){
-            health = GetComponent<BaseStats>().GetStat(Stat.Health);     
+        if (health == -1)
+        {
+            health = GetComponent<BaseStats>().GetStat(Stat.Health);
         }
         // health = initialHealth;
-        if(healthBar){
+        if (healthBar)
+        {
             healthBar.SetMaxHealth(initialHealth);
         }
+        
+    }
+
+    private void OnEnable()
+    {
         GetComponent<BaseStats>().onLevelUp += onLevelUp;
     }
 
-    public void TakeDamage(GameObject instigator, float damage){
+    private void OnDisable()
+    {
+        GetComponent<BaseStats>().onLevelUp -= onLevelUp;
+    }
+
+    public void TakeDamage(GameObject instigator, float damage)
+    {
         health = Mathf.Max(health - damage, 0);
-        if(healthBar){
+        if (healthBar)
+        {
             healthBar.SetHealth(health);
         }
-        if(health == 0)
+        if (health == 0)
         {
             AwardExperience(instigator);
             Die();
         }
     }
 
-    public float GetPercetage(){
+    public float GetPercetage()
+    {
         return 100 * (health / initialHealth);
     }
 
     private void Die()
     {
         print(gameObject.name + " Morreu!");
-        if (gameObject.tag == "Block"){
+        if (gameObject.tag == "Block")
+        {
             Destroy(gameObject);
         }
     }
 
-    private void onLevelUp(){
+    private void onLevelUp()
+    {
         health = initialHealth;
     }
 
@@ -60,15 +79,16 @@ public class Health : MonoBehaviour, ISaveable
     {
         Experience experience = instigator.GetComponent<Experience>();
         if (experience == null) return;
-        if(!GetComponent<BaseStats>()) return;
+        if (!GetComponent<BaseStats>()) return;
 
         experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
     }
 
-    public bool isAlive(){
+    public bool isAlive()
+    {
         return health > 0;
     }
-    
+
     public object CaptureState()
     {
         return health;
@@ -78,14 +98,15 @@ public class Health : MonoBehaviour, ISaveable
     {
         health = (float)state;
 
-        if(healthBar){
+        if (healthBar)
+        {
             healthBar.SetHealth(health);
         }
 
-        if(health == 0)
+        if (health == 0)
         {
             Die();
         }
     }
-    
+
 }
