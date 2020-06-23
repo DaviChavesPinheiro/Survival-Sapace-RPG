@@ -26,7 +26,7 @@ public class Health : MonoBehaviour, ISaveable
         {
             health = GetComponent<BaseStats>().GetStat(Stat.Health);
         }
-        // health = initialHealth;
+
         if (healthBar)
         {
             healthBar.SetMaxHealth(initialHealth);
@@ -73,10 +73,14 @@ public class Health : MonoBehaviour, ISaveable
     private void Die()
     {
         print(gameObject.name + " Morreu!");
-        onDie();
+        if(onDie != null)
+            onDie();
         if (gameObject.tag == "Block")
         {
             Destroy(gameObject);
+        }
+        if(gameObject.tag == "Enemy"){
+            gameObject.SetActive(false);
         }
     }
 
@@ -92,11 +96,6 @@ public class Health : MonoBehaviour, ISaveable
         if (!GetComponent<BaseStats>()) return;
 
         experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
-    }
-
-    public bool isAlive()
-    {
-        return health > 0;
     }
 
     public object CaptureState()
