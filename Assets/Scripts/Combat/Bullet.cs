@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float demage = 5;
     public float velocity = 15;
-    public float life_time = 5;
+    public float lifeTime = 5;
     public float coolDown = 0.5f;
     [SerializeField] List<string> friendlyTags;
     
