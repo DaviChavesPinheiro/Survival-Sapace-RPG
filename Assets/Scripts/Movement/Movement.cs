@@ -27,13 +27,13 @@ public class Movement : MonoBehaviour, ISaveable
 
     public void Rotate(Vector2 direction)
     {
-        float angle = 360 - Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-        lerpAngle = Mathf.LerpAngle(lerpAngle, angle, rotation_speed * Time.fixedDeltaTime * direction.magnitude);
-        rb.MoveRotation(lerpAngle);
+        bool isRotating = direction.magnitude > 0;
 
-        bool isRotating = direction.magnitude > 0 ? true : false;
         if (isRotating)
         {
+            float angle = 360 - Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+            lerpAngle = Mathf.LerpAngle(lerpAngle, angle, rotation_speed * Time.fixedDeltaTime * direction.magnitude);
+            rb.MoveRotation(lerpAngle);
             rb.angularDrag = maxAngularDrag;
         }
         else
