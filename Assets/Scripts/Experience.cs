@@ -24,6 +24,7 @@ public class Experience : MonoBehaviour, ISaveable
     public void RestoreState(object state)
     {
         experiencePoints = (float)state;
+        onExperienceGained();
     }
 
     public float GetPoints(){

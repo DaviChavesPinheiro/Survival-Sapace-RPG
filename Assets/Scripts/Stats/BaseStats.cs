@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ namespace RPG.Stats
         [SerializeField] Progression progression = null;
 
         int currentLevel = 0;
+
+        public event Action onLevelUp;
 
         private void Start() 
         {
@@ -29,8 +32,13 @@ namespace RPG.Stats
             if (newLevel > currentLevel)
             {
                 currentLevel = newLevel;
-                print("Levelled Up!");
+                LevelUp();
             }
+        }
+
+        private void LevelUp()
+        {
+            onLevelUp();
         }
 
         public float GetStat(Stat stat){

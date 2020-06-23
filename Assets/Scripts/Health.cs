@@ -25,6 +25,7 @@ public class Health : MonoBehaviour, ISaveable
         if(healthBar){
             healthBar.SetMaxHealth(initialHealth);
         }
+        GetComponent<BaseStats>().onLevelUp += onLevelUp;
     }
 
     public void TakeDamage(GameObject instigator, float damage){
@@ -49,6 +50,10 @@ public class Health : MonoBehaviour, ISaveable
         if (gameObject.tag == "Block"){
             Destroy(gameObject);
         }
+    }
+
+    private void onLevelUp(){
+        health = initialHealth;
     }
 
     private void AwardExperience(GameObject instigator)
