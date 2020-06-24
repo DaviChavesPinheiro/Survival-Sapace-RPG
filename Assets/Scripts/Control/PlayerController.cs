@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] Joystick joystick;
     Health health;
     bool isPlayerAlive = true;
 
@@ -26,19 +27,20 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (!isPlayerAlive) return;
-        if (Input.GetMouseButton(0))
-        {
-            GetComponent<Shooter>().Shoot();
-        }
+        // if (Input.GetMouseButton(0))
+        // {
+        //     GetComponent<Shooter>().Shoot();
+        // }
     }
 
     void FixedUpdate()
     {
         if (!isPlayerAlive) return;
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        // Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        Vector2 input = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
         GetComponent<Movement>().Rotate(input);
 
-        GetComponent<Movement>().Accelerate(Input.GetButton("space"));
+        // GetComponent<Movement>().Accelerate(Input.GetButton("space"));
     }
 
     private void onPlayerDie()
