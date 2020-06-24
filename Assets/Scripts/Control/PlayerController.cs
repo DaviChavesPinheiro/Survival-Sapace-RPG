@@ -7,11 +7,13 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] Joystick joystick;
     Health health;
+    Movement movement;
     bool isPlayerAlive = true;
 
     void Awake()
     {
         health = GetComponent<Health>();
+        movement = GetComponent<Movement>();
     }
 
     private void OnEnable()
@@ -38,9 +40,13 @@ public class PlayerController : MonoBehaviour
         if (!isPlayerAlive) return;
         // Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         Vector2 input = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
-        GetComponent<Movement>().Rotate(input);
-
-        // GetComponent<Movement>().Accelerate(Input.GetButton("space"));
+        movement.Rotate(input);
+        if(Input.GetButton("space")){
+            movement.isAccelerating = true;
+            movement.Accelerate();
+        } else {
+            movement.isAccelerating = false;
+        }
     }
 
     private void onPlayerDie()

@@ -14,7 +14,7 @@ public class OnTouch : MonoBehaviour {
 	public void OnTouchStationary(){
 		switch (button) {
 		case Buttons.accelerate:
-			player.GetComponent<Movement>().Accelerate(true);
+			// player.GetComponent<Movement>().Accelerate();
 			break;
 		}
 	}

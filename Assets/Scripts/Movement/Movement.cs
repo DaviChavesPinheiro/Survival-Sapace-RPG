@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour, ISaveable
     [SerializeField] float minLinearDrag = 0;
     [SerializeField] float maxAngularDrag = 1;
     [SerializeField] float minAngularDrag = 0;
-
+    public bool isAccelerating = false;
     float lerpAngle;
 
     void Awake()
@@ -23,6 +23,21 @@ public class Movement : MonoBehaviour, ISaveable
         rb = GetComponent<Rigidbody2D>();
         trails = GetComponentsInChildren<TrailRenderer>();
         lerpAngle = 360 - transform.rotation.z;
+    }
+
+    private void Update() {
+        if (isAccelerating)
+        {
+            rb.drag = maxLinearDrag;
+            if (rb.velocity.magnitude > maxSpeed)
+            {
+                rb.drag = 10;
+            }
+        }
+        else
+        {
+            rb.drag = minLinearDrag;
+        }
     }
 
     public void Rotate(Vector2 direction)
@@ -42,29 +57,14 @@ public class Movement : MonoBehaviour, ISaveable
         }
     }
 
-    public void Accelerate(bool isAccelerating)
+    public void Accelerate()
     {
-        if (isAccelerating)
-        {
-            if (Mathf.Abs(rb.velocity.x) > maxSpeed || Mathf.Abs(rb.velocity.y) > maxSpeed)
-            {
-                rb.drag = 10;
-            }
-            else
-            {
-                rb.AddForce(transform.up * force * Time.fixedDeltaTime);
-                rb.drag = maxLinearDrag;
-            }
-        }
-        else
-        {
-            rb.drag = minLinearDrag;
-        }
+        rb.AddForce(transform.up * force * Time.fixedDeltaTime);
 
-        UpdateTrails(isAccelerating);
+        UpdateTrails();
     }
 
-    private void UpdateTrails(bool isAccelerating)
+    private void UpdateTrails()
     {
         foreach (TrailRenderer trail in trails)
         {
