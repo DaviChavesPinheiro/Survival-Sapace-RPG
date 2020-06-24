@@ -7,19 +7,23 @@ public class OnTouch : MonoBehaviour {
 
     [SerializeField] Buttons button;
     GameObject player;
+	Movement movement;
+	Shooter shooter;
 
 	void Awake () {
 		player = GameObject.FindGameObjectWithTag("Player");
+		movement = player.GetComponent<Movement>();
+		shooter = player.GetComponent<Shooter>();
 	}
 
 	public void OnTouchStationary(){
 		switch (button) {
 		case Buttons.accelerate:
-			player.GetComponent<Movement>().isAccelerating = true;
-            player.GetComponent<Movement>().Accelerate();
+			movement.isAccelerating = true;
+            movement.Accelerate();
 			break;
 		case Buttons.fire:
-			player.GetComponent<Shooter>().Shoot();
+			shooter.Shoot();
 			break;
 		}
 	}
@@ -33,14 +37,14 @@ public class OnTouch : MonoBehaviour {
 	public void OnTouchEnded(){
 		switch (button) {
 		case Buttons.accelerate:
-			player.GetComponent<Movement>().isAccelerating = false;
+			movement.isAccelerating = false;
 			break;
 		}
 	}
 	public void OnTouchCanceled(){
 		switch (button) {
 		case Buttons.accelerate:
-			player.GetComponent<Movement>().isAccelerating = false;
+			movement.isAccelerating = false;
 			break;
 		}
 	}
