@@ -38,8 +38,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         if (!isPlayerAlive) return;
-        // Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         Vector2 input = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
+        if(input.magnitude == 0){
+            input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        }
         movement.Rotate(input);
         if(Input.GetButton("space")){
             movement.isAccelerating = true;

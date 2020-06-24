@@ -38,6 +38,7 @@ public class Movement : MonoBehaviour, ISaveable
         {
             rb.drag = minLinearDrag;
         }
+        UpdateTrails();
     }
 
     public void Rotate(Vector2 direction)
@@ -60,8 +61,6 @@ public class Movement : MonoBehaviour, ISaveable
     public void Accelerate()
     {
         rb.AddForce(transform.up * force * Time.fixedDeltaTime);
-
-        UpdateTrails();
     }
 
     private void UpdateTrails()
