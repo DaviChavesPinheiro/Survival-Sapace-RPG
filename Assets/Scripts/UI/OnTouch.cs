@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Saving;
 
 public class OnTouch : MonoBehaviour {
 
@@ -22,6 +23,13 @@ public class OnTouch : MonoBehaviour {
 			break;
 		}
 	}
+	public void OnTouchBegan(){
+		switch (button) {
+		case Buttons.save:
+			GameObject.FindObjectOfType<SavingSystem>().Save("save");
+			break;
+		}
+	}
 	public void OnTouchEnded(){
 		switch (button) {
 		case Buttons.accelerate:
@@ -40,6 +48,7 @@ public class OnTouch : MonoBehaviour {
     enum Buttons{
         accelerate,
         fire,
-        interact
+        interact,
+		save
     }
 }

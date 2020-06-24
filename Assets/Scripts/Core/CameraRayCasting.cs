@@ -25,6 +25,9 @@ public class CameraRayCasting : MonoBehaviour
 					case TouchPhase.Stationary:
 						gameObjectTouched.SendMessage ("OnTouchStationary", SendMessageOptions.DontRequireReceiver);
 						break;
+					case TouchPhase.Began:
+						gameObjectTouched.SendMessage ("OnTouchBegan", SendMessageOptions.DontRequireReceiver);
+						break;
 					case TouchPhase.Ended:
 						gameObjectTouched.SendMessage ("OnTouchEnded", SendMessageOptions.DontRequireReceiver);
 						break;
