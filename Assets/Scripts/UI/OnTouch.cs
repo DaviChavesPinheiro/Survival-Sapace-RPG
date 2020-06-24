@@ -17,6 +17,9 @@ public class OnTouch : MonoBehaviour {
 			player.GetComponent<Movement>().isAccelerating = true;
             player.GetComponent<Movement>().Accelerate();
 			break;
+		case Buttons.fire:
+			player.GetComponent<Shooter>().Shoot();
+			break;
 		}
 	}
 	public void OnTouchEnded(){

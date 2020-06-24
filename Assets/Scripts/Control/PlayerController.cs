@@ -29,10 +29,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (!isPlayerAlive) return;
-        // if (Input.GetMouseButton(0))
-        // {
-        //     GetComponent<Shooter>().Shoot();
-        // }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            GetComponent<Shooter>().Shoot();
+        }
     }
 
     void FixedUpdate()
