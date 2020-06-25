@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] InventoryObject inventory;
     [SerializeField] Joystick joystick;
     Health health;
     Movement movement;
@@ -54,5 +55,22 @@ public class PlayerController : MonoBehaviour
     private void onPlayerDie()
     {
         isPlayerAlive = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        switch (other.tag)
+        {
+            case "Drop":
+                Item item = other.GetComponent<Item>();
+                if(item){
+                    inventory.AddItem(item.item, 1);
+                }
+                Destroy(other.gameObject);
+                break;
+        }
+    }
+
+    private void OnApplicationQuit() {
+        // inventory.container.Clear();
     }
 }

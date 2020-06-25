@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b84b8239c24e545a33fa02978ec139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: a4be91ede9659c94a8f53421de6f45aa, type: 2}
+  joystick: {fileID: 0}
 --- !u!1001 &7727296180356767478
 PrefabInstance:
   m_ObjectHideFlags: 0
