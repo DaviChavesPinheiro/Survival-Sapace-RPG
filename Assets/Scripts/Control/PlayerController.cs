@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     Movement movement;
     bool isPlayerAlive = true;
 
+    public event Action onGetDropItem;
+
     void Awake()
     {
         health = GetComponent<Health>();
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
                 if(item){
                     inventory.AddItem(item.item, 1);
                 }
+                if(onGetDropItem != null) onGetDropItem();
                 Destroy(other.gameObject);
                 break;
         }
