@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace InventoryExample.UI
+public class ShowHideUI : MonoBehaviour
 {
-    public class ShowHideUI : MonoBehaviour
+    [SerializeField] KeyCode toggleKey = KeyCode.Escape;
+    [SerializeField] GameObject uiContainer = null;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        [SerializeField] KeyCode toggleKey = KeyCode.Escape;
-        [SerializeField] GameObject uiContainer = null;
+        uiContainer.SetActive(false);
+    }
 
-        // Start is called before the first frame update
-        void Start()
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(toggleKey))
         {
-            uiContainer.SetActive(false);
+            ToggleUI();
         }
+    }
 
-        // Update is called once per frame
-        void Update()
-        {
-            if (Input.GetKeyDown(toggleKey))
-            {
-                uiContainer.SetActive(!uiContainer.activeSelf);
-            }
-        }
+    public void ToggleUI()
+    {
+        uiContainer.SetActive(!uiContainer.activeSelf);
     }
 }

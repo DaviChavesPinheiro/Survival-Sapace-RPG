@@ -32,6 +32,9 @@ public class OnTouch : MonoBehaviour {
 		case Buttons.save:
 			GameObject.FindObjectOfType<SavingSystem>().Save("save");
 			break;
+		case Buttons.inventory:
+			GameObject.FindObjectOfType<ShowHideUI>().ToggleUI();
+			break;
 		}
 	}
 	public void OnTouchEnded(){
@@ -53,6 +56,7 @@ public class OnTouch : MonoBehaviour {
         accelerate,
         fire,
         interact,
-		save
+		save,
+		inventory
     }
 }

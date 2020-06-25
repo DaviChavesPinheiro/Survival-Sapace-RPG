@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bc71457a5a2db4c948bbf7d610364d, type: 3}
   m_Name: BluePlasmaBullet
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 3103653991846588026, guid: 6024f41afb3e0db4f8811de11794eee8, type: 3}
   type: 2
   description: A default bullet in Universe
   demage: 5

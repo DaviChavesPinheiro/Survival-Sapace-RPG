@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff631c7ed07f5b4c8c6ac70be59c228, type: 3}
   m_Name: Rock
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 4797271308781613378, guid: 9af4d942c32a97047a4d7a4e04d28607, type: 3}
   type: 2
   description: This is a rock, not The Rock, but a simple rock.

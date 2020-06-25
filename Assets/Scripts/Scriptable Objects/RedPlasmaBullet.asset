@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2bc71457a5a2db4c948bbf7d610364d, type: 3}
-  m_Name: BluePlasmaBullet
+  m_Name: RedPlasmaBullet
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
   type: 2
-  description: A default bullet in Universe
+  description: A default evil bullet in Universe
   demage: 5
