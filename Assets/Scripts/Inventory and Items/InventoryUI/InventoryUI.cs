@@ -8,12 +8,13 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] Transform itemsContainer;
     [SerializeField] GameObject slotGameObject;
 
+    bool isInventoryInitialize = false;
+
     private void Awake() {
         inventory.onGetDropItem += UpdateInventoryUI;
     }
 
-    private void Start()
-    {
+    private void Start() {
         InitializeInventoryUI();
     }
 
@@ -23,9 +24,14 @@ public class InventoryUI : MonoBehaviour
         {
             Instantiate(slotGameObject, Vector3.zero, Quaternion.identity, itemsContainer);
         }
+        isInventoryInitialize = true;
     }
 
     void UpdateInventoryUI(){
+        if(!isInventoryInitialize){
+            InitializeInventoryUI();
+        }
+
         for (int i = 0; i < inventory.slots.Count; i++)
         {
             itemsContainer.GetChild(i).GetComponent<InventorySlotUI>().SetSlot(inventory.slots[i]);

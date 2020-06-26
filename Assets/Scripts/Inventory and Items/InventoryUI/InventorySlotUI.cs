@@ -13,6 +13,10 @@ public class InventorySlotUI : MonoBehaviour
         UpdateSlot();
     }
 
+    public Slot GetSlot(){
+        return slot;
+    }
+
     void UpdateSlot(){
         inventoryItemIcon.SetIcon(slot.item ? slot.item.icon : null);
         inventoryItemAmount.SetAmount(slot.amount);
