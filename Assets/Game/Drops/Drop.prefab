@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6573538396767262105}
   - component: {fileID: 6573538396767262104}
   - component: {fileID: 6573538396767262111}
-  - component: {fileID: 6573538396767262110}
+  - component: {fileID: 1044974961218510145}
   m_Layer: 0
   m_Name: Drop
   m_TagString: Drop
@@ -110,7 +110,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6573538396767262110
+--- !u!114 &1044974961218510145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6573538396767262109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e64ac890606224d4087f384b976da6f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a2ba3b33e2552d4bb78122ec17fc83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 263e6bf8880d55a418a9fca313624d11, type: 2}
+  drop: {fileID: 11400000, guid: f5b8621bbbae988488d318f9e744031e, type: 2}

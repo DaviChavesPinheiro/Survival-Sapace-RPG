@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4495792ea14376a4faa4e46536233f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drop: {fileID: 6573538396767262109, guid: 3cc0cc9c6fc295848872cfb20d4794cd, type: 3}
+  drop: {fileID: 11400000, guid: f5b8621bbbae988488d318f9e744031e, type: 2}
 --- !u!114 &-851582197592555563
 MonoBehaviour:
   m_ObjectHideFlags: 0

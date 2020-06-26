@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] InventoryObject inventory;
+    // [SerializeField] InventoryObject inventory;
     [SerializeField] Joystick joystick;
     Health health;
     Movement movement;
+    Inventory inventory;
     bool isPlayerAlive = true;
 
     public event Action onGetDropItem;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         health = GetComponent<Health>();
         movement = GetComponent<Movement>();
+        inventory = GetComponent<Inventory>();
     }
 
     private void OnEnable()
@@ -63,17 +65,13 @@ public class PlayerController : MonoBehaviour
         switch (other.tag)
         {
             case "Drop":
-                Item item = other.GetComponent<Item>();
-                if(item){
-                    inventory.AddItem(item.item, 1);
+                Drop drop = other.GetComponent<Drop>();
+                if(drop){
+                    inventory.Add(drop.GetItem());
                 }
                 if(onGetDropItem != null) onGetDropItem();
                 Destroy(other.gameObject);
                 break;
         }
-    }
-
-    private void OnApplicationQuit() {
-        // inventory.container.Clear();
     }
 }
