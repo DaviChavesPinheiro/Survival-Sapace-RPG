@@ -66,11 +66,13 @@ public class PlayerController : MonoBehaviour
         {
             case "Drop":
                 Drop drop = other.GetComponent<Drop>();
-                if(drop){
-                    inventory.Add(drop.GetItem());
+                if(!drop) return;
+
+                bool wasPickedUp = inventory.Add(drop.GetItem());
+                if(wasPickedUp){
+                    if(onGetDropItem != null) onGetDropItem();
+                    Destroy(other.gameObject);
                 }
-                if(onGetDropItem != null) onGetDropItem();
-                Destroy(other.gameObject);
                 break;
         }
     }
