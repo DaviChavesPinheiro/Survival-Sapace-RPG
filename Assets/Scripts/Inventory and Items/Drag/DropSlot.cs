@@ -14,6 +14,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
         if(receiveSlot != null){
             gameObject.GetComponent<InventorySlotUI>().SetSlot(receiveSlot);
             eventData.pointerDrag.GetComponent<DragItem>().originalParent.GetComponent<InventorySlotUI>().SetSlot(mySlot);
+            GetComponentInParent<InventoryUI>().UpdateInvetory();
         } else {
             print("Receive Slot Null");
         }

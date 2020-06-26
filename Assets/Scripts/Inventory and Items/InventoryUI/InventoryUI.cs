@@ -7,7 +7,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] Inventory inventory;
     [SerializeField] Transform itemsContainer;
     [SerializeField] GameObject slotGameObject;
-
+    List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
     bool isInventoryInitialize = false;
 
     private void Awake() {
@@ -15,14 +15,17 @@ public class InventoryUI : MonoBehaviour
     }
 
     private void Start() {
-        InitializeInventoryUI();
+        if(!isInventoryInitialize){
+            InitializeInventoryUI();
+        }
     }
 
     private void InitializeInventoryUI()
     {
         for (int i = 0; i < inventory.slots.Count; i++)
         {
-            Instantiate(slotGameObject, Vector3.zero, Quaternion.identity, itemsContainer);
+            InventorySlotUI inventorySlotUI = Instantiate(slotGameObject, Vector3.zero, Quaternion.identity, itemsContainer).GetComponent<InventorySlotUI>();
+            slotsUI.Add(inventorySlotUI);
         }
         isInventoryInitialize = true;
     }
@@ -34,7 +37,16 @@ public class InventoryUI : MonoBehaviour
 
         for (int i = 0; i < inventory.slots.Count; i++)
         {
-            itemsContainer.GetChild(i).GetComponent<InventorySlotUI>().SetSlot(inventory.slots[i]);
+            slotsUI[i].SetSlot(inventory.slots[i]);
         }
+    }
+
+    public void UpdateInvetory(){
+        List<Slot> slots = new List<Slot>();
+        foreach (InventorySlotUI slotUI in slotsUI)
+        {
+            slots.Add(slotUI.GetSlot());
+        }
+        inventory.SetInventory(slots);
     }
 }

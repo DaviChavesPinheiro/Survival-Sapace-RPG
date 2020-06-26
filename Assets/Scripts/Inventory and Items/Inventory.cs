@@ -51,5 +51,7 @@ public class Inventory : MonoBehaviour
 
         return false;
     }
-
+    public void SetInventory(List<Slot> slots){
+        this.slots = slots;
+    }
 }
