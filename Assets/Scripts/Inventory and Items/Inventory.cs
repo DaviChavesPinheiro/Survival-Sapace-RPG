@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 {   [SerializeField] int slotsAmount = 40;
 
     // [SerializeField] List<Item> items = new List<Item>();
-    [SerializeField] List<Slot> slots = new List<Slot>();
+    public List<Slot> slots = new List<Slot>();
 
     public event Action onGetDropItem;
 
@@ -35,6 +35,7 @@ public class Inventory : MonoBehaviour
                 if(excess > 0){
                     Add(item, excess);
                 }
+                if(onGetDropItem != null) onGetDropItem();
                 return true;
             }
 
@@ -43,15 +44,12 @@ public class Inventory : MonoBehaviour
                 if(excess > 0){
                     Add(item, excess);
                 }
+                if(onGetDropItem != null) onGetDropItem();
                 return true; //Mudar isso, pois o drop vai ser destruido mesmo q vc nao tenha pegado toda a quantidade
             }
         }
 
-        if(onGetDropItem != null) onGetDropItem();
         return false;
     }
 
-    public void Remove(Item item){
-        // items.Remove(item);
-    }
 }

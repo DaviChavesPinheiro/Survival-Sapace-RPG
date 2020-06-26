@@ -6,6 +6,9 @@ public class Drop : MonoBehaviour
 {
     [SerializeField] Item drop;
     [SerializeField] int amount = 1;
+    private void Awake() {
+        GetComponent<SpriteRenderer>().sprite = drop ? drop.icon : null;
+    }
     public Item GetItem(){
         return drop;
     }
