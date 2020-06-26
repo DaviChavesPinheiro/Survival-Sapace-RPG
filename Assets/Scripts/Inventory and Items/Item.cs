@@ -2,7 +2,8 @@
 
 [CreateAssetMenu(fileName = "Item", menuName = "Inventory/Item", order = 0)]
 public class Item : ScriptableObject {
-    [SerializeField] int id;
-    [SerializeField] new string name;
-    [SerializeField] Sprite icon;
+    public int id;
+    public new string name;
+    public Sprite icon;
+    public int maxStackItem = 64;
 }

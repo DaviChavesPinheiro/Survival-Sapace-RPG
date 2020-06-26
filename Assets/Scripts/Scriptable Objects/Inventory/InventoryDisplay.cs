@@ -14,7 +14,7 @@ public class InventoryDisplay : MonoBehaviour
     // Dictionary<ItemObject, InventorySlot> inventoryDict = new Dictionary<ItemObject, InventorySlot>();
 
     private void Awake() {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().onGetDropItem += UpdateItems;
+        // GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().onGetDropItem += UpdateItems;
         inventoryItemsContainer = gameObject.GetComponentInChildren<GridLayoutGroup>().gameObject;
         CreateSlots();
     }

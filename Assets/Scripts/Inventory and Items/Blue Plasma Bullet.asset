@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45f9a52de8b62094ba5ecb18f90463f0, type: 3}
-  m_Name: Rock
+  m_Name: Blue Plasma Bullet
   m_EditorClassIdentifier: 
-  id: 0
-  name: Rock
-  icon: {fileID: 5327466440983001720, guid: 93a98dd9f61143449948967589bd00e1, type: 3}
-  maxStackItem: 64
+  id: 1
+  name: Blue Bullet
+  icon: {fileID: 21300070, guid: a45271a9b1641564c9426b00e0669bc6, type: 3}
+  maxStackItem: 16
