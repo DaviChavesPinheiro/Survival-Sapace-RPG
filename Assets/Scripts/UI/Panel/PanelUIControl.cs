@@ -18,9 +18,14 @@ public class PanelUIControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            SetSubPanels(LeftSlot.PlayerInventoryUI, RightSlot.CraftUI);
-            ToggleUI();
+            OpenInventory();
         }
+    }
+
+    public void OpenInventory()
+    {
+        SetSubPanels(LeftSlot.PlayerInventoryUI, RightSlot.CraftUI);
+        ToggleUI();
     }
 
     public void ToggleUI()

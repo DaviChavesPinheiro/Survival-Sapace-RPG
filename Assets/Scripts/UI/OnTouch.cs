@@ -33,10 +33,10 @@ public class OnTouch : MonoBehaviour {
 			GameObject.FindObjectOfType<SavingSystem>().Save("save");
 			break;
 		case Buttons.inventory:
-			GameObject.FindObjectOfType<ShowHideUI>().ToggleUI();
+			GameObject.FindObjectOfType<PanelUIControl>().OpenInventory();
 			break;
 		case Buttons.interact:
-			print("interact");
+			player.GetComponent<PlayerController>().Interact();
 			break;
 		}
 	}

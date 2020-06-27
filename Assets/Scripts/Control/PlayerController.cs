@@ -17,11 +17,10 @@ public class PlayerController : MonoBehaviour
         movement = GetComponent<Movement>();
         inventory = GetComponent<Inventory>();
         interact = transform.Find("Interact");
-        SetInventoryUI();
+        
     }
 
-    private void SetInventoryUI()
-    {
+    private void Start() {
         FindObjectOfType<PanelUIControl>().SetPlayerInventory(inventory);
     }
 

@@ -49,7 +49,7 @@ public class InventoryUI : MonoBehaviour
     }
     public void SetInventory(Inventory inventory){
         if(this.inventory == inventory) {
-            print("Equal! " + inventory.gameObject.name);
+            // print("Equal! " + inventory.gameObject.name);
             return;
         }
         if(this.inventory != null) {

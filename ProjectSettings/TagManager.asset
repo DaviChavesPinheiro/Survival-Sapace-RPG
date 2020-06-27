@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Block
   - Drop
+  - Player Inventory
+  - Other Inventory
   layers:
   - Default
   - TransparentFX
