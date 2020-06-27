@@ -11,12 +11,13 @@ public class PlayerController : MonoBehaviour
     Movement movement;
     Inventory inventory;
     bool isPlayerAlive = true;
-
+    Transform interact;
     void Awake()
     {
         health = GetComponent<Health>();
         movement = GetComponent<Movement>();
         inventory = GetComponent<Inventory>();
+        interact = transform.Find("Interact");
     }
 
     private void OnEnable()
@@ -35,6 +36,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             GetComponent<Shooter>().Shoot();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
         }
     }
 
@@ -71,6 +76,16 @@ public class PlayerController : MonoBehaviour
                     Destroy(other.gameObject);
                 }
                 break;
+        }
+    }
+
+    public void Interact(){
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(interact.position, new Vector2(1, 1), 0);
+        foreach (Collider2D collider in colliders)
+        {
+            if(collider.GetComponent<Interact>() != null){
+                collider.GetComponent<Interact>().interact();
+            }
         }
     }
 }

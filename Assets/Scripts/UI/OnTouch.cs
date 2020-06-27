@@ -35,6 +35,9 @@ public class OnTouch : MonoBehaviour {
 		case Buttons.inventory:
 			GameObject.FindObjectOfType<ShowHideUI>().ToggleUI();
 			break;
+		case Buttons.interact:
+			print("interact");
+			break;
 		}
 	}
 	public void OnTouchEnded(){
