@@ -10,5 +10,7 @@ public class Chest : MonoBehaviour
 
     void Interact(){
         print("Im a cheast");
+        FindObjectOfType<PanelUIControl>().SetSubPanels(LeftSlot.PlayerInventoryUI, RightSlot.ChestUI);
+        FindObjectOfType<PanelUIControl>().SetActiveUI(true);
     }
 }

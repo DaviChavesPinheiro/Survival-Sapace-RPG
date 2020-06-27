@@ -8,10 +8,9 @@ public class PanelSlot : MonoBehaviour
 
     public void ActiveUI(int child){
         if(activeChild == child) return;
-        
-        transform.GetChild(child).gameObject.SetActive(false);
+        transform.GetChild(activeChild).gameObject.SetActive(false);
         activeChild = child;
-        transform.GetChild(child).gameObject.SetActive(true);
+        transform.GetChild(activeChild).gameObject.SetActive(true);
     }
 }
 
