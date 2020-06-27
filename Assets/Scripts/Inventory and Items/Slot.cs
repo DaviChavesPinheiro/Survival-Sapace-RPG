@@ -27,4 +27,11 @@ public class Slot
         maxAmount = item ? item.maxStackItem : 64;
     }
 
+    public static bool hasEqualItemIDs(Slot slot1, Slot slot2){
+        if(slot1 == null || slot2 == null) return false;
+        if(slot1.item == null || slot2.item == null) return false;
+        if(slot1.item.id != slot2.item.id) return false;
+        return true;
+    }
+
 }
