@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] GameObject slotGameObject;
     List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
     bool isInventoryInitialize = false;
+
+    public event Action onSwapItems;
 
     private void Awake() {
         inventory.onGetDropItem += UpdateInventoryUI;
@@ -48,5 +51,7 @@ public class InventoryUI : MonoBehaviour
             slots.Add(slotUI.GetSlot());
         }
         inventory.SetInventory(slots);
+        
+        if(onSwapItems != null) onSwapItems();
     }
 }

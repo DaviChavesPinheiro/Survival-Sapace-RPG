@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragItem : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DragItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     Canvas canvas;
     RectTransform rectTransform;
@@ -14,13 +14,6 @@ public class DragItem : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private void Awake() {
         canvas = GetComponentInParent<Canvas>();
         rectTransform = GetComponent<RectTransform>();
-    }
-    public void OnPointerDown(PointerEventData eventData)
-    {   
-        // if(eventData.pointerEnter)
-        //     print("Click: " + eventData.pointerEnter.name);
-        // else
-        //     print("Click: " + eventData.pointerEnter);
     }
 
     public void OnBeginDrag(PointerEventData eventData)

@@ -12,6 +12,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
         Slot receiveSlot = eventData.pointerDrag.GetComponent<DragItem>() ? eventData.pointerDrag.GetComponent<DragItem>().originalParent.GetComponent<InventorySlotUI>().GetSlot() : null;
 
         if(receiveSlot != null){
+            //Fazer uma funcao statica no inventario (usar no proprio e aqui) que junta 2 slots e retorana um touple com o resultado
             if(Slot.hasEqualItemIDs(mySlot, receiveSlot) && mySlot.amount + receiveSlot.amount <= mySlot.maxAmount){
                 mySlot.AddAmount(receiveSlot.amount);
                 gameObject.GetComponent<InventorySlotUI>().SetSlot(mySlot);
@@ -21,7 +22,15 @@ public class DropSlot : MonoBehaviour, IDropHandler
                 eventData.pointerDrag.GetComponent<DragItem>().originalParent.GetComponent<InventorySlotUI>().SetSlot(mySlot);
             }
             
-            GetComponentInParent<InventoryUI>().UpdateInvetory();
+            InventoryUI mySlotInventoryUI = GetComponentInParent<InventoryUI>();
+            InventoryUI receiveSlottInventoryUI = eventData.pointerDrag.GetComponent<DragItem>().originalParent.GetComponentInParent<InventoryUI>();
+    
+            if(mySlotInventoryUI == receiveSlottInventoryUI){
+                mySlotInventoryUI.UpdateInvetory();
+            } else {
+                mySlotInventoryUI.UpdateInvetory(); 
+                receiveSlottInventoryUI.UpdateInvetory();
+            }
         } else {
             print("Receive Slot Null");
         }
