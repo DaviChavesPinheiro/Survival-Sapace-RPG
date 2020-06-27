@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 2530219352631092556}
   - component: {fileID: 3618213113784547300}
   - component: {fileID: -2317507664202016810}
+  - component: {fileID: -8463320951652819658}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -277,6 +278,7 @@ MonoBehaviour:
   minLinearDrag: 0
   maxAngularDrag: 1
   minAngularDrag: 0
+  isAccelerating: 0
 --- !u!114 &2530219352631092556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +406,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueIdentifier: 
+--- !u!114 &-8463320951652819658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225484377967176181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f68869ec58146944835c164f7b6028e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPrefab: {fileID: 6573538396767262109, guid: 3cc0cc9c6fc295848872cfb20d4794cd,
+    type: 3}
+  drops: []
 --- !u!1 &1682018980173223803
 GameObject:
   m_ObjectHideFlags: 0

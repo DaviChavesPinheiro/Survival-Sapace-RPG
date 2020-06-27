@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Drop : MonoBehaviour
 {
-    [SerializeField] Item drop;
+    [SerializeField] Item item;
     [SerializeField] int amount = 1;
     private void Awake() {
-        GetComponent<SpriteRenderer>().sprite = drop ? drop.icon : null;
+        // GetComponent<SpriteRenderer>().sprite = item ? item.icon : null;
+    }
+    public void SetItem(Item item, int amount){
+        this.item = item;
+        this.amount = amount;
+        GetComponent<SpriteRenderer>().sprite = item.icon;
     }
     public Item GetItem(){
-        return drop;
+        return item;
     }
     public int GetAmout(){
         return amount;

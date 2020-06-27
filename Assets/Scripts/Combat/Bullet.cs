@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     GameObject instigator;
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        if(collider.tag == "Drop") return;
         if(!isFriendly(collider.tag)){
             GiveDemage(collider);
             Explode();

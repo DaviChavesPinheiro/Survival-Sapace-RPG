@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 9151729759292673890}
   - component: {fileID: 2719474567640844709}
   - component: {fileID: -851582197592555563}
+  - component: {fileID: -3194768027441790963}
   m_Layer: 0
   m_Name: Block
   m_TagString: Block
@@ -229,7 +230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4495792ea14376a4faa4e46536233f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drop: {fileID: 11400000, guid: f5b8621bbbae988488d318f9e744031e, type: 2}
 --- !u!114 &-851582197592555563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,3 +244,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   healthBar: {fileID: 0}
+--- !u!114 &-3194768027441790963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7934017631201319162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f68869ec58146944835c164f7b6028e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPrefab: {fileID: 6573538396767262109, guid: 3cc0cc9c6fc295848872cfb20d4794cd,
+    type: 3}
+  drops: []
