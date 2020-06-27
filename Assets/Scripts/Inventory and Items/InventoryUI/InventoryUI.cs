@@ -13,16 +13,9 @@ public class InventoryUI : MonoBehaviour
 
     public event Action onSwapItems;
 
-    private void Awake() {
-        inventory.onGetDropItem += UpdateInventoryUI;
-    }
-
-    private void Start() {
-        if(!isInventoryInitialize){
-            InitializeInventoryUI();
-        }
-    }
-
+    // private void Awake() {
+    //     inventory.onGetDropItem += UpdateInventoryUI;
+    // }
     private void InitializeInventoryUI()
     {
         for (int i = 0; i < inventory.slots.Count; i++)
@@ -53,5 +46,31 @@ public class InventoryUI : MonoBehaviour
         inventory.SetInventory(slots);
         
         if(onSwapItems != null) onSwapItems();
+    }
+    public void SetInventory(Inventory inventory){
+        if(this.inventory == inventory) {
+            print("Equal! " + inventory.gameObject.name);
+            return;
+        }
+        if(this.inventory != null) {
+            inventory.onGetDropItem -= UpdateInventoryUI;
+            DestroyOldSlots();
+            slotsUI.Clear();
+            isInventoryInitialize = false;
+        }
+        this.inventory = inventory;
+        if(!isInventoryInitialize){
+            InitializeInventoryUI();
+        }
+        inventory.onGetDropItem += UpdateInventoryUI;
+        UpdateInventoryUI();
+    }
+
+    private void DestroyOldSlots()
+    {
+        foreach (InventorySlotUI slot in slotsUI)
+        {
+            Destroy(slot.gameObject);
+        }
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // [SerializeField] InventoryObject inventory;
     [SerializeField] Joystick joystick;
     Health health;
     Movement movement;
@@ -18,6 +17,12 @@ public class PlayerController : MonoBehaviour
         movement = GetComponent<Movement>();
         inventory = GetComponent<Inventory>();
         interact = transform.Find("Interact");
+        SetInventoryUI();
+    }
+
+    private void SetInventoryUI()
+    {
+        FindObjectOfType<PanelUIControl>().SetPlayerInventory(inventory);
     }
 
     private void OnEnable()
