@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,9 +12,15 @@ public class Chunk : MonoBehaviour
 
     [SerializeField] GameObject block;
 
-    float[,] map = new float[width, height];
+    int[,] map = new int[width, height];
     float noiseScale;
     
+    void Start()
+    {   
+        bounds = new Bounds(transform.position, Vector2.one * height);
+        SetVisible(false);
+    }
+
     public void UpdateTerrainChunk() {
         float viewerDstFromNearestEdge = Mathf.Sqrt(bounds.SqrDistance (ChunkGenerator.viewerPosition));
         bool visible = viewerDstFromNearestEdge <= ChunkGenerator.maxViewDst;
@@ -28,27 +35,38 @@ public class Chunk : MonoBehaviour
         return gameObject.activeSelf;
     }
 
-    void Start()
-    {   
-        bounds = new Bounds(transform.position, Vector2.one * height);
-        SetVisible(false);
-
-    }
-
     public void SetNoiseScale(float noiseScale){
         this.noiseScale = noiseScale;
     }
 
-    public void SetBlock(Vector2 position){
+    public void SetBlock(Vector2 position, int id){
         Vector2 localPosition = position - new Vector2(transform.position.x, transform.position.y);
-        map[Mathf.FloorToInt(localPosition.x), Mathf.FloorToInt(localPosition.y)] = 0;
+        map[Mathf.FloorToInt(localPosition.x), Mathf.FloorToInt(localPosition.y)] = id;
     }
     
     public void GenereteMap(){
-        map = Noise.GenerateNoiseMap (width, height, noiseScale, transform.position.x, transform.position.y);
+        float[,] noiseMap = Noise.GenerateNoiseMap (width, height, noiseScale, transform.position.x, transform.position.y);
+        map = NoiseMapToBlocksMap(noiseMap);
         GenereteBlocks();
     }
 
+    private int[,] NoiseMapToBlocksMap(float[,] noiseMap)
+    {
+        int[,] mapBlock = new int[width, height];
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if(noiseMap[x,y] >= 0.75){
+                    mapBlock[x,y] = 1;
+                }
+                if(noiseMap[x,y] >= 0.9){
+                    mapBlock[x,y] = 2;
+                }
+            }
+        }
+        return mapBlock;
+    }
 
     private void GenereteBlocks()
     {
@@ -56,10 +74,10 @@ public class Chunk : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                if(map[x,y] >= 0.75){
-                    GameObject blockInstance = Instantiate(block, new Vector3(x + transform.position.x, y + transform.position.y, transform.position.z), transform.rotation) as GameObject;
-                    blockInstance.transform.SetParent(transform);
-                }
+                if(map[x,y] == 0) continue;
+                
+                GameObject blockInstance = Instantiate(GM.instance.items.items[map[x,y]].prefab, new Vector3(x + transform.position.x, y + transform.position.y, transform.position.z), transform.rotation) as GameObject;
+                blockInstance.transform.SetParent(transform);
             }
         }
     }
@@ -69,16 +87,16 @@ public class Chunk : MonoBehaviour
         Gizmos.DrawWireCube(transform.position + new Vector3(width / 2, height / 2, 0), new Vector3(width, height, 1));        
     }
 
-    public void SetMap(float[,] map){
+    public void SetMap(int[,] map){
         this.map = map;
         GenereteBlocks();
     }
 
-    public float[,] GetMap(){
+    public int[,] GetMap(){
         return map;
     }
     
-    public void SetMap(float[] map1d){
+    public void SetMap(int[] map1d){
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -89,9 +107,8 @@ public class Chunk : MonoBehaviour
         GenereteBlocks();
     }
 
-
-    public static float[] MapToOneDimensionalMap(float[,] map){
-        float[] map1d = new float[width * height];
+    public static int[] MapToOneDimensionalMap(int[,] map){
+        int[] map1d = new int[width * height];
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)

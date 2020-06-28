@@ -6,13 +6,13 @@ using UnityEngine;
 public class ChunkGenerator : MonoBehaviour, ISaveable
 {
     public static int maxViewDst = 50;
-    Transform viewer;
+    Transform player;
 
     public static Vector2 viewerPosition;
     int chunkSize;
     int chunkVisibleInViewDst;
     
-    Dictionary<string, float[]> data = new Dictionary<string, float[]>();
+    Dictionary<string, int[]> data = new Dictionary<string, int[]>();
     Dictionary<Vector2, Chunk> terrainChunkDictionary = new Dictionary<Vector2, Chunk>();
     List<Chunk> terrainChunksVisibleLastUpdate = new List<Chunk>();
 
@@ -21,13 +21,13 @@ public class ChunkGenerator : MonoBehaviour, ISaveable
 
     void Start()
     {
-        viewer = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         chunkSize = Chunk.height;
         chunkVisibleInViewDst = Mathf.RoundToInt(maxViewDst / chunkSize);
     }
 
     void Update() {
-		viewerPosition = new Vector2 (viewer.position.x, viewer.position.y);
+		viewerPosition = new Vector2 (player.position.x, player.position.y);
 		UpdateVisibleChunks ();
 	}
 
@@ -87,7 +87,7 @@ public class ChunkGenerator : MonoBehaviour, ISaveable
 
     public void RestoreState(object state)
     {
-        data = (Dictionary<string, float[]>)state;
+        data = (Dictionary<string, int[]>)state;
     }
 
     public static Vector2 StringToVector2(string sVector)
@@ -99,8 +99,8 @@ public class ChunkGenerator : MonoBehaviour, ISaveable
          string[] sArray = sVector.Split(',');
  
          Vector2 result = new Vector2(
-             float.Parse(sArray[0]),
-             float.Parse(sArray[1]));
+             int.Parse(sArray[0]),
+             int.Parse(sArray[1]));
  
          return result;
      }

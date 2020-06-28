@@ -1,16 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1664871533236027791
+--- !u!1001 &1952807315899956292
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3194768027441790963, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
+        type: 3}
+      propertyPath: drops.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3194768027441790963, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
+        type: 3}
+      propertyPath: drops.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 193acec9b97116f4395b3bcfbb3eeef8,
+        type: 2}
+    - target: {fileID: -851582197592555563, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
+        type: 3}
+      propertyPath: maxHealth
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7934017631201319162, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}
       propertyPath: m_Name
-      value: Chest
+      value: Iron
       objectReference: {fileID: 0}
     - target: {fileID: 8261076195035800074, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}
@@ -91,7 +107,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -4078763317427943674, guid: 9ee31b1abac49a243880818ddcb30dd6,
+      objectReference: {fileID: -4686585747416703127, guid: 9ee31b1abac49a243880818ddcb30dd6,
         type: 3}
     - target: {fileID: 9151729759292673890, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}

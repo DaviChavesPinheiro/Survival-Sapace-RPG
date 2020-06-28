@@ -8,7 +8,7 @@ public class Block : MonoBehaviour
     {
         Chunk chunk = transform.GetComponentInParent<Chunk>();
         if(chunk != null){
-            chunk.SetBlock(new Vector2(transform.position.x, transform.position.y));
+            chunk.SetBlock(new Vector2(transform.position.x, transform.position.y), 0);
         }
     }
 }
