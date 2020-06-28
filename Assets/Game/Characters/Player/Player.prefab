@@ -27,6 +27,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotsAmount: 40
   slots: []
+--- !u!114 &8703934831710901828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8808219964959094531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ec754e98c56234f8ba6268b36c97ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7727296180356767478
 PrefabInstance:
   m_ObjectHideFlags: 0

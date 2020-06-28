@@ -128,4 +128,12 @@ public class Chunk : MonoBehaviour
         return map1d;
     }
 
+    public void RefreshChunk(){
+        foreach (Transform block in transform)
+        {
+            Destroy(block.gameObject);
+        }
+        GenereteBlocks();
+    }
+
 }

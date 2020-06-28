@@ -91,7 +91,7 @@ public class ChunkGenerator : MonoBehaviour, ISaveable
     }
 
     public static Vector2 StringToVector2(string sVector)
-     {
+    {
          if (sVector.StartsWith ("(") && sVector.EndsWith (")")) {
              sVector = sVector.Substring(1, sVector.Length-2);
          }
@@ -103,6 +103,14 @@ public class ChunkGenerator : MonoBehaviour, ISaveable
              int.Parse(sArray[1]));
  
          return result;
-     }
+    }
+
+    public Chunk GetChunk(Vector2 position){
+        Vector2 pos = new Vector2(Mathf.FloorToInt(position.x / Chunk.width), Mathf.FloorToInt(position.y / Chunk.height));
+        if(terrainChunkDictionary.ContainsKey(pos)){
+            return terrainChunkDictionary[pos];
+        }
+        return null;
+    }
 
 }

@@ -54,10 +54,6 @@ public class Health : MonoBehaviour, ISaveable
         print(gameObject.name + " Morreu!");
         if(onDie != null)
             onDie();
-        if (gameObject.tag == "Block")
-        {
-            Destroy(gameObject);
-        }
         if(gameObject.tag == "Enemy"){
             gameObject.SetActive(false);
         }

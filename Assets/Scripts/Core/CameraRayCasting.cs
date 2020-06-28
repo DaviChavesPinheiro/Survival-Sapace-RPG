@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class CameraRayCasting : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
     [SerializeField] LayerMask touch;
 
     // Update is called once per frame
@@ -16,7 +11,7 @@ public class CameraRayCasting : MonoBehaviour
     {
         if (Input.touchCount > 0) {
 			foreach(Touch toque in Input.touches){
-				Ray ray = Camera.main.ScreenPointToRay (toque.position);
+				Ray ray = Camera.main.ScreenPointToRay(toque.position);
 				RaycastHit hit;
 				if(Physics.Raycast(ray, out hit, 100, touch)){
 					GameObject gameObjectTouched = hit.transform.gameObject;
@@ -41,15 +36,5 @@ public class CameraRayCasting : MonoBehaviour
 			}
 
 		}
-        // if (Input.GetMouseButton(1)) {
-		// 	Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		// 	RaycastHit hit;
-		// 	if(Physics.Raycast(ray, out hit, 100, touch)){
-		// 		GameObject gameObjectTouched = hit.transform.gameObject;
-		// 		print(gameObjectTouched.name);
-		// 		gameObjectTouched.SendMessage ("OnTouchStationary", SendMessageOptions.DontRequireReceiver);
-		// 	}
-
-		// }
     }
 }
