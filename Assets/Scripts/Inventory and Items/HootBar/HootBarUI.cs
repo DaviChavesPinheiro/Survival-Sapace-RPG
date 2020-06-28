@@ -32,6 +32,7 @@ public class HootBarUI : MonoBehaviour
 
     public void SetHootBarSlotSelected(int index){
         hootBarSlotSelected = index;
+        inventory.SetSlotSelected(hootBarSlotSelected);
         UpdateSelectedSlot();
     }
 
