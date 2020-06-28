@@ -11,9 +11,8 @@ public class CameraRayCasting : MonoBehaviour
     {
         if (Input.touchCount > 0) {
 			foreach(Touch toque in Input.touches){
-				Ray ray = Camera.main.ScreenPointToRay(toque.position);
-				RaycastHit hit;
-				if(Physics.Raycast(ray, out hit, 100, touch)){
+				RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(toque.position), Vector3.forward, 100, touch);
+				if(hit.collider != null){
 					GameObject gameObjectTouched = hit.transform.gameObject;
 
 					switch (toque.phase) {

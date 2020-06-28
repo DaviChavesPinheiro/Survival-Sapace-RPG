@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 88709883656223967}
   - component: {fileID: 6301342782295604558}
   - component: {fileID: 2835285465924767231}
+  - component: {fileID: 8988200928150850040}
   m_Layer: 0
   m_Name: Right Slot
   m_TagString: Untagged
@@ -348,6 +349,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49a94e8a62f990478095a19aa0756ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &8988200928150850040
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316917748745024982}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -315.58, y: 0.33447266}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 623.20123, y: 560.5585}
+  m_EdgeRadius: 0
 --- !u!1 &2576879227784271959
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +823,7 @@ GameObject:
   - component: {fileID: 7028978713103280321}
   - component: {fileID: 2705660385293812681}
   - component: {fileID: 9109016867627015335}
+  - component: {fileID: 6194167468316378856}
   m_Layer: 0
   m_Name: Left Slot
   m_TagString: Untagged
@@ -872,6 +900,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49a94e8a62f990478095a19aa0756ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &6194167468316378856
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4952329899796384231}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 318.10233, y: 0.33447266}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 623.20123, y: 560.5585}
+  m_EdgeRadius: 0
 --- !u!1 &5154573307603182790
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,7 +1499,7 @@ PrefabInstance:
     - target: {fileID: 2643567569490679124, guid: f26e997f77ee35243934d32c03c1b7d0,
         type: 3}
       propertyPath: m_Size
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2684143576608484944, guid: f26e997f77ee35243934d32c03c1b7d0,
         type: 3}
