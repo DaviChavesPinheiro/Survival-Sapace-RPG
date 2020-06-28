@@ -7,8 +7,10 @@ public class Constructor : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask;
     ChunkGenerator chunkGenerator;
+    Inventory inventory;
     private void Start() {
         chunkGenerator = GameObject.FindObjectOfType(typeof(ChunkGenerator)) as ChunkGenerator;
+        inventory = GetComponent<Inventory>();
     }
     void Update()
     {
@@ -28,9 +30,12 @@ public class Constructor : MonoBehaviour
 
     private void PutBlock(Vector2 position)
     {
-        Chunk chunk = chunkGenerator.GetChunk(position);
-        if(!chunk) return;
-        chunk.SetBlock(position, 1);
-        chunk.RefreshChunk();
+        if(inventory.Remove(GM.instance.items.items[1], 1)){
+            Chunk chunk = chunkGenerator.GetChunk(position);
+            if(!chunk) return;
+            chunk.SetBlock(position, GM.instance.items.items[1].id);
+            chunk.RefreshChunk();
+        }
+        
     }
 }

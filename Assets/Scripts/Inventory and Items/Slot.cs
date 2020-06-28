@@ -21,6 +21,12 @@ public class Slot
         amount = Mathf.Min(amount + value, maxAmount);
         return excess;
     }
+    public void RemoveAmount(int value){
+        amount = Mathf.Max((amount - value), 0);
+        if(amount == 0) {
+            item = null;
+        }
+    }
 
     public void SetItem(Item item){
         this.item = item;

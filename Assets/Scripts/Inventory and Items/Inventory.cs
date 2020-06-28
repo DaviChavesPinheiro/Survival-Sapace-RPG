@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
 
     public List<Slot> slots = new List<Slot>();
 
-    public event Action onGetDropItem;
+    public event Action onInventoryUpdate;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public bool Add(Item item, int amount){
+    public bool Add(Item item, int amount){//trocar pra retornar um int
         for (int i = 0; i < slots.Count; i++)
         {
             if(slots[i].item != null && slots[i].item.id != item.id) continue;
@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour
                 if(excess > 0){
                     Add(item, excess);
                 }
-                if(onGetDropItem != null) onGetDropItem();
+                if(onInventoryUpdate != null) onInventoryUpdate();
                 return true;
             }
 
@@ -44,11 +44,24 @@ public class Inventory : MonoBehaviour
                 if(excess > 0){
                     Add(item, excess);
                 }
-                if(onGetDropItem != null) onGetDropItem();
+                if(onInventoryUpdate != null) onInventoryUpdate();
                 return true; //Mudar isso, pois o drop vai ser destruido mesmo q vc nao tenha pegado toda a quantidade
             }
         }
 
+        return false;
+    }
+
+    public bool Remove(Item item, int amount){
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if(slots[i].item != null && slots[i].item.id == item.id && slots[i].amount - amount >= 0){
+                slots[i].RemoveAmount(amount);
+                if(onInventoryUpdate != null) onInventoryUpdate();
+                return true;
+                 //Mudar isso, pois o drop vai ser destruido mesmo q vc nao tenha pegado toda a quantidade
+            }
+        }
         return false;
     }
     public void SetInventory(List<Slot> slots){
