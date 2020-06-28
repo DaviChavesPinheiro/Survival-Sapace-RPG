@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f9a52de8b62094ba5ecb18f90463f0, type: 3}
   m_Name: Blue Plasma Bullet
   m_EditorClassIdentifier: 
-  id: 1
+  id: 0
   name: Blue Bullet
   icon: {fileID: 21300070, guid: a45271a9b1641564c9426b00e0669bc6, type: 3}
   prefab: {fileID: 8116769621445307735, guid: 43068d4bc8dd6c0459b47dd924d010aa, type: 3}

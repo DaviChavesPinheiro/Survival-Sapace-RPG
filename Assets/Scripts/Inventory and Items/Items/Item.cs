@@ -6,5 +6,13 @@ public class Item : ScriptableObject {
     public new string name;
     public Sprite icon;
     public GameObject prefab;
+    public ItemType itemType;
     public int maxStackItem = 64;
+}
+
+public enum ItemType{
+    none,
+    block,
+    projectile,
+    food
 }

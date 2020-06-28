@@ -32,7 +32,7 @@ public class Constructor : MonoBehaviour
     {
         Item item = inventory.GetActiveItem();
         if(item == null) return;
-
+        if(item.itemType != ItemType.block) return;
         if(inventory.Remove(item, 1)){
             Chunk chunk = chunkGenerator.GetChunk(position);
             if(!chunk) return;
