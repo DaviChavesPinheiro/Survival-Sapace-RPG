@@ -30,10 +30,13 @@ public class Constructor : MonoBehaviour
 
     private void PutBlock(Vector2 position)
     {
-        if(inventory.Remove(GM.instance.items.items[1], 1)){
+        Item item = inventory.GetActiveItem();
+        if(item == null) return;
+
+        if(inventory.Remove(item, 1)){
             Chunk chunk = chunkGenerator.GetChunk(position);
             if(!chunk) return;
-            chunk.SetBlock(position, GM.instance.items.items[1].id);
+            chunk.SetBlock(position, item.id);
             chunk.RefreshChunk();
         }
         

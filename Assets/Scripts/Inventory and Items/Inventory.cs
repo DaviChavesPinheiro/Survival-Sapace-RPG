@@ -70,4 +70,7 @@ public class Inventory : MonoBehaviour
     public void SetSlotSelected(int index){
         slotSelected = index;
     }
+    public Item GetActiveItem(){
+        return slots[slotSelected].item;
+    }
 }

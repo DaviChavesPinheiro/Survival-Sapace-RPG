@@ -20,6 +20,7 @@ public class HootBarUI : MonoBehaviour
         {
             hootBar.Add(transform.GetChild(i));
         }
+        UpdateSelectedSlot();
     }
 
     private void UpdateHootBar()
