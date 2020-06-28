@@ -37,7 +37,7 @@ public class Constructor : MonoBehaviour
             Chunk chunk = chunkGenerator.GetChunk(position);
             if(!chunk) return;
             chunk.SetBlock(position, item.id);
-            chunk.RefreshChunk();
+            chunk.RefreshBlock(position);
         }
         
     }

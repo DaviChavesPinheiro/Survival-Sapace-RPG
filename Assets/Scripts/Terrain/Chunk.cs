@@ -128,12 +128,11 @@ public class Chunk : MonoBehaviour
         return map1d;
     }
 
-    public void RefreshChunk(){
-        foreach (Transform block in transform)
-        {
-            Destroy(block.gameObject);
-        }
-        GenereteBlocks();
+    public void RefreshBlock(Vector2 position){
+        Vector2 localPosition = position - new Vector2(transform.position.x, transform.position.y);
+        Vector2Int blockPosition = new Vector2Int(Mathf.FloorToInt(localPosition.x), Mathf.FloorToInt(localPosition.y));
+        GameObject blockInstance = Instantiate(GM.instance.items.items[map[blockPosition.x, blockPosition.y]].prefab, new Vector3(blockPosition.x + transform.position.x, blockPosition.y + transform.position.y, transform.position.z), transform.rotation) as GameObject;
+        blockInstance.transform.SetParent(transform);
     }
 
 }
