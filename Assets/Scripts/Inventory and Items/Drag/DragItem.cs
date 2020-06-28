@@ -8,7 +8,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     Canvas canvas;
     RectTransform rectTransform;
 
-    Vector3 startPosition;
+    Vector2 startPosition;
     public Transform originalParent;
 
     private void Awake() {
@@ -18,7 +18,8 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        startPosition = transform.position;
+        startPosition = rectTransform.anchoredPosition;
+        print(startPosition);
         originalParent = transform.parent;
 
         GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -32,9 +33,9 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.position = startPosition;
-        GetComponent<CanvasGroup>().blocksRaycasts = true;
         transform.SetParent(originalParent, true);
+        rectTransform.anchoredPosition = startPosition;
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
 }
