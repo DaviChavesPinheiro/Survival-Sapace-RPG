@@ -6,9 +6,9 @@ using UnityEngine;
 public class HootBarUI : MonoBehaviour
 {
     [SerializeField] InventoryUI inventoryUI;
-    List<InventorySlotUI> hootBar = new List<InventorySlotUI>();
+    List<Transform> hootBar = new List<Transform>();
     Inventory inventory;
-
+    int hootBarSlotSelected = 0;
     private void Awake() {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         inventoryUI.onSwapItems += UpdateHootBar;
@@ -18,7 +18,7 @@ public class HootBarUI : MonoBehaviour
     private void Start() {
         for (int i = 0; i < transform.childCount - 1; i++)
         {
-            hootBar.Add(transform.GetChild(i).GetComponent<InventorySlotUI>());
+            hootBar.Add(transform.GetChild(i));
         }
     }
 
@@ -26,7 +26,20 @@ public class HootBarUI : MonoBehaviour
     {
         for (int i = 0; i < hootBar.Count; i++)
         {
-            hootBar[i].SetSlot(inventory.slots[i]);
+            hootBar[i].GetComponent<InventorySlotUI>().SetSlot(inventory.slots[i]);
+        }
+    }
+
+    public void SetHootBarSlotSelected(int index){
+        hootBarSlotSelected = index;
+        UpdateSelectedSlot();
+    }
+
+    private void UpdateSelectedSlot()
+    {
+        for (int i = 0; i < hootBar.Count; i++)
+        {
+            hootBar[i].GetComponent<SelectSlot>().SetSelected(i == hootBarSlotSelected);
         }
     }
 }
