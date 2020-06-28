@@ -16,17 +16,17 @@ PrefabInstance:
         type: 3}
       propertyPath: drops.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 193acec9b97116f4395b3bcfbb3eeef8,
+      objectReference: {fileID: 11400000, guid: 4dcd033d02db0144585aefe0aa5b3194,
         type: 2}
     - target: {fileID: -851582197592555563, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}
       propertyPath: maxHealth
-      value: 50
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 7934017631201319162, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}
       propertyPath: m_Name
-      value: Iron
+      value: Diamond
       objectReference: {fileID: 0}
     - target: {fileID: 8261076195035800074, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}
@@ -107,7 +107,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -4686585747416703127, guid: 9ee31b1abac49a243880818ddcb30dd6,
+      objectReference: {fileID: 4533043994387896827, guid: 9ee31b1abac49a243880818ddcb30dd6,
         type: 3}
     - target: {fileID: 9151729759292673890, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}

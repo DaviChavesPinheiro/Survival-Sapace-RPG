@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45f9a52de8b62094ba5ecb18f90463f0, type: 3}
-  m_Name: Rock
+  m_Name: Diamond
   m_EditorClassIdentifier: 
-  id: 0
-  name: Rock
-  icon: {fileID: 5327466440983001720, guid: 9ee31b1abac49a243880818ddcb30dd6, type: 3}
-  prefab: {fileID: 8431452186926441662, guid: 1c086ed0edcfeb04b9c062241448fa0d, type: 3}
+  id: 5
+  name: Diamond
+  icon: {fileID: 4533043994387896827, guid: 9ee31b1abac49a243880818ddcb30dd6, type: 3}
+  prefab: {fileID: 8431452186926441662, guid: 13f186dd58c686c49bc7350f6e838619, type: 3}
   maxStackItem: 64

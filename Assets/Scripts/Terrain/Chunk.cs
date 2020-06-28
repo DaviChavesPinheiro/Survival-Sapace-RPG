@@ -6,7 +6,7 @@ using UnityEngine;
 public class Chunk : MonoBehaviour
 {
     GameObject chunkObject;
-    public static int height = 25, width = 25;
+    public static int height = 16, width = 16;
     Vector2 position;
 	Bounds bounds;
 
@@ -52,16 +52,25 @@ public class Chunk : MonoBehaviour
 
     private int[,] NoiseMapToBlocksMap(float[,] noiseMap)
     {
+        System.Random pseudoRandom = new System.Random("seed".GetHashCode());
         int[,] mapBlock = new int[width, height];
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                if(noiseMap[x,y] >= 0.75){
+                int pseudoR = pseudoRandom.Next(0,100);
+                if(noiseMap[x,y] > 0.98){
+                    mapBlock[x,y] = (pseudoR < 2)? 5: 1;;
+                }else if(noiseMap[x,y] > 0.93){
+                    mapBlock[x,y] = (pseudoR < 6)? 4: 1;;
+                }else if(noiseMap[x,y] > 0.87){
+                    mapBlock[x,y] = (pseudoR < 20)? 2: 1;;
+                }else if(noiseMap[x,y] > 0.79){
+                    mapBlock[x,y] = (pseudoR < 30)? 3: 1;;
+                }else if(noiseMap[x,y] >= 0.75){
                     mapBlock[x,y] = 1;
-                }
-                if(noiseMap[x,y] >= 0.9){
-                    mapBlock[x,y] = 2;
+                } else {
+                    mapBlock[x,y] = 0;
                 }
             }
         }

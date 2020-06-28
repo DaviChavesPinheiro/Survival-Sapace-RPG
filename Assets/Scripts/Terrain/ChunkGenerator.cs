@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ChunkGenerator : MonoBehaviour, ISaveable
 {
-    public static int maxViewDst = 50;
+    public static int maxViewDst = 32;
     Transform player;
 
     public static Vector2 viewerPosition;
