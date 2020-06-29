@@ -8,7 +8,7 @@ public class Constructor : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     ChunkGenerator chunkGenerator;
     Inventory inventory;
-    private void Start() {
+    private void Awake() {
         chunkGenerator = GameObject.FindObjectOfType(typeof(ChunkGenerator)) as ChunkGenerator;
         inventory = GetComponent<Inventory>();
     }
