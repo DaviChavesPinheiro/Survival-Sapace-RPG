@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         switch (other.tag)
         {
             case "Drop":
-                Drop drop = other.GetComponent<Drop>();
+                DropController drop = other.GetComponent<DropController>();
                 if(!drop) return;
 
                 bool wasPickedUp = inventory.Add(drop.GetItem(), drop.GetAmout());

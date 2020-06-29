@@ -19,7 +19,7 @@ public class DropSystem : MonoBehaviour
         {
             GameObject dropObj = Instantiate(dropPrefab, transform.position, transform.rotation);
             dropObj.transform.position = new Vector3(Mathf.FloorToInt(transform.position.x) + UnityEngine.Random.value, Mathf.FloorToInt(transform.position.y) + UnityEngine.Random.value, transform.position.z);
-            dropObj.GetComponent<Drop>().SetItem(item, 1);
+            dropObj.GetComponent<DropController>().SetItem(item, 1);
             Destroy(dropObj, 60);
         }
     }

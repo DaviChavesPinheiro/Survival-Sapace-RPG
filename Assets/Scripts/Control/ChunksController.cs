@@ -13,8 +13,8 @@ public class ChunksController : MonoBehaviour, ISaveable
     int chunkVisibleInViewDst;
     
     Dictionary<string, int[]> data = new Dictionary<string, int[]>();
-    Dictionary<Vector2, Chunk> terrainChunkDictionary = new Dictionary<Vector2, Chunk>();
-    List<Chunk> terrainChunksVisibleLastUpdate = new List<Chunk>();
+    Dictionary<Vector2, ChunkController> terrainChunkDictionary = new Dictionary<Vector2, ChunkController>();
+    List<ChunkController> terrainChunksVisibleLastUpdate = new List<ChunkController>();
 
     [SerializeField] GameObject chunkObject;
     [SerializeField] float noiseScale = 20f;
@@ -22,7 +22,7 @@ public class ChunksController : MonoBehaviour, ISaveable
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        chunkSize = Chunk.height;
+        chunkSize = ChunkController.height;
         chunkVisibleInViewDst = Mathf.RoundToInt(maxViewDst / chunkSize);
     }
 
@@ -53,7 +53,7 @@ public class ChunksController : MonoBehaviour, ISaveable
 					}
                 } else
                 {
-                    Chunk chunk = SpawnChunk(viewedChunkCoord);
+                    ChunkController chunk = SpawnChunk(viewedChunkCoord);
                     if (data.ContainsKey(viewedChunkCoord.ToString()))
                     {
                         chunk.SetMap(data[viewedChunkCoord.ToString()]);
@@ -68,9 +68,9 @@ public class ChunksController : MonoBehaviour, ISaveable
         }
     }
 
-    private Chunk SpawnChunk(Vector2 viewedChunkCoord)
+    private ChunkController SpawnChunk(Vector2 viewedChunkCoord)
     {
-        Chunk chunk = Instantiate(chunkObject, new Vector3(viewedChunkCoord.x * chunkSize, viewedChunkCoord.y * chunkSize, 0), Quaternion.identity).GetComponent<Chunk>();
+        ChunkController chunk = Instantiate(chunkObject, new Vector3(viewedChunkCoord.x * chunkSize, viewedChunkCoord.y * chunkSize, 0), Quaternion.identity).GetComponent<ChunkController>();
         chunk.transform.SetParent(transform);
         chunk.SetNoiseScale(noiseScale + 0.123f);
         return chunk;
@@ -80,7 +80,7 @@ public class ChunksController : MonoBehaviour, ISaveable
     {
         foreach (Vector2 chunkCoord in terrainChunkDictionary.Keys)
         {
-            data[chunkCoord.ToString()] = Chunk.MapToOneDimensionalMap(terrainChunkDictionary[chunkCoord].GetMap());
+            data[chunkCoord.ToString()] = ChunkController.MapToOneDimensionalMap(terrainChunkDictionary[chunkCoord].GetMap());
         }
         return data;
     }
@@ -105,8 +105,8 @@ public class ChunksController : MonoBehaviour, ISaveable
          return result;
     }
 
-    public Chunk GetChunk(Vector2 position){
-        Vector2 pos = new Vector2(Mathf.FloorToInt(position.x / Chunk.width), Mathf.FloorToInt(position.y / Chunk.height));
+    public ChunkController GetChunk(Vector2 position){
+        Vector2 pos = new Vector2(Mathf.FloorToInt(position.x / ChunkController.width), Mathf.FloorToInt(position.y / ChunkController.height));
         if(terrainChunkDictionary.ContainsKey(pos)){
             return terrainChunkDictionary[pos];
         }

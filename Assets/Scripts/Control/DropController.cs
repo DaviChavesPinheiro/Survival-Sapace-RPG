@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Drop : MonoBehaviour
+public class DropController : MonoBehaviour
 {
     [SerializeField] Item item;
     [SerializeField] int amount = 1;

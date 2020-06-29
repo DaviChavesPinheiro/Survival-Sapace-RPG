@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chunk : MonoBehaviour
+public class ChunkController : MonoBehaviour
 {
     GameObject chunkObject;
     public static int height = 16, width = 16;

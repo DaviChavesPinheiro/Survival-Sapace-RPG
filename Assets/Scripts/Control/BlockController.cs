@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Block : MonoBehaviour
+public class BlockController : MonoBehaviour
 {
     Health health;
     private void Awake() {
@@ -22,7 +22,7 @@ public class Block : MonoBehaviour
 
     private void OnDie()
     {
-        Chunk chunk = transform.GetComponentInParent<Chunk>();
+        ChunkController chunk = transform.GetComponentInParent<ChunkController>();
         if(chunk != null){
             chunk.SetBlock(new Vector2(transform.position.x, transform.position.y), 0);
         }
