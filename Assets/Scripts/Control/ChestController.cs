@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : MonoBehaviour
+public class ChestController : MonoBehaviour
 {
     private void Awake() {
         GetComponent<Interact>().onInteract += Interact;

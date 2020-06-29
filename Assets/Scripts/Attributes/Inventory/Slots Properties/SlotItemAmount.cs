@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class InventoryItemAmount : MonoBehaviour
+public class SlotItemAmount : MonoBehaviour
 {
     public void SetAmount(int amount)
     {

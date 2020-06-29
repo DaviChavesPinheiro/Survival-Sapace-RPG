@@ -6,10 +6,10 @@ using UnityEngine;
 public class Constructor : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask;
-    ChunkGenerator chunkGenerator;
+    ChunksController chunkGenerator;
     Inventory inventory;
     private void Awake() {
-        chunkGenerator = GameObject.FindObjectOfType(typeof(ChunkGenerator)) as ChunkGenerator;
+        chunkGenerator = GameObject.FindObjectOfType(typeof(ChunksController)) as ChunksController;
         inventory = GetComponent<Inventory>();
     }
     void Update()

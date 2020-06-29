@@ -22,8 +22,8 @@ public class Chunk : MonoBehaviour
     }
 
     public void UpdateTerrainChunk() {
-        float viewerDstFromNearestEdge = Mathf.Sqrt(bounds.SqrDistance (ChunkGenerator.viewerPosition));
-        bool visible = viewerDstFromNearestEdge <= ChunkGenerator.maxViewDst;
+        float viewerDstFromNearestEdge = Mathf.Sqrt(bounds.SqrDistance (ChunksController.viewerPosition));
+        bool visible = viewerDstFromNearestEdge <= ChunksController.maxViewDst;
         SetVisible (visible);
     }
 

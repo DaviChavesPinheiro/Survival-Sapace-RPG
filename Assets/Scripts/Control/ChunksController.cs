@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using RPG.Saving;
 using UnityEngine;
 
-public class ChunkGenerator : MonoBehaviour, ISaveable
+public class ChunksController : MonoBehaviour, ISaveable
 {
     public static int maxViewDst = 32;
     Transform player;

@@ -16,4 +16,5 @@ MonoBehaviour:
   name: Gold
   icon: {fileID: 3780607316460508611, guid: 9ee31b1abac49a243880818ddcb30dd6, type: 3}
   prefab: {fileID: 8431452186926441662, guid: d0919f9087b6454428178e4581c29fd6, type: 3}
+  itemType: 1
   maxStackItem: 64

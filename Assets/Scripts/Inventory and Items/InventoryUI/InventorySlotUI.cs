@@ -5,8 +5,8 @@ using UnityEngine;
 public class InventorySlotUI : MonoBehaviour
 {
     [SerializeField] Slot slot;
-    [SerializeField] InventoryItemIcon inventoryItemIcon;
-    [SerializeField] InventoryItemAmount inventoryItemAmount;
+    [SerializeField] SlotItemIcon inventoryItemIcon;
+    [SerializeField] SlotItemAmount inventoryItemAmount;
 
     public void SetSlot(Slot slot){
         this.slot = slot;

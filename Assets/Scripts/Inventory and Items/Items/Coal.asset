@@ -16,4 +16,5 @@ MonoBehaviour:
   name: Coal
   icon: {fileID: -2660149606466029194, guid: 9ee31b1abac49a243880818ddcb30dd6, type: 3}
   prefab: {fileID: 8431452186926441662, guid: fe47854e764eb0d4d9b563538629c293, type: 3}
+  itemType: 1
   maxStackItem: 64

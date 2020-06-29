@@ -19,7 +19,6 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public void OnBeginDrag(PointerEventData eventData)
     {
         startPosition = rectTransform.anchoredPosition;
-        print(startPosition);
         originalParent = transform.parent;
 
         GetComponent<CanvasGroup>().blocksRaycasts = false;

@@ -16,4 +16,5 @@ MonoBehaviour:
   name: Blue Bullet
   icon: {fileID: 21300070, guid: a45271a9b1641564c9426b00e0669bc6, type: 3}
   prefab: {fileID: 8116769621445307735, guid: 43068d4bc8dd6c0459b47dd924d010aa, type: 3}
+  itemType: 2
   maxStackItem: 16

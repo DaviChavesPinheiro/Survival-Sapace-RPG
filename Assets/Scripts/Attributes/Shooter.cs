@@ -30,13 +30,13 @@ public class Shooter : MonoBehaviour
     }
 
     public void Shoot(){
-        if(timeSinceLastShoot >= bullet.GetComponent<Bullet>().coolDown){
+        if(timeSinceLastShoot >= bullet.GetComponent<BulletController>().coolDown){
             foreach (Transform gun in guns)
             {
                 GameObject bulletInst = Instantiate(bullet, gun.position, gun.rotation) as GameObject;
-                bulletInst.GetComponent<Bullet>().SetFriend(gameObject);
-                bulletInst.GetComponent<Rigidbody2D>().velocity = bulletInst.transform.up * bullet.GetComponent<Bullet>().velocity;
-                Destroy(bulletInst, bulletInst.GetComponent<Bullet>().lifeTime);
+                bulletInst.GetComponent<BulletController>().SetFriend(gameObject);
+                bulletInst.GetComponent<Rigidbody2D>().velocity = bulletInst.transform.up * bullet.GetComponent<BulletController>().velocity;
+                Destroy(bulletInst, bulletInst.GetComponent<BulletController>().lifeTime);
             }
             timeSinceLastShoot = 0;
         }
