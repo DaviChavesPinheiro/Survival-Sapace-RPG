@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1171549660
+--- !u!114 &-7896665148804404764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8719396766757247349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbcaf2343d0897c489a87d48bb5f691d, type: 3}
+  m_Script: {fileID: 11500000, guid: 369e44d7c406e9041bcaf7ef153f3efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1171549661
+--- !u!114 &2943526717402915962
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24,9 +24,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca5e9be82e0c5543bbaa7b1e4e34f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotsAmount: 40
+  slotsAmount: 10
   slots: []
---- !u!114 &1171549662
+--- !u!114 &6323170615634822059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -38,6 +38,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42726c51ed924c34da40944ccf5a97f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3238022845971463394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8719396766757247349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603e4ac511c33ba4abb9ef1ec2794065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is4By4: 0
 --- !u!1001 &1664871533236027791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48,17 +61,17 @@ PrefabInstance:
     - target: {fileID: 7934017631201319162, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}
       propertyPath: m_Name
-      value: Chest
+      value: CraftTable
       objectReference: {fileID: 0}
     - target: {fileID: 8261076195035800074, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8261076195035800074, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8261076195035800074, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}
@@ -129,7 +142,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -4078763317427943674, guid: 9ee31b1abac49a243880818ddcb30dd6,
+      objectReference: {fileID: -1406781367499590401, guid: 9ee31b1abac49a243880818ddcb30dd6,
         type: 3}
     - target: {fileID: 9151729759292673890, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}

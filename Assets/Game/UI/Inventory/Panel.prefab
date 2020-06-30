@@ -137,6 +137,7 @@ MonoBehaviour:
   leftSlot: {fileID: 9109016867627015335}
   playerInventoryUI: {fileID: 5966667103819442970}
   chestInventoryUI: {fileID: 7109725487314627303}
+  craftTableInventoryUI: {fileID: 0}
 --- !u!1 &1015232948639535896
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +222,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3313841436139197718}
   - component: {fileID: 7321427262984074586}
+  - component: {fileID: 3656978858402616899}
+  - component: {fileID: 6567783485091663487}
   m_Layer: 0
   m_Name: CraftTable Area UI
   m_TagString: Untagged
@@ -257,6 +260,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790625845473851244}
   m_CullTransparentMesh: 0
+--- !u!114 &3656978858402616899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790625845473851244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef09de86426d429449944d753c0f12ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  slotsUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &6567783485091663487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790625845473851244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603e4ac511c33ba4abb9ef1ec2794065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is4By4: 0
 --- !u!1 &2316917748745024982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,7 +1565,7 @@ PrefabInstance:
     - target: {fileID: 2643567569490679124, guid: f26e997f77ee35243934d32c03c1b7d0,
         type: 3}
       propertyPath: m_Size
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2684143576608484944, guid: f26e997f77ee35243934d32c03c1b7d0,
         type: 3}

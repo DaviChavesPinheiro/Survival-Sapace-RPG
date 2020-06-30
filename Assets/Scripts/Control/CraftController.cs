@@ -38,7 +38,7 @@ public class CraftController : MonoBehaviour
         bool hasEnoughBlocks = true;
         for (int i = 0; i < inventory.slots.Count - 1; i++)
         {
-            if(inventory.slots[i] == null) continue;
+            if(inventory.slots[i] == null || inventory.slots[i].item == null) continue;
             if(inventory.slots[i].amount - 1 < 0){
                 hasEnoughBlocks = false;
                 break;
@@ -59,12 +59,6 @@ public class CraftController : MonoBehaviour
             inventory.slots[inventory.slots.Count - 1].AddAmount(1);
             inventory.InventoryHasUpdated();
         }
-
-        // print(craftCode);
-        // print((craftIDs[0], craftIDs[1], craftIDs[2]));
-        // print((craftIDs[3], craftIDs[4], craftIDs[5]));
-        // print((craftIDs[6], craftIDs[7], craftIDs[8]));
-
     }
 
     private string CraftIDsToCode(int[] craftIDs)

@@ -8,6 +8,7 @@ public class PanelUIControl : MonoBehaviour
     [SerializeField] PanelSlot leftSlot;
     [SerializeField] InventoryUI playerInventoryUI;
     [SerializeField] InventoryUI chestInventoryUI;
+    [SerializeField] InventoryUI craftTableInventoryUI;
 
     public void SetSubPanels(LeftSlot left, RightSlot right) {
         leftSlot.ActiveUI((int) left);
@@ -45,5 +46,8 @@ public class PanelUIControl : MonoBehaviour
     }
     public void SetChestInventory(Inventory inventory){
         chestInventoryUI.SetInventory(inventory);
+    }
+    public void SetCraftTableInventory(Inventory inventory){
+        craftTableInventoryUI.SetInventory(inventory);
     }
 }
