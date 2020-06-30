@@ -6,9 +6,13 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] Inventory inventory;
-    [SerializeField] List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
+    public List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
 
-    public event Action onSwapItems;
+    private void Awake() {
+        if(inventory != null){
+            inventory.onInventoryUpdate += UpdateInventoryUI;
+        }
+    }
 
     void UpdateInventoryUI(){
         for (int i = 0; i < inventory.slots.Count; i++)
@@ -25,7 +29,6 @@ public class InventoryUI : MonoBehaviour
         }
         inventory.SetInventory(slots);
         
-        if(onSwapItems != null) onSwapItems();
     }
     public void SetInventory(Inventory inventory){
         if(this.inventory == inventory) return;

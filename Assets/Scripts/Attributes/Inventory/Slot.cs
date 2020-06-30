@@ -31,12 +31,15 @@ public class Slot
     public int RemoveAmount2(int value){ // MUDAR DE NOME DPS
         int excess = amount - value;
         if(excess <= 0){
+            item = null;
             amount = 0;
+            maxAmount = 64;
             return excess;
         } else {
             amount = amount - value;
             return excess;
         }
+        
     }
 
     public void SetItem(Item item){

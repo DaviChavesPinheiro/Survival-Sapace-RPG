@@ -21,4 +21,8 @@ public class InventorySlotUI : MonoBehaviour
         inventoryItemIcon.SetIcon(slot.item ? slot.item.icon : null);
         inventoryItemAmount.SetAmount(slot.amount);
     }
+
+    public void Subtract(){
+        slot.RemoveAmount2(1);
+    }
 }

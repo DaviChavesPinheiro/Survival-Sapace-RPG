@@ -11,7 +11,6 @@ public class HootBarUI : MonoBehaviour
     int hootBarSlotSelected = 0;
     private void Awake() {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-        inventoryUI.onSwapItems += UpdateHootBar;
         inventory.onInventoryUpdate += UpdateHootBar;
     }
 

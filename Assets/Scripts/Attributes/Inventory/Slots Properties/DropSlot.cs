@@ -12,7 +12,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
         if(readOnly) return;
         Slot mySlot = gameObject.GetComponent<InventorySlotUI>().GetSlot();
         Slot receiveSlot = eventData.pointerDrag.GetComponent<DragItem>() ? eventData.pointerDrag.GetComponent<DragItem>().originalParent.GetComponent<InventorySlotUI>().GetSlot() : null;
-
+        if(mySlot == receiveSlot) return;
         if(receiveSlot != null){
             //Fazer uma funcao statica no inventario (usar no proprio e aqui) que junta 2 slots e retorana um touple com o resultado
             if(Slot.hasEqualItemIDs(mySlot, receiveSlot) && mySlot.amount + receiveSlot.amount <= mySlot.maxAmount){

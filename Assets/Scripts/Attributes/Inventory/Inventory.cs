@@ -64,13 +64,21 @@ public class Inventory : MonoBehaviour
         }
         return false;
     }
+    public void SetSlot(int index, Slot slot){
+        slots[index] = slot;
+        if(onInventoryUpdate != null) onInventoryUpdate();
+    }
     public void SetInventory(List<Slot> slots){
         this.slots = slots;
+        if(onInventoryUpdate != null) onInventoryUpdate();
     }
     public void SetSlotSelected(int index){
         slotSelected = index;
     }
     public Item GetActiveItem(){
         return slots[slotSelected].item;
+    }
+    public void InventoryHasUpdated(){
+        if(onInventoryUpdate != null) onInventoryUpdate();
     }
 }
