@@ -24,46 +24,34 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public bool Add(Item item, int amount){//trocar pra retornar um int
+    public int AddItem(Item item, int amount){
         for (int i = 0; i < slots.Count; i++)
         {
-            if(slots[i].item != null && slots[i].item.id != item.id) continue;
-
-            if(slots[i].item == null){
-                slots[i].SetItem(item);
+            if(amount <= 0) break;
+            if(slots[i] == null || slots[i].item == null){
+                slots[i] = new Slot(item, 0);
                 int excess = slots[i].AddAmount(amount);
-                if(excess > 0){
-                    Add(item, excess);
-                }
-                if(onInventoryUpdate != null) onInventoryUpdate();
-                return true;
-            }
-
-            if(slots[i].item.id == item.id && slots[i].amount < slots[i].item.maxStackItem){
+                amount = excess;
+            } else if(slots[i].item.id == item.id && slots[i].amount < slots[i].item.maxStackItem){
                 int excess = slots[i].AddAmount(amount);
-                if(excess > 0){
-                    Add(item, excess);
-                }
-                if(onInventoryUpdate != null) onInventoryUpdate();
-                return true; //Mudar isso, pois o drop vai ser destruido mesmo q vc nao tenha pegado toda a quantidade
+                amount = excess;
             }
         }
-
-        return false;
+        if(onInventoryUpdate != null) onInventoryUpdate();
+        return amount;
     }
 
-    public bool Remove(Item item, int amount){
-        for (int i = 0; i < slots.Count; i++)
-        {
-            if(slots[i].item != null && slots[i].item.id == item.id && slots[i].amount - amount >= 0){
-                slots[i].RemoveAmount(amount);
-                if(onInventoryUpdate != null) onInventoryUpdate();
-                return true;
-                 //Mudar isso, pois o drop vai ser destruido mesmo q vc nao tenha pegado toda a quantidade
-            }
+    public int RemoveItem(Item item, int amount){
+        for (int i = 0; i < slots.Count; i++){
+            if(amount <= 0) break;
+            if(slots[i] == null || slots[i].item == null || slots[i].item.id != item.id) continue;
+            int excess = slots[i].RemoveAmount2(amount);
+            amount = excess;
         }
-        return false;
+        if(onInventoryUpdate != null) onInventoryUpdate();
+        return amount;
     }
+
     public void SetSlot(int index, Slot slot){
         slots[index] = slot;
         if(onInventoryUpdate != null) onInventoryUpdate();

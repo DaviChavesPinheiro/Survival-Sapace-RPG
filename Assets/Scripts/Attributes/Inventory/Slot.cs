@@ -34,10 +34,10 @@ public class Slot
             item = null;
             amount = 0;
             maxAmount = 64;
-            return excess;
+            return -excess;
         } else {
             amount = amount - value;
-            return excess;
+            return 0;
         }
         
     }

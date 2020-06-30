@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Start() {
-        inventory.Add(GM.instance.items.items[1], 64 * 12);
-        inventory.Add(GM.instance.items.items[8], 1);
+        inventory.AddItem(GM.instance.items.items[1], 64 * 12);
+        inventory.AddItem(GM.instance.items.items[8], 1);
         FindObjectOfType<PanelUIControl>().SetPlayerInventory(inventory);
     }
 
@@ -76,8 +76,8 @@ public class PlayerController : MonoBehaviour
                 DropController drop = other.GetComponent<DropController>();
                 if(!drop) return;
 
-                bool wasPickedUp = inventory.Add(drop.GetItem(), drop.GetAmout());
-                if(wasPickedUp){
+                int excess = inventory.AddItem(drop.GetItem(), drop.GetAmout());
+                if(excess <= 0){
                     Destroy(other.gameObject);
                 }
                 break;
