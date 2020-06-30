@@ -8,29 +8,11 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] Inventory inventory;
     [SerializeField] Transform itemsContainer;
     [SerializeField] GameObject slotGameObject;
-    List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
-    bool isInventoryInitialize = false;
+    [SerializeField] List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
 
     public event Action onSwapItems;
 
-    // private void Awake() {
-    //     inventory.onInventoryUpdate += UpdateInventoryUI;
-    // }
-    private void InitializeInventoryUI()
-    {
-        for (int i = 0; i < inventory.slots.Count; i++)
-        {
-            InventorySlotUI inventorySlotUI = Instantiate(slotGameObject, Vector3.zero, Quaternion.identity, itemsContainer).GetComponent<InventorySlotUI>();
-            slotsUI.Add(inventorySlotUI);
-        }
-        isInventoryInitialize = true;
-    }
-
     void UpdateInventoryUI(){
-        if(!isInventoryInitialize){
-            InitializeInventoryUI();
-        }
-
         for (int i = 0; i < inventory.slots.Count; i++)
         {
             slotsUI[i].SetSlot(inventory.slots[i]);
@@ -48,29 +30,23 @@ public class InventoryUI : MonoBehaviour
         if(onSwapItems != null) onSwapItems();
     }
     public void SetInventory(Inventory inventory){
-        if(this.inventory == inventory) {
-            // print("Equal! " + inventory.gameObject.name);
-            return;
-        }
+        if(this.inventory == inventory) return;
         if(this.inventory != null) {
             inventory.onInventoryUpdate -= UpdateInventoryUI;
-            DestroyOldSlots();
+            ResetAllSlots();
             slotsUI.Clear();
-            isInventoryInitialize = false;
         }
         this.inventory = inventory;
-        if(!isInventoryInitialize){
-            InitializeInventoryUI();
-        }
+
         inventory.onInventoryUpdate += UpdateInventoryUI;
         UpdateInventoryUI();
     }
 
-    private void DestroyOldSlots()
+    private void ResetAllSlots()
     {
         foreach (InventorySlotUI slot in slotsUI)
         {
-            Destroy(slot.gameObject);
+            slot.SetSlot(new Slot(null, 0));
         }
     }
 }
