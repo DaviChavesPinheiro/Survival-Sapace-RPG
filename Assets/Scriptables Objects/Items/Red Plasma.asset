@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f9a52de8b62094ba5ecb18f90463f0, type: 3}
   m_Name: Red Plasma
   m_EditorClassIdentifier: 
-  id: 0
+  id: 8
   name: Red Plasma
   icon: {fileID: 21300048, guid: a45271a9b1641564c9426b00e0669bc6, type: 3}
   prefab: {fileID: 0}

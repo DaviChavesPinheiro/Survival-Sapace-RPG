@@ -8,9 +8,15 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] Inventory inventory;
     public List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
 
-    private void Awake() {
+    private void OnEnable() {
         if(inventory != null){
             inventory.onInventoryUpdate += UpdateInventoryUI;
+        }
+    }
+
+    private void OnDisable() {
+        if(inventory != null){
+            inventory.onInventoryUpdate -= UpdateInventoryUI;
         }
     }
 

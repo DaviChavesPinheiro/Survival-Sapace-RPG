@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45f9a52de8b62094ba5ecb18f90463f0, type: 3}
-  m_Name: CraftTable
+  m_Name: Chest
   m_EditorClassIdentifier: 
-  id: 6
-  name: CraftTable
-  icon: {fileID: -1406781367499590401, guid: 9ee31b1abac49a243880818ddcb30dd6, type: 3}
-  prefab: {fileID: 8719396766757247349, guid: 6020ce9656347524198d3468c8fa5e89, type: 3}
+  id: 7
+  name: Chest
+  icon: {fileID: -4078763317427943674, guid: 9ee31b1abac49a243880818ddcb30dd6, type: 3}
+  prefab: {fileID: 8719396766757247349, guid: e13a53c6e3ed2fe46bc38f740865963a, type: 3}
   itemType: 1
   maxStackItem: 64

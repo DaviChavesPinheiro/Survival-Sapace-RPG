@@ -10,8 +10,15 @@ public class BreakingAnimation : MonoBehaviour
     Health health;
     private void Awake() {
         health = GetComponentInParent<Health>();
-        health.onHealthChange += UpdateSprite;
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnEnable() {
+        health.onHealthChange += UpdateSprite;
+    }
+
+    private void OnDisable() {
+        health.onHealthChange -= UpdateSprite;
     }
 
     private void UpdateSprite()

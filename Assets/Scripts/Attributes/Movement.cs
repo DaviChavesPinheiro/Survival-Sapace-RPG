@@ -22,6 +22,9 @@ public class Movement : MonoBehaviour, ISaveable
     {
         rb = GetComponent<Rigidbody2D>();
         trails = GetComponentsInChildren<TrailRenderer>();
+    }
+
+    private void Start() {
         lerpAngle = 360 - transform.rotation.z;
     }
 

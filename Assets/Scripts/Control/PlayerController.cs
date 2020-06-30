@@ -17,11 +17,13 @@ public class PlayerController : MonoBehaviour
         movement = GetComponent<Movement>();
         inventory = GetComponent<Inventory>();
         interact = transform.Find("Interact");
-        
     }
 
     private void Start() {
+        inventory.Add(GM.instance.items.items[1], 64 * 12);
+        inventory.Add(GM.instance.items.items[8], 1);
         FindObjectOfType<PanelUIControl>().SetPlayerInventory(inventory);
+        print(2);
     }
 
     private void OnEnable()

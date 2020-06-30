@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class ChestController : MonoBehaviour
 {
-    private void Awake() {
+    private void OnEnable() {
         GetComponent<Interact>().onInteract += Interact;
+    }
+
+    private void OnDisable() {
+        GetComponent<Interact>().onInteract -= Interact;
     }
 
     void Interact(){

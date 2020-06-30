@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class CraftTableController : MonoBehaviour
 {
-    private void Awake() {
+    private void OnEnable() {
         GetComponent<Interact>().onInteract += Interact;
     }
 
+    private void OnDisable() {
+        GetComponent<Interact>().onInteract -= Interact;
+    }
     void Interact(){
         print("Im a CraftTable");
         PanelUIControl panelUIControl = FindObjectOfType<PanelUIControl>();

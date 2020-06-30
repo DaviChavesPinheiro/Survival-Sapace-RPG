@@ -11,7 +11,14 @@ public class HootBarUI : MonoBehaviour
     int hootBarSlotSelected = 0;
     private void Awake() {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+    }
+
+    private void OnEnable() {
         inventory.onInventoryUpdate += UpdateHootBar;
+    }
+
+    private void OnDisable() {
+        inventory.onInventoryUpdate -= UpdateHootBar;
     }
 
     private void Start() {
@@ -24,6 +31,7 @@ public class HootBarUI : MonoBehaviour
 
     private void UpdateHootBar()
     {
+        print(1);
         for (int i = 0; i < hootBar.Count; i++)
         {
             hootBar[i].GetComponent<InventorySlotUI>().SetSlot(inventory.slots[i]);

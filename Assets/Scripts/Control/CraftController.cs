@@ -10,7 +10,14 @@ public class CraftController : MonoBehaviour
     void Awake()
     {
         inventory = GetComponent<Inventory>();
+    }
+
+    private void OnEnable() {
         inventory.onInventoryUpdate += VerifyCraft;
+    }
+
+    private void OnDisable() {
+        inventory.onInventoryUpdate -= VerifyCraft;
     }
 
     void VerifyCraft(){

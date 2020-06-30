@@ -9,8 +9,12 @@ public class DropSystem : MonoBehaviour
     [SerializeField] GameObject dropPrefab;
     [SerializeField] List<Item> drops = new List<Item>();
 
-    private void Awake() {
+    private void OnEnable() {
         GetComponent<Health>().onDie += OnDie;
+    }
+
+    private void OnDisable() {
+        GetComponent<Health>().onDie -= OnDie;
     }
 
     private void OnDie()
