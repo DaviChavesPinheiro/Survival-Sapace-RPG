@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
         inventory.Add(GM.instance.items.items[1], 64 * 12);
         inventory.Add(GM.instance.items.items[8], 1);
         FindObjectOfType<PanelUIControl>().SetPlayerInventory(inventory);
-        print(2);
     }
 
     private void OnEnable()
