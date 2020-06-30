@@ -95,6 +95,8 @@ MonoBehaviour:
     maxAmount: 0
   inventoryItemIcon: {fileID: 7916482895413596389}
   inventoryItemAmount: {fileID: 5916695416592897118}
+  canReceive: 1
+  readOnly: 0
 --- !u!114 &4067785092194877047
 MonoBehaviour:
   m_ObjectHideFlags: 0

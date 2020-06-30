@@ -7,7 +7,8 @@ public class InventorySlotUI : MonoBehaviour
     [SerializeField] Slot slot;
     [SerializeField] SlotItemIcon inventoryItemIcon;
     [SerializeField] SlotItemAmount inventoryItemAmount;
-
+    [SerializeField] bool canReceive = true;
+    [SerializeField] bool readOnly = false;
     public void SetSlot(Slot slot){
         this.slot = slot;
         UpdateSlot();
@@ -24,5 +25,28 @@ public class InventorySlotUI : MonoBehaviour
 
     public void Subtract(){
         slot.RemoveAmount(1);
+    }
+
+    public void OnDrop(GameObject receiveSlotGameObject){
+        DragItem receiveDragItem = receiveSlotGameObject.GetComponent<DragItem>();
+        if(receiveDragItem == null) return;
+        InventorySlotUI receiveInventorySlotUI = receiveDragItem.originalParent.GetComponent<InventorySlotUI>();
+        Slot receiveSlot = receiveInventorySlotUI.GetSlot();
+        if(receiveSlot == null || receiveSlot.item == null) return;
+        if(readOnly || receiveInventorySlotUI.readOnly) return;
+        if(Slot.hasEqualItemIDs(slot, receiveSlot) && slot.amount + receiveSlot.amount <= slot.maxAmount){
+            slot.AddAmount(receiveSlot.amount);
+            UpdateSlot();
+            receiveInventorySlotUI.SetSlot(new Slot(null, 0));
+        } else {
+            if(slot != null && slot.item != null && !receiveInventorySlotUI.canReceive || !canReceive) return;
+            receiveInventorySlotUI.SetSlot(slot);
+            SetSlot(receiveSlot);
+        }
+        InventoryUI slotInventoryUI = GetComponentInParent<InventoryUI>();
+        InventoryUI receiveSlotInventoryUI = receiveDragItem.originalParent.GetComponentInParent<InventoryUI>();
+
+        slotInventoryUI.UpdateInvetory(); 
+        receiveSlotInventoryUI.UpdateInvetory();
     }
 }
