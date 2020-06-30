@@ -244,7 +244,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2749015755718935076}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.5
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -555,6 +555,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 0}
-  itemsContainer: {fileID: 2749218169109044068}
-  slotGameObject: {fileID: 1602997939324067808, guid: c594275c434a4ca4da0314f42b0d1e3f,
-    type: 3}
+  slotsUI: []

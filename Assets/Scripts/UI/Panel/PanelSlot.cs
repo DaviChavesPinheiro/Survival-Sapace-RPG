@@ -22,5 +22,6 @@ public enum RightSlot{
 }
 
 public enum LeftSlot{
-    PlayerInventoryUI
+    PlayerInventoryUI,
+    CraftRecipesUI
 }

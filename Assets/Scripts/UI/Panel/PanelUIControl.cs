@@ -25,8 +25,13 @@ public class PanelUIControl : MonoBehaviour
 
     public void OpenInventory()
     {
-        SetSubPanels(LeftSlot.PlayerInventoryUI, RightSlot.CraftUI);
+        SetDefaultInventorySubPanels();
         ToggleUI();
+    }
+
+    public void SetDefaultInventorySubPanels()
+    {
+        SetSubPanels(LeftSlot.PlayerInventoryUI, RightSlot.CraftUI);
     }
 
     public void ToggleUI()
@@ -49,5 +54,9 @@ public class PanelUIControl : MonoBehaviour
     }
     public void SetCraftTableInventory(Inventory inventory){
         craftTableInventoryUI.SetInventory(inventory);
+    }
+
+    public void SetCraftRecipesPanel(){
+        leftSlot.ActiveUI((int) LeftSlot.CraftRecipesUI);
     }
 }
