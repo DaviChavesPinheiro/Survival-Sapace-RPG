@@ -6,8 +6,6 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] Inventory inventory;
-    [SerializeField] Transform itemsContainer;
-    [SerializeField] GameObject slotGameObject;
     [SerializeField] List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
 
     public event Action onSwapItems;

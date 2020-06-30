@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class DropSlot : MonoBehaviour, IDropHandler
 {
+    [SerializeField] bool readOnly = false;
     public void OnDrop(PointerEventData eventData)
     {
+        if(readOnly) return;
         Slot mySlot = gameObject.GetComponent<InventorySlotUI>().GetSlot();
         Slot receiveSlot = eventData.pointerDrag.GetComponent<DragItem>() ? eventData.pointerDrag.GetComponent<DragItem>().originalParent.GetComponent<InventorySlotUI>().GetSlot() : null;
 
