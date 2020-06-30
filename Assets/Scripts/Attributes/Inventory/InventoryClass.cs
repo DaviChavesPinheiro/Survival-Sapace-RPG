@@ -33,7 +33,7 @@ public class InventoryClass
         for (int i = 0; i < slots.Length; i++){
             if(amount <= 0) return 0;
             if(slots[i] == null || slots[i].item.id != item.id) continue;
-            int excess = slots[i].RemoveAmount2(amount);
+            int excess = slots[i].RemoveAmount(amount);
             amount = -excess;
         }
         return amount;

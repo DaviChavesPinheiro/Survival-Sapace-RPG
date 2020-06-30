@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < slots.Count; i++){
             if(amount <= 0) break;
             if(slots[i] == null || slots[i].item == null || slots[i].item.id != item.id) continue;
-            int excess = slots[i].RemoveAmount2(amount);
+            int excess = slots[i].RemoveAmount(amount);
             amount = excess;
         }
         if(onInventoryUpdate != null) onInventoryUpdate();

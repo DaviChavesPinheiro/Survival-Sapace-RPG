@@ -21,14 +21,14 @@ public class Slot
         amount = Mathf.Min(amount + value, maxAmount);
         return excess;
     }
-    public void RemoveAmount(int value){// DELETAR DPS
-        amount = Mathf.Max((amount - value), 0);
-        if(amount == 0) {
-            item = null;
-        }
-    }
+    // public void RemoveAmount(int value){// DELETAR DPS
+    //     amount = Mathf.Max((amount - value), 0);
+    //     if(amount == 0) {
+    //         item = null;
+    //     }
+    // }
 
-    public int RemoveAmount2(int value){ // MUDAR DE NOME DPS
+    public int RemoveAmount(int value){ // MUDAR DE NOME DPS
         int excess = amount - value;
         if(excess <= 0){
             item = null;

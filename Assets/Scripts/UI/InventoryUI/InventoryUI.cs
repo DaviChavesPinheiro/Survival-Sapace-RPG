@@ -41,7 +41,6 @@ public class InventoryUI : MonoBehaviour
         if(this.inventory != null) {
             inventory.onInventoryUpdate -= UpdateInventoryUI;
             ResetAllSlots();
-            slotsUI.Clear();
         }
         this.inventory = inventory;
 

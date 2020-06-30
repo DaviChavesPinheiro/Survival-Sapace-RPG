@@ -23,6 +23,6 @@ public class InventorySlotUI : MonoBehaviour
     }
 
     public void Subtract(){
-        slot.RemoveAmount2(1);
+        slot.RemoveAmount(1);
     }
 }
