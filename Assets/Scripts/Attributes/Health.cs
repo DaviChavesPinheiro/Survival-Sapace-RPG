@@ -6,9 +6,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, ISaveable
 {
-    [SerializeField] float maxHealth = 20f;
-    float health = -1f;
-    [SerializeField] HealthBar healthBar = null;
+    public float maxHealth = 20f;
+    public float health = -1f;
 
     public event Action onDie;
     public event Action onHealthChange;
@@ -18,7 +17,7 @@ public class Health : MonoBehaviour, ISaveable
         if(health == -1f){
             SetHealth(maxHealth);
         }
-        UpdateHealthBar();
+
         if (health == 0)
         {
             Die();
@@ -37,34 +36,25 @@ public class Health : MonoBehaviour, ISaveable
         
         if(onHealthChange != null) onHealthChange();
         
-        UpdateHealthBar();
         if (health == 0)
         {
             Die();
         }
     }
 
-    public float GetPercetage()
-    {
-        return 100 * (health / maxHealth);
-    }
-
     private void Die()
     {
         print(gameObject.name + " Morreu!");
-        if(onDie != null)
-            onDie();
-        if(gameObject.tag == "Enemy"){
-            gameObject.SetActive(false);
-        }
+        if(onDie != null) onDie();
     }
 
-    private void UpdateHealthBar(){
-        if (healthBar)
-        {
-            healthBar.SetMaxHealth(maxHealth);
-            healthBar.SetHealth(health);
-        }
+    public bool IsAlive(){
+        return health > 0;
+    }
+
+    public float GetPercetage()
+    {
+        return 100 * (health / maxHealth);
     }
 
     public object CaptureState()
@@ -74,7 +64,7 @@ public class Health : MonoBehaviour, ISaveable
 
     public void RestoreState(object state)
     {
-        health = (float)state;
+        SetHealth((float)state);
     }
 
 }

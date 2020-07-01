@@ -7,7 +7,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float chaseDistance = 5f;
     GameObject player;
     Health health;
-    bool isEnemyAlive = true;
 
     void Awake()
     {
@@ -27,7 +26,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if(!isEnemyAlive) return;
+        if(!health.IsAlive()) return;
         if(InAttackRange()){
             GetComponent<Movement>().RotateToPosition(player.transform.position);
             GetComponent<Shooter>().Shoot();
@@ -46,6 +45,6 @@ public class EnemyController : MonoBehaviour
 
     private void onEnemyDie()
     {
-        isEnemyAlive = false;
+        gameObject.SetActive(false);
     }
 }

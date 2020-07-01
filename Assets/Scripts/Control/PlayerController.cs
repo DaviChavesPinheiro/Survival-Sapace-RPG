@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     Health health;
     Movement movement;
     Inventory inventory;
-    bool isPlayerAlive = true;
     Transform interact;
     void Awake()
     {
@@ -37,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!isPlayerAlive) return;
+        if (!health.IsAlive()) return;
         if (Input.GetKey(KeyCode.LeftShift))
         {
             GetComponent<Shooter>().Shoot();
@@ -50,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isPlayerAlive) return;
+        if (!health.IsAlive()) return;
         Vector2 input = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
         if(input.magnitude == 0){
             input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
@@ -66,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     private void onPlayerDie()
     {
-        isPlayerAlive = false;
+        print("GAME OVER");
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
