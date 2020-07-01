@@ -34,6 +34,7 @@ public class CraftRecipesUIController : MonoBehaviour
 
             inventory.AddItem(item, 1);
         }
+        inventory.InventoryHasUpdated();
         only4By4ItemsCraftables = false;
     }
 
