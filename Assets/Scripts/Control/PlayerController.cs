@@ -88,8 +88,8 @@ public class PlayerController : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapBoxAll(interact.position, new Vector2(1, 1), 0);
         foreach (Collider2D collider in colliders)
         {
-            if(collider.GetComponent<Interact>() != null){
-                collider.GetComponent<Interact>().interact();
+            if(collider.GetComponent<IInterectable>() != null){
+                collider.GetComponent<IInterectable>().OnInterect();
             }
         }
     }

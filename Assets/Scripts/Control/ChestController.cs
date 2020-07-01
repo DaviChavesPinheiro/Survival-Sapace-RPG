@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChestController : MonoBehaviour
+public class ChestController : MonoBehaviour, IInterectable
 {
-    private void OnEnable() {
-        GetComponent<Interact>().onInteract += Interact;
-    }
-
-    private void OnDisable() {
-        GetComponent<Interact>().onInteract -= Interact;
-    }
-
-    void Interact(){
+    public void OnInterect()
+    {
         print("Im a cheast");
         PanelUIControl panelUIControl = FindObjectOfType<PanelUIControl>();
         panelUIControl.SetSubPanels(LeftSlot.PlayerInventoryUI, RightSlot.ChestUI);

@@ -2,16 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CraftTableController : MonoBehaviour
+public class CraftTableController : MonoBehaviour, IInterectable
 {
-    private void OnEnable() {
-        GetComponent<Interact>().onInteract += Interact;
-    }
-
-    private void OnDisable() {
-        GetComponent<Interact>().onInteract -= Interact;
-    }
-    void Interact(){
+    public void OnInterect()
+    {
         print("Im a CraftTable");
         PanelUIControl panelUIControl = FindObjectOfType<PanelUIControl>();
         panelUIControl.SetSubPanels(LeftSlot.PlayerInventoryUI, RightSlot.CraftTableUI);
