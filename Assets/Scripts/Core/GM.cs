@@ -11,8 +11,8 @@ public class GM : MonoBehaviour
 	void Awake ()
 	{
 		instance = this;
-		Crafts.Add("1|1|0|1|1|0|0|0|0", items.items[6]);
-		Crafts.Add("1|1|1|1|8|1|1|1|1", items.items[7]);
+		Crafts.Add(items.items[6].craftCode, items.items[6]);
+		Crafts.Add(items.items[7].craftCode, items.items[7]);
 	}
 
 	#endregion

@@ -51,6 +51,11 @@ public class PanelUIControl : MonoBehaviour
         if(onPanelsChange != null) onPanelsChange();
     }
 
+    public void SetInventoryPanel(){
+        leftSlot.ActiveUI((int) LeftSlot.PlayerInventoryUI);
+        if(onPanelsChange != null) onPanelsChange();
+    }
+
     public void SetDefaultInventorySubPanels()
     {
         SetSubPanels(LeftSlot.PlayerInventoryUI, RightSlot.CraftUI);

@@ -17,4 +17,6 @@ MonoBehaviour:
   icon: {fileID: -1406781367499590401, guid: 9ee31b1abac49a243880818ddcb30dd6, type: 3}
   prefab: {fileID: 8719396766757247349, guid: 6020ce9656347524198d3468c8fa5e89, type: 3}
   itemType: 1
+  craftCode: 1|1|0|1|1|0|0|0|0
+  is4By4CraftAble: 1
   maxStackItem: 64

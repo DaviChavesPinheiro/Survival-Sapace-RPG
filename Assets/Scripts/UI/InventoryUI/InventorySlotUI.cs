@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySlotUI : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class InventorySlotUI : MonoBehaviour
     [SerializeField] SlotItemAmount inventoryItemAmount;
     [SerializeField] bool canReceive = true;
     [SerializeField] bool readOnly = false;
+    [SerializeField] Image ghostImage;
     public void SetSlot(Slot slot){
         this.slot = slot;
         UpdateSlot();
@@ -48,5 +50,15 @@ public class InventorySlotUI : MonoBehaviour
 
         slotInventoryUI.UpdateInvetory(); 
         receiveSlotInventoryUI.UpdateInvetory();
+    }
+
+    public void SetGhostImage(Sprite image){
+        if(image != null){
+            ghostImage.sprite = image;
+            ghostImage.enabled = true;
+        } else {
+            ghostImage.sprite = null;
+            ghostImage.enabled = false;
+        }
     }
 }

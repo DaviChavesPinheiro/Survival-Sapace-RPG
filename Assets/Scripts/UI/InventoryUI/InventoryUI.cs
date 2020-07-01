@@ -12,6 +12,7 @@ public class InventoryUI : MonoBehaviour
         if(inventory != null){
             inventory.onInventoryUpdate += UpdateInventoryUI;
         }
+        RemoveGhostImages();
     }
 
     private void OnDisable() {
@@ -53,6 +54,22 @@ public class InventoryUI : MonoBehaviour
         foreach (InventorySlotUI slot in slotsUI)
         {
             slot.SetSlot(new Slot(null, 0));
+        }
+    }
+
+    public void SetGhostImages(Sprite[] sprites){
+        int i = 0;
+        foreach (Sprite sprite in sprites)
+        {
+            slotsUI[i].SetGhostImage(sprite);
+            i++;
+        }
+    }
+
+    public void RemoveGhostImages(){
+        foreach (InventorySlotUI slotUI in slotsUI)
+        {
+            slotUI.SetGhostImage(null);
         }
     }
 }
