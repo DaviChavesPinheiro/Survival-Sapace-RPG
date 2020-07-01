@@ -69,4 +69,10 @@ public class Inventory : MonoBehaviour
     public void InventoryHasUpdated(){
         if(onInventoryUpdate != null) onInventoryUpdate();
     }
+    public void Clear(){
+        for (int i = 0; i < slotsAmount; i++)
+        {
+            slots[i] = new Slot(null, 0);
+        }
+    }
 }

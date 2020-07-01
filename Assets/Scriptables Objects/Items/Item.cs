@@ -7,6 +7,8 @@ public class Item : ScriptableObject {
     public Sprite icon;
     public GameObject prefab;
     public ItemType itemType;
+    public string craftCode;
+    public bool is4By4CraftAble;
     public int maxStackItem = 64;
 }
 

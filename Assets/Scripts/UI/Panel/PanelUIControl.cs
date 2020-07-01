@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,9 +11,13 @@ public class PanelUIControl : MonoBehaviour
     [SerializeField] InventoryUI chestInventoryUI;
     [SerializeField] InventoryUI craftTableInventoryUI;
 
+
+    public event Action onPanelsChange;
+
     public void SetSubPanels(LeftSlot left, RightSlot right) {
         leftSlot.ActiveUI((int) left);
         rightSlot.ActiveUI((int) right);
+        if(onPanelsChange != null) onPanelsChange();
     }
 
     void Update()
@@ -29,11 +34,6 @@ public class PanelUIControl : MonoBehaviour
         ToggleUI();
     }
 
-    public void SetDefaultInventorySubPanels()
-    {
-        SetSubPanels(LeftSlot.PlayerInventoryUI, RightSlot.CraftUI);
-    }
-
     public void ToggleUI()
     {
         rightSlot.gameObject.SetActive(!rightSlot.gameObject.activeSelf);
@@ -46,6 +46,16 @@ public class PanelUIControl : MonoBehaviour
         leftSlot.gameObject.SetActive(active);
     }
 
+    public void SetCraftRecipesPanel(){
+        leftSlot.ActiveUI((int) LeftSlot.CraftRecipesUI);
+        if(onPanelsChange != null) onPanelsChange();
+    }
+
+    public void SetDefaultInventorySubPanels()
+    {
+        SetSubPanels(LeftSlot.PlayerInventoryUI, RightSlot.CraftUI);
+    }
+
     public void SetPlayerInventory(Inventory inventory){
         playerInventoryUI.SetInventory(inventory);
     }
@@ -56,7 +66,7 @@ public class PanelUIControl : MonoBehaviour
         craftTableInventoryUI.SetInventory(inventory);
     }
 
-    public void SetCraftRecipesPanel(){
-        leftSlot.ActiveUI((int) LeftSlot.CraftRecipesUI);
+    public Vector2Int GetActivesUIIndex(){
+        return new Vector2Int(leftSlot.activeChild, rightSlot.activeChild);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PanelSlot : MonoBehaviour
 {
-    int activeChild = 0;
+    public int activeChild = 0;
 
     public void ActiveUI(int child){
         if(activeChild == child) return;
