@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HootBarUI : MonoBehaviour
 {
-    [SerializeField] InventoryUI inventoryUI;
+    // [SerializeField] InventoryUI inventoryUI;
     List<Transform> hootBar = new List<Transform>();
     Inventory inventory;
     int hootBarSlotSelected = 0;
@@ -39,7 +39,7 @@ public class HootBarUI : MonoBehaviour
     {
         for (int i = 0; i < hootBar.Count; i++)
         {
-            hootBar[i].GetComponent<InventorySlotUI>().SetSlot(inventory.slots[i]);
+            hootBar[i].GetComponent<InventorySlotUI>().SetSlot(inventory.GetSlots()[i]);
 
         }
     }

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {   [SerializeField] int slotsAmount = 40;
+    List<Slot> slots = new List<Slot>();
     int slotSelected = 0;
 
-    public List<Slot> slots = new List<Slot>();
 
     public event Action onInventoryUpdate;
 
@@ -50,6 +50,10 @@ public class Inventory : MonoBehaviour
         }
         if(onInventoryUpdate != null) onInventoryUpdate();
         return amount;
+    }
+
+    public List<Slot> GetSlots(){
+        return slots;
     }
 
     public void SetSlot(int index, Slot slot){

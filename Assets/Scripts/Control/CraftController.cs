@@ -45,43 +45,43 @@ public class CraftController : MonoBehaviour
         craftCode = CraftIDsToCode(craftIDs);
 
         if (!GM.instance.Crafts.ContainsKey(craftCode)) return;
-        if (inventory.slots[inventory.slots.Count - 1] != null && inventory.slots[inventory.slots.Count - 1].item != null && inventory.slots[inventory.slots.Count - 1].item.id != GM.instance.Crafts[craftCode].id)
+        if (inventory.GetSlots()[inventory.GetSlots().Count - 1] != null && inventory.GetSlots()[inventory.GetSlots().Count - 1].item != null && inventory.GetSlots()[inventory.GetSlots().Count - 1].item.id != GM.instance.Crafts[craftCode].id)
         {
             return;
         }
         SubtractItemsFromInventory();
 
-        if (inventory.slots[inventory.slots.Count - 1] == null || inventory.slots[inventory.slots.Count - 1].item == null)
+        if (inventory.GetSlots()[inventory.GetSlots().Count - 1] == null || inventory.GetSlots()[inventory.GetSlots().Count - 1].item == null)
         {
-            inventory.SetSlot(inventory.slots.Count - 1, new Slot(GM.instance.Crafts[craftCode], 1));
+            inventory.SetSlot(inventory.GetSlots().Count - 1, new Slot(GM.instance.Crafts[craftCode], 1));
         }
-        else if (inventory.slots[inventory.slots.Count - 1].item.id == GM.instance.Crafts[craftCode].id && inventory.slots[inventory.slots.Count - 1].amount + 1 <= inventory.slots[inventory.slots.Count - 1].maxAmount)
+        else if (inventory.GetSlots()[inventory.GetSlots().Count - 1].item.id == GM.instance.Crafts[craftCode].id && inventory.GetSlots()[inventory.GetSlots().Count - 1].amount + 1 <= inventory.GetSlots()[inventory.GetSlots().Count - 1].maxAmount)
         {
-            inventory.slots[inventory.slots.Count - 1].AddAmount(1);
+            inventory.GetSlots()[inventory.GetSlots().Count - 1].AddAmount(1);
             inventory.InventoryHasUpdated();
         }
     }
 
     private void SubtractItemsFromInventory()
     {
-        for (int i = 0; i < inventory.slots.Count - 1; i++)
+        for (int i = 0; i < inventory.GetSlots().Count - 1; i++)
         {
-            if (inventory.slots[i] == null) continue;
-            inventory.slots[i].RemoveAmount(1);
+            if (inventory.GetSlots()[i] == null) continue;
+            inventory.GetSlots()[i].RemoveAmount(1);
         }
     }
 
     private void GenerateCraftIDs()
     {
-        for (int i = 0; i < inventory.slots.Count - 1; i++)
+        for (int i = 0; i < inventory.GetSlots().Count - 1; i++)
         {
-            if (inventory.slots[i] == null || inventory.slots[i].item == null)
+            if (inventory.GetSlots()[i] == null || inventory.GetSlots()[i].item == null)
             {
                 craftIDs[i] = 0;
             }
             else
             {
-                craftIDs[i] = inventory.slots[i].item.id;
+                craftIDs[i] = inventory.GetSlots()[i].item.id;
             }
         }
     }

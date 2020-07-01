@@ -5,26 +5,34 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
-    [SerializeField] Inventory inventory;
-    public List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
+    [SerializeField] List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
+    Inventory inventory;
 
-    private void OnEnable() {
-        if(inventory != null){
-            inventory.onInventoryUpdate += UpdateInventoryUI;
+    private void Awake() {
+        if(GetComponent<Inventory>()){
+            SetInventory(GetComponent<Inventory>());
         }
-        RemoveGhostImages();
     }
 
     private void OnDisable() {
-        if(inventory != null){
+        RemoveGhostImages();
+    }
+   
+    public void SetInventory(Inventory inventory){
+        if(this.inventory == inventory) return;
+        if(this.inventory != null) {
             inventory.onInventoryUpdate -= UpdateInventoryUI;
         }
+        this.inventory = inventory;
+
+        inventory.onInventoryUpdate += UpdateInventoryUI;
+        UpdateInventoryUI();
     }
 
-    void UpdateInventoryUI(){
-        for (int i = 0; i < inventory.slots.Count; i++)
+     private void UpdateInventoryUI(){
+        for (int i = 0; i < inventory.GetSlots().Count; i++)
         {
-            slotsUI[i].SetSlot(inventory.slots[i]);
+            slotsUI[i].SetSlot(inventory.GetSlots()[i]);
         }
     }
 
@@ -35,26 +43,6 @@ public class InventoryUI : MonoBehaviour
             slots.Add(slotUI.GetSlot());
         }
         inventory.SetInventory(slots);
-        
-    }
-    public void SetInventory(Inventory inventory){
-        if(this.inventory == inventory) return;
-        if(this.inventory != null) {
-            inventory.onInventoryUpdate -= UpdateInventoryUI;
-            ResetAllSlots();
-        }
-        this.inventory = inventory;
-
-        inventory.onInventoryUpdate += UpdateInventoryUI;
-        UpdateInventoryUI();
-    }
-
-    private void ResetAllSlots()
-    {
-        foreach (InventorySlotUI slot in slotsUI)
-        {
-            slot.SetSlot(new Slot(null, 0));
-        }
     }
 
     public void SetGhostImages(Sprite[] sprites){
