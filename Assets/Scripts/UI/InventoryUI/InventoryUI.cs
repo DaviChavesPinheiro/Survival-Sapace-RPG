@@ -26,7 +26,7 @@ public class InventoryUI : MonoBehaviour
         UpdateInventoryUI();
     }
 
-     private void UpdateInventoryUI(){
+    private void UpdateInventoryUI(){
         for (int i = 0; i < inventory.GetSlots().Count; i++)
         {
             slotsUI[i].SetSlot(inventory.GetSlots()[i]);
@@ -42,8 +42,16 @@ public class InventoryUI : MonoBehaviour
         inventory.SetInventory(slots);
     }
 
-    public void SetSlotOnFocus(int slotIndex){
+    public void SetSlotOnFocusIndex(int slotIndex){
+        print(slotIndex);
         slotOnFocusIndex = slotIndex;
+    }
+
+    public int GetSlotOnFocusIndex(){
+        return slotOnFocusIndex;
+    }
+    public Inventory GetInventory(){
+        return inventory;
     }
 
 }

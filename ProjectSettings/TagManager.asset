@@ -9,6 +9,9 @@ TagManager:
   - Drop
   - Player Inventory
   - Other Inventory
+  - CraftUI
+  - CraftTableUI
+  - CraftRecipesUI
   layers:
   - Default
   - TransparentFX

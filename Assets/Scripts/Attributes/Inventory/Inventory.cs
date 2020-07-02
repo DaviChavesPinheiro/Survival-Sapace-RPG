@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
-{   [SerializeField] int slotsAmount = 40;
-    List<Slot> slots = new List<Slot>();
-    int slotSelected = 0;
+{   [SerializeField] protected int slotsAmount = 40;
+    protected List<Slot> slots = new List<Slot>();
+    protected int slotSelected = 0;
 
 
     public event Action onInventoryUpdate;

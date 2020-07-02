@@ -75,7 +75,7 @@ public class PanelUIControl : MonoBehaviour
         craftTableInventoryUI.SetInventory(inventory);
     }
 
-    public Vector2Int GetActivesUIIndex(){
-        return new Vector2Int(leftSlot.activeChild, rightSlot.activeChild);
+    public Dictionary<string, int> GetActivesUIIndex(){
+        return new Dictionary<string, int>(){{"leftSlot", leftSlot.activeChild}, {"rightSlot", rightSlot.activeChild}};
     }
 }

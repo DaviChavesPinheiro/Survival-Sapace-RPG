@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class CraftInventoryUI : InventoryUI
 {
-    public delegate void OnSelectSlot(Slot slot);
-    public OnSelectSlot onSelectSlot;
-    
     private void OnDisable()
     {
         RemoveGhostImages();
@@ -32,6 +29,7 @@ public class CraftInventoryUI : InventoryUI
     }
 
     public void OnPressAutoCraftButton(){
-        if(onSelectSlot != null) onSelectSlot(slotsUI[slotOnFocusIndex].GetSlot());
+        InventoryUI craftRecipesInventoryUI = GameObject.FindGameObjectWithTag("CraftRecipesUI").GetComponent<InventoryUI>();
+        print(inventory.GetComponent<CraftInventory>().TryCraftItem(craftRecipesInventoryUI.GetInventory().GetSlots()[craftRecipesInventoryUI.GetSlotOnFocusIndex()].item));
     }
 }

@@ -27,7 +27,7 @@ public class CraftRecipesUIController : MonoBehaviour
         bool only4By4ItemsCraftables = false;
         
         inventory.Clear();
-        if (panelUIControl.GetActivesUIIndex().y == (int)RightSlot.CraftUI) only4By4ItemsCraftables = true;
+        if (panelUIControl.GetActivesUIIndex()["rightSlot"] == (int)RightSlot.CraftUI) only4By4ItemsCraftables = true;
         foreach (Item item in GM.instance.items.items)
         {
             if (item == null) continue;
@@ -39,16 +39,17 @@ public class CraftRecipesUIController : MonoBehaviour
     }
 
     public void OnSelectSlotToViewReceipe(Slot slot){
+        print(slot);
         if(slot == null || slot.item == null || slot.item.craftCode == "") return;
         Slot[] recipeImages = GetRecipeSlots(slot.item.craftCode);
-        if(panelUIControl.GetActivesUIIndex().y == (int)RightSlot.CraftUI){
+        if(panelUIControl.GetActivesUIIndex()["rightSlot"] == (int)RightSlot.CraftUI){
             craftInventoryUI.SetGhostImages(new Slot[4]{recipeImages[0], recipeImages[1], recipeImages[3], recipeImages[4]});
-        } else if(panelUIControl.GetActivesUIIndex().y == (int)RightSlot.CraftTableUI){
+        } else if(panelUIControl.GetActivesUIIndex()["rightSlot"] == (int)RightSlot.CraftTableUI){
             craftTableInventoryUI.SetGhostImages(recipeImages);
         }
     }
 
-    private Slot[] GetRecipeSlots(string craftCode)
+    public static Slot[] GetRecipeSlots(string craftCode)
     {
         string[] codeIDs = craftCode.Split('|');
         List<Slot> ghostSlots = new List<Slot>();

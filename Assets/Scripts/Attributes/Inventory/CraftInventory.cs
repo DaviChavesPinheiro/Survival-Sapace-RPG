@@ -4,24 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CraftController : MonoBehaviour
+public class CraftInventory : Inventory
 {   
     [SerializeField] bool is4By4 = true;
     Inventory inventory;
 
     int[] craftIDs;
     string craftCode;
-    void Awake()
-    {
-        inventory = GetComponent<Inventory>();
-    }
 
     private void OnEnable() {
-        inventory.onInventoryUpdate += VerifyCraft;
+        onInventoryUpdate += VerifyCraft;
     }
 
     private void OnDisable() {
-        inventory.onInventoryUpdate -= VerifyCraft;
+        onInventoryUpdate -= VerifyCraft;
     }
 
     void VerifyCraft()
@@ -89,5 +85,18 @@ public class CraftController : MonoBehaviour
     private string CraftIDsToCode(int[] craftIDs)
     {
         return craftIDs[0] + "|" + craftIDs[1] + "|" + craftIDs[2] + "|" + craftIDs[3] + "|" + craftIDs[4] + "|" + craftIDs[5] + "|" + craftIDs[6] + "|" + craftIDs[7] + "|" + craftIDs[8];
+    }
+
+    public bool TryCraftItem(Item item){
+        if(item == null) return false;
+
+        Slot[] craftSlots = CraftRecipesUIController.GetRecipeSlots(item.craftCode);
+        // bool hasEnoughItemsToCraft = true;
+        // foreach (Slot craftSlot in craftSlots)
+        // {
+        //     if(craftSlot.item == null) continue;
+        //     // if(craftSlot)
+        // }
+        return true;
     }
 }
