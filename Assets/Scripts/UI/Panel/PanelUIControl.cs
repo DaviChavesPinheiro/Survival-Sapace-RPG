@@ -14,6 +14,10 @@ public class PanelUIControl : MonoBehaviour
 
     public event Action onPanelsChange;
 
+    private void Start() {
+        SetActiveUI(false);
+    }
+
     public void SetSubPanels(LeftSlot left, RightSlot right) {
         leftSlot.ActiveUI((int) left);
         rightSlot.ActiveUI((int) right);

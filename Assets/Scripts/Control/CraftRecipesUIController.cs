@@ -9,7 +9,7 @@ public class CraftRecipesUIController : MonoBehaviour
     [SerializeField] CraftInventoryUI craftTableInventoryUI;
     Inventory inventory;
     PanelUIControl panelUIControl;
-    bool only4By4ItemsCraftables = false;
+
     private void Awake() {
         inventory = GetComponent<Inventory>();
         panelUIControl = FindObjectOfType<PanelUIControl>();
@@ -24,8 +24,10 @@ public class CraftRecipesUIController : MonoBehaviour
 
     private void UpdateCraftAbleItems()
     {
+        bool only4By4ItemsCraftables = false;
+        
         inventory.Clear();
-        if (panelUIControl.GetActivesUIIndex().y != (int)RightSlot.CraftTableUI) only4By4ItemsCraftables = true;
+        if (panelUIControl.GetActivesUIIndex().y == (int)RightSlot.CraftUI) only4By4ItemsCraftables = true;
         foreach (Item item in GM.instance.items.items)
         {
             if (item == null) continue;
@@ -34,32 +36,30 @@ public class CraftRecipesUIController : MonoBehaviour
 
             inventory.AddItem(item, 1);
         }
-        inventory.InventoryHasUpdated();
-        only4By4ItemsCraftables = false;
     }
 
     public void OnSelectSlotToViewReceipe(Slot slot){
         if(slot == null || slot.item == null || slot.item.craftCode == "") return;
-        Sprite[] recipeImages = GetRecipeImages(slot.item.craftCode);
+        Slot[] recipeImages = GetRecipeSlots(slot.item.craftCode);
         if(panelUIControl.GetActivesUIIndex().y == (int)RightSlot.CraftUI){
-            craftInventoryUI.SetGhostImages(new Sprite[4]{recipeImages[0], recipeImages[1], recipeImages[3], recipeImages[4]});
+            craftInventoryUI.SetGhostImages(new Slot[4]{recipeImages[0], recipeImages[1], recipeImages[3], recipeImages[4]});
         } else if(panelUIControl.GetActivesUIIndex().y == (int)RightSlot.CraftTableUI){
             craftTableInventoryUI.SetGhostImages(recipeImages);
         }
     }
 
-    private Sprite[] GetRecipeImages(string craftCode)
+    private Slot[] GetRecipeSlots(string craftCode)
     {
         string[] codeIDs = craftCode.Split('|');
-        List<Sprite> sprites = new List<Sprite>();
+        List<Slot> ghostSlots = new List<Slot>();
         for (int i = 0; i < codeIDs.Length; i++)
         {
             if(codeIDs[i] == "0"){
-                sprites.Add(null);
+                ghostSlots.Add(new Slot(null, 0));
                 continue;
             }
-            sprites.Add(GM.instance.items.items[int.Parse(codeIDs[i])].icon);
+            ghostSlots.Add(new Slot(GM.instance.items.items[int.Parse(codeIDs[i])], 1));
         }
-        return sprites.ToArray();
+        return ghostSlots.ToArray();
     }
 }

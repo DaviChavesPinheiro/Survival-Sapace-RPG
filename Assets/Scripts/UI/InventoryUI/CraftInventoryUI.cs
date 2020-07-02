@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CraftInventoryUI : InventoryUI
 {
@@ -9,12 +10,12 @@ public class CraftInventoryUI : InventoryUI
         RemoveGhostImages();
     }
 
-    public void SetGhostImages(Sprite[] sprites)
+    public void SetGhostImages(Slot[] ghostSlots)
     {
         int i = 0;
-        foreach (Sprite sprite in sprites)
+        foreach (Slot slot in ghostSlots)
         {
-            slotsUI[i].SetGhostImage(sprite);
+            slotsUI[i].SetGhostSlot(slot);
             i++;
         }
     }
@@ -23,7 +24,11 @@ public class CraftInventoryUI : InventoryUI
     {
         foreach (InventorySlotUI slotUI in slotsUI)
         {
-            slotUI.SetGhostImage(null);
+            slotUI.SetGhostSlot(new Slot(null, 0));
         }
+    }
+
+    public void OnPresseAutoCraftButton(){
+        
     }
 }

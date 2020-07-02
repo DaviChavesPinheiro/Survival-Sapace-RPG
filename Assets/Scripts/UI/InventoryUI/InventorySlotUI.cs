@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class InventorySlotUI : MonoBehaviour
 {
-    [SerializeField] Slot slot;
     [SerializeField] SlotItemIcon inventoryItemIcon;
     [SerializeField] SlotItemAmount inventoryItemAmount;
     [SerializeField] bool canReceive = true;
     [SerializeField] bool readOnly = false;
     [SerializeField] Image ghostImage;
+    Slot slot;
+    Slot ghostSlot;
     public void SetSlot(Slot slot){
         this.slot = slot;
         UpdateSlot();
@@ -52,9 +53,10 @@ public class InventorySlotUI : MonoBehaviour
         receiveSlotInventoryUI.UpdateInvetory();
     }
 
-    public void SetGhostImage(Sprite image){
-        if(image != null){
-            ghostImage.sprite = image;
+    public void SetGhostSlot(Slot ghostSlot){
+        this.ghostSlot = ghostSlot;
+        if(ghostSlot != null && ghostSlot.item != null){
+            ghostImage.sprite = ghostSlot.item.icon;
             ghostImage.enabled = true;
         } else {
             ghostImage.sprite = null;
