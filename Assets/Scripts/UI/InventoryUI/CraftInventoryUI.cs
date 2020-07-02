@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CraftInventoryUI : InventoryUI
 {
+    [SerializeField] CraftRecipesInventoryUI craftRecipesInventoryUI;
     private void OnDisable()
     {
         RemoveGhostImages();
@@ -29,7 +30,8 @@ public class CraftInventoryUI : InventoryUI
     }
 
     public void OnPressAutoCraftButton(){
-        InventoryUI craftRecipesInventoryUI = GameObject.FindGameObjectWithTag("CraftRecipesUI").GetComponent<InventoryUI>();
-        print(inventory.GetComponent<CraftInventory>().TryCraftItem(craftRecipesInventoryUI.GetInventory().GetSlots()[craftRecipesInventoryUI.GetSlotOnFocusIndex()].item));
+        print(craftRecipesInventoryUI.GetSlotOnFocus().item.name);
+        print("Trycrafy: " + inventory.GetComponent<CraftInventory>().TryCraftItem(craftRecipesInventoryUI.GetSlotOnFocus().item));
+        // print(inventory.GetComponent<CraftInventory>().TryCraftItem());
     }
 }

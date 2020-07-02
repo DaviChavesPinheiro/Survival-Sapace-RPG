@@ -39,13 +39,24 @@ public class CraftRecipesInventoryUI : InventoryUI
         }
     }
 
-    public void OnSelectSlotToViewReceipe(Slot slot){
-        if(slot == null || slot.item == null || slot.item.craftCode == "") return;
-        Slot[] recipeImages = GetRecipeSlots(slot.item.craftCode);
-        if(panelUIControl.GetActivesUIIndex()["rightSlot"] == (int)RightSlot.CraftUI){
-            craftInventoryUI.SetGhostImages(new Slot[4]{recipeImages[0], recipeImages[1], recipeImages[3], recipeImages[4]});
-        } else if(panelUIControl.GetActivesUIIndex()["rightSlot"] == (int)RightSlot.CraftTableUI){
-            craftTableInventoryUI.SetGhostImages(recipeImages);
+    public override void SetSlotOnFocusIndex(int slotIndex)
+    {
+        base.SetSlotOnFocusIndex(slotIndex);
+        SetGhostSlots(slotIndex);
+    }
+
+    private void SetGhostSlots(int slotIndex)
+    {
+        string craftCode = slotsUI[slotIndex].GetSlot().item.craftCode;
+        Slot[] craftRecipeSlots = GetRecipeSlots(craftCode);
+
+        if (isCraftTableUIOpen)
+        {
+            craftTableInventoryUI.SetGhostImages(craftRecipeSlots);
+        }
+        else
+        {
+            craftInventoryUI.SetGhostImages(new Slot[4] { craftRecipeSlots[0], craftRecipeSlots[1], craftRecipeSlots[3], craftRecipeSlots[4] });
         }
     }
 
@@ -64,16 +75,4 @@ public class CraftRecipesInventoryUI : InventoryUI
         return ghostSlots.ToArray();
     }
 
-    public override void SetSlotOnFocusIndex(int slotIndex){
-        base.SetSlotOnFocusIndex(slotIndex);
-
-        string craftCode = slotsUI[slotIndex].GetSlot().item.craftCode;
-        Slot[] craftRecipeSlots = GetRecipeSlots(craftCode);
-
-        if(isCraftTableUIOpen){
-            craftTableInventoryUI.SetGhostImages(craftRecipeSlots);
-        } else {
-            craftInventoryUI.SetGhostImages(new Slot[4]{craftRecipeSlots[0], craftRecipeSlots[1], craftRecipeSlots[3], craftRecipeSlots[4]});
-        }
-    }
 }

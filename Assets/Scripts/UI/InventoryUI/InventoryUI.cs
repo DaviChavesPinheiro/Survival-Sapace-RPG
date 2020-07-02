@@ -50,6 +50,9 @@ public class InventoryUI : MonoBehaviour
     public int GetSlotOnFocusIndex(){
         return slotOnFocusIndex;
     }
+    public Slot GetSlotOnFocus(){
+        return slotsUI[slotOnFocusIndex].GetSlot();
+    }
     public Inventory GetInventory(){
         return inventory;
     }
