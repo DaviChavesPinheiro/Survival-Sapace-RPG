@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CraftRecipesUIController : MonoBehaviour
+public class CraftRecipesInventoryUI : InventoryUI
 {
     [SerializeField] CraftInventoryUI craftInventoryUI;
     [SerializeField] CraftInventoryUI craftTableInventoryUI;
-    Inventory inventory;
     PanelUIControl panelUIControl;
 
-    private void Awake() {
-        inventory = GetComponent<Inventory>();
+    bool isCraftTableUIOpen;
+    override protected void Awake() {
+        base.Awake();
         panelUIControl = FindObjectOfType<PanelUIControl>();
     }
 
@@ -24,22 +24,22 @@ public class CraftRecipesUIController : MonoBehaviour
 
     private void UpdateCraftAbleItems()
     {
-        bool only4By4ItemsCraftables = false;
+        isCraftTableUIOpen = false;
         
         inventory.Clear();
-        if (panelUIControl.GetActivesUIIndex()["rightSlot"] == (int)RightSlot.CraftUI) only4By4ItemsCraftables = true;
+        if (panelUIControl.GetActivesUIIndex()["rightSlot"] == (int)RightSlot.CraftTableUI) isCraftTableUIOpen = true;
+
         foreach (Item item in GM.instance.items.items)
         {
             if (item == null) continue;
             if (item.craftCode == "") continue;
-            if (only4By4ItemsCraftables == true && !item.is4By4CraftAble) continue;
+            if (!isCraftTableUIOpen && !item.is4By4CraftAble) continue;
 
             inventory.AddItem(item, 1);
         }
     }
 
     public void OnSelectSlotToViewReceipe(Slot slot){
-        print(slot);
         if(slot == null || slot.item == null || slot.item.craftCode == "") return;
         Slot[] recipeImages = GetRecipeSlots(slot.item.craftCode);
         if(panelUIControl.GetActivesUIIndex()["rightSlot"] == (int)RightSlot.CraftUI){
@@ -62,5 +62,18 @@ public class CraftRecipesUIController : MonoBehaviour
             ghostSlots.Add(new Slot(GM.instance.items.items[int.Parse(codeIDs[i])], 1));
         }
         return ghostSlots.ToArray();
+    }
+
+    public override void SetSlotOnFocusIndex(int slotIndex){
+        base.SetSlotOnFocusIndex(slotIndex);
+
+        string craftCode = slotsUI[slotIndex].GetSlot().item.craftCode;
+        Slot[] craftRecipeSlots = GetRecipeSlots(craftCode);
+
+        if(isCraftTableUIOpen){
+            craftTableInventoryUI.SetGhostImages(craftRecipeSlots);
+        } else {
+            craftInventoryUI.SetGhostImages(new Slot[4]{craftRecipeSlots[0], craftRecipeSlots[1], craftRecipeSlots[3], craftRecipeSlots[4]});
+        }
     }
 }

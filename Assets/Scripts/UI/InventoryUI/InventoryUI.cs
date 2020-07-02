@@ -9,7 +9,7 @@ public class InventoryUI : MonoBehaviour
     protected Inventory inventory;
     protected int slotOnFocusIndex;
 
-    private void Awake() {
+    virtual protected void Awake() {
         if(GetComponent<Inventory>()){
             SetInventory(GetComponent<Inventory>());
         }
@@ -42,7 +42,7 @@ public class InventoryUI : MonoBehaviour
         inventory.SetInventory(slots);
     }
 
-    public void SetSlotOnFocusIndex(int slotIndex){
+    public virtual void SetSlotOnFocusIndex(int slotIndex){
         print(slotIndex);
         slotOnFocusIndex = slotIndex;
     }

@@ -90,7 +90,7 @@ public class CraftInventory : Inventory
     public bool TryCraftItem(Item item){
         if(item == null) return false;
 
-        Slot[] craftSlots = CraftRecipesUIController.GetRecipeSlots(item.craftCode);
+        Slot[] craftSlots = CraftRecipesInventoryUI.GetRecipeSlots(item.craftCode);
         // bool hasEnoughItemsToCraft = true;
         // foreach (Slot craftSlot in craftSlots)
         // {

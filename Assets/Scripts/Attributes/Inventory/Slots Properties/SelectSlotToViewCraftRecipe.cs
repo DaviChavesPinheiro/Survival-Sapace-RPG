@@ -7,7 +7,7 @@ public class SelectSlotToViewCraftRecipe : MonoBehaviour, IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData eventData)
     {
-        GetComponentInParent<CraftRecipesUIController>().OnSelectSlotToViewReceipe(GetComponent<InventorySlotUI>().GetSlot());
+        GetComponentInParent<CraftRecipesInventoryUI>().OnSelectSlotToViewReceipe(GetComponent<InventorySlotUI>().GetSlot());
     }
 }
 
