@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class CraftRecipesUIController : MonoBehaviour
 {
-    [SerializeField] InventoryUI craftInventoryUI;
-    [SerializeField] InventoryUI craftTableInventoryUI;
+    [SerializeField] CraftInventoryUI craftInventoryUI;
+    [SerializeField] CraftInventoryUI craftTableInventoryUI;
     Inventory inventory;
     PanelUIControl panelUIControl;
     bool only4By4ItemsCraftables = false;

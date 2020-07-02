@@ -5,17 +5,13 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
-    [SerializeField] List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
-    Inventory inventory;
+    [SerializeField] protected List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
+    protected Inventory inventory;
 
     private void Awake() {
         if(GetComponent<Inventory>()){
             SetInventory(GetComponent<Inventory>());
         }
-    }
-
-    private void OnDisable() {
-        RemoveGhostImages();
     }
    
     public void SetInventory(Inventory inventory){
@@ -45,19 +41,4 @@ public class InventoryUI : MonoBehaviour
         inventory.SetInventory(slots);
     }
 
-    public void SetGhostImages(Sprite[] sprites){
-        int i = 0;
-        foreach (Sprite sprite in sprites)
-        {
-            slotsUI[i].SetGhostImage(sprite);
-            i++;
-        }
-    }
-
-    public void RemoveGhostImages(){
-        foreach (InventorySlotUI slotUI in slotsUI)
-        {
-            slotUI.SetGhostImage(null);
-        }
-    }
 }

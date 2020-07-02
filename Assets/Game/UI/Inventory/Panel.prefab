@@ -357,7 +357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef09de86426d429449944d753c0f12ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
   slotsUI:
   - {fileID: 0}
   - {fileID: 0}
@@ -381,7 +380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603e4ac511c33ba4abb9ef1ec2794065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoCraftButton: {fileID: 0}
   is4By4: 0
 --- !u!114 &728485897200910182
 MonoBehaviour:
@@ -1522,6 +1520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5338991687770784954}
   - component: {fileID: 7955189717600133818}
+  - component: {fileID: 7643712778539442147}
   m_Layer: 0
   m_Name: Crafting Area UI
   m_TagString: Untagged
@@ -1559,6 +1558,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5282975162382804550}
   m_CullTransparentMesh: 0
+--- !u!114 &7643712778539442147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5282975162382804550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d497caba9fb644f93f260e2f228020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotsUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &5133447778917662435
 MonoBehaviour:
   m_ObjectHideFlags: 0
