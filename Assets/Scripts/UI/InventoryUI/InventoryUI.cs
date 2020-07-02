@@ -7,6 +7,7 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] protected List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
     protected Inventory inventory;
+    protected int slotOnFocusIndex;
 
     private void Awake() {
         if(GetComponent<Inventory>()){
@@ -39,6 +40,10 @@ public class InventoryUI : MonoBehaviour
             slots.Add(slotUI.GetSlot());
         }
         inventory.SetInventory(slots);
+    }
+
+    public void SetSlotOnFocus(int slotIndex){
+        slotOnFocusIndex = slotIndex;
     }
 
 }

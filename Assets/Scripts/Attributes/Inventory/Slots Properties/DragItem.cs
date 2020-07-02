@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DragItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
 {
     Canvas canvas;
     RectTransform rectTransform;
@@ -37,4 +37,8 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        GetComponentInParent<InventoryUI>().SetSlotOnFocus(transform.parent.GetSiblingIndex());
+    }
 }

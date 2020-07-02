@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class CraftInventoryUI : InventoryUI
 {
+    public delegate void OnSelectSlot(Slot slot);
+    public OnSelectSlot onSelectSlot;
+    
     private void OnDisable()
     {
         RemoveGhostImages();
@@ -28,7 +31,7 @@ public class CraftInventoryUI : InventoryUI
         }
     }
 
-    public void OnPresseAutoCraftButton(){
-        
+    public void OnPressAutoCraftButton(){
+        if(onSelectSlot != null) onSelectSlot(slotsUI[slotOnFocusIndex].GetSlot());
     }
 }
