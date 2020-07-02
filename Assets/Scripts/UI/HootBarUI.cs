@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class HootBarUI : MonoBehaviour
 {
-    // [SerializeField] InventoryUI inventoryUI;
     List<Transform> hootBar = new List<Transform>();
     Inventory inventory;
     int hootBarSlotSelected = 0;

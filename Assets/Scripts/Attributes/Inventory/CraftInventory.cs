@@ -47,7 +47,7 @@ public class CraftInventory : Inventory
         }
         else if (slots[slots.Count - 1].item.id == GM.instance.Crafts[craftCode].id && slots[slots.Count - 1].amount + 1 <= slots[slots.Count - 1].maxAmount) {
             slots[slots.Count - 1].AddAmount(1);
-           InventoryHasUpdated();
+            InventoryHasUpdated();
         }
     }
 
@@ -76,17 +76,28 @@ public class CraftInventory : Inventory
     }
 
     public bool TryCraftItem(Item item){
-        if(item == null) return false;
-        print(1);
+        if(item == null || slots[slots.Count - 1].item != null && slots[slots.Count - 1].item.id != item.id || slots[slots.Count - 1].amount + 1 > slots[slots.Count - 1].maxAmount) return false;
         Slot[] craftSlots = CraftRecipesInventoryUI.GetRecipeSlots(item.craftCode);
-        print(craftSlots.Length);
         craftSlots = ReduceSlots(craftSlots);
-        print((craftSlots.Length, craftSlots[0].amount));
         foreach (Slot slot in craftSlots)
         {
-            print((slot.item.name, slot.amount));
             if(!TryRemoveItems(slot.item, slot.amount)) return false;
         }
+        
+        Inventory playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        foreach (Slot slot in craftSlots)
+        {
+            playerInventory.RemoveItem(slot.item, slot.amount);
+        }
+
+        if (slots[slots.Count - 1] == null || slots[slots.Count - 1].item == null) {
+           SetSlot(slots.Count - 1, new Slot(item, 1));
+        }
+        else if (slots[slots.Count - 1].item.id == item.id && slots[slots.Count - 1].amount + 1 <= slots[slots.Count - 1].maxAmount) {
+            slots[slots.Count - 1].AddAmount(1);
+            InventoryHasUpdated();
+        }
+
         return true;
     }
 

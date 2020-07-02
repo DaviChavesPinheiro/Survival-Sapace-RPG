@@ -39,6 +39,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if(!GetComponentInParent<InventoryUI>()) return;
         GetComponentInParent<InventoryUI>().SetSlotOnFocusIndex(transform.parent.GetSiblingIndex());
     }
 }
