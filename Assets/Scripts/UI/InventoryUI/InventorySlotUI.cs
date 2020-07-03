@@ -35,6 +35,7 @@ public class InventorySlotUI : MonoBehaviour
         if(receiveDragItem == null) return;
         InventorySlotUI receiveInventorySlotUI = receiveDragItem.originalParent.GetComponent<InventorySlotUI>();
         Slot receiveSlot = receiveInventorySlotUI.GetSlot();
+        if(receiveSlot == slot) return;
         if(receiveSlot == null || receiveSlot.item == null) return;
         if(readOnly || receiveInventorySlotUI.readOnly) return;
         if(Slot.hasEqualItemIDs(slot, receiveSlot) && slot.amount + receiveSlot.amount <= slot.maxAmount){

@@ -7,6 +7,8 @@ public class FurnaceInventory : Inventory
 {
     int fuelAmount;
     const int timeMelting = 2;
+    bool isMelting;
+    Coroutine melting;
     override protected void Awake(){
         base.Awake();
         onInventoryUpdate += CheckIfCanMelt;
@@ -15,26 +17,41 @@ public class FurnaceInventory : Inventory
     private void CheckIfCanMelt()
     {
         print("CheckIfCanMelt");
-        if(slots[0] == null || slots[0].item == null || !slots[0].item.isMelt) return;
+        if(slots[0] == null || slots[0].item == null || !slots[0].item.isMelt) {
+            if(isMelting) StopCoroutine(melting);
+            return;
+        }
         if(slots[1] == null || slots[1].item == null || !slots[1].item.isFuel && fuelAmount <= 0) return;
         if(slots[2] != null && slots[2].item != null &&  slots[2].amount >= slots[2].item.maxStackItem) return;
         if(slots[2] != null && slots[2].item != null && slots[0].item.meltResult != slots[2].item) return;
-        print("Can Melt");
         Melt();
     }
 
     private void Melt()
     {
-        StartCoroutine(Melting());
+        print("Melt");
+        if(isMelting) {
+            print("Already Melting.. Returning");
+            return;
+        }
+        if(fuelAmount <= 0){
+            print("Fuelless. Consuming new Fuel Item");
+            fuelAmount += slots[1].item.fuelPotencial;
+            slots[1].RemoveAmount(1);
+            InventoryHasUpdated();
+        }
+        if(!isMelting) {
+            melting = StartCoroutine(Melting());
+        }
+        
     }
 
     IEnumerator Melting(){
-        print("Melting " + slots[0].item.name);
-        if(fuelAmount <= 0){
-            fuelAmount += slots[1].item.fuelPotencial;
-            slots[1].RemoveAmount(1);
-        }
+        isMelting = true;
+        print("Melting " + slots[0].item.name + " Started");
         yield return new WaitForSeconds(timeMelting);
+        print("Melting " + slots[0].item.name + " Finished");
+        isMelting = false;
         if(slots[2].item == null){
             slots[2] = new Slot(slots[0].item.meltResult, 1);
         } else {
