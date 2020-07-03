@@ -6,7 +6,7 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] protected List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
-    protected Inventory inventory;
+    [SerializeField] protected Inventory inventory;
     protected int slotOnFocusIndex;
 
     virtual protected void Awake() {

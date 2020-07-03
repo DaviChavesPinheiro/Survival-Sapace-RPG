@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
 
     public event Action onInventoryUpdate;
 
-    private void Awake()
+    virtual protected void Awake()
     {
         InitializeInventory();
     }

@@ -10,6 +10,7 @@ public class PanelUIControl : MonoBehaviour
     [SerializeField] InventoryUI playerInventoryUI;
     [SerializeField] InventoryUI chestInventoryUI;
     [SerializeField] InventoryUI craftTableInventoryUI;
+    [SerializeField] InventoryUI furnaceInventoryUI;
 
 
     public event Action onPanelsChange;
@@ -73,6 +74,9 @@ public class PanelUIControl : MonoBehaviour
     }
     public void SetCraftTableInventory(Inventory inventory){
         craftTableInventoryUI.SetInventory(inventory);
+    }
+    public void SetFurnaceInventory(Inventory inventory){
+        furnaceInventoryUI.SetInventory(inventory);
     }
 
     public Dictionary<string, int> GetActivesUIIndex(){

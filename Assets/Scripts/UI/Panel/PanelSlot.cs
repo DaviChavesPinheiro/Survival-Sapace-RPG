@@ -19,7 +19,7 @@ public enum RightSlot{
     CraftTableUI,
     EquipUI,
     ChestUI,
-    Furnace
+    FurnaceUI
 }
 
 public enum LeftSlot{

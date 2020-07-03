@@ -19,4 +19,8 @@ MonoBehaviour:
   itemType: 1
   craftCode: 1|1|0|1|1|0|0|0|0
   is4By4CraftAble: 1
+  isMelt: 0
+  isFuel: 1
+  fuelPotencial: 5
+  meltResult: {fileID: 0}
   maxStackItem: 64

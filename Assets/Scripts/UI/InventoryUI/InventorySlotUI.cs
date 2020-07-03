@@ -10,7 +10,7 @@ public class InventorySlotUI : MonoBehaviour
     [SerializeField] bool canReceive = true;
     [SerializeField] bool readOnly = false;
     [SerializeField] Image ghostImage;
-    Slot slot;
+    Slot slot = new Slot(null, 0);
     Slot ghostSlot;
     public void SetSlot(Slot slot){
         this.slot = slot;

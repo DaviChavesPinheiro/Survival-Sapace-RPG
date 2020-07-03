@@ -9,6 +9,10 @@ public class Item : ScriptableObject {
     public ItemType itemType;
     public string craftCode;
     public bool is4By4CraftAble;
+    public bool isMelt;
+    public bool isFuel;
+    public int fuelPotencial;
+    public Item meltResult;
     public int maxStackItem = 64;
 }
 
