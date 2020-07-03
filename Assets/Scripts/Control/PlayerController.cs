@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Saving;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ISaveable
 {
     [SerializeField] Joystick joystick;
     Health health;
@@ -19,10 +20,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Start() {
-        inventory.AddItem(GM.instance.items.items[1], 64 * 12);
-        inventory.AddItem(GM.instance.items.items[8], 5);
-        inventory.AddItem(GM.instance.items.items[2], 32);
-        inventory.AddItem(GM.instance.items.items[7], 32);
+        // inventory.AddItem(GM.instance.items.items[1], 64 * 12);
+        // inventory.AddItem(GM.instance.items.items[8], 5);
+        // inventory.AddItem(GM.instance.items.items[2], 32);
+        // inventory.AddItem(GM.instance.items.items[7], 32);
         FindObjectOfType<PanelUIControl>().SetPlayerInventory(inventory);
     }
 
@@ -93,5 +94,22 @@ public class PlayerController : MonoBehaviour
                 collider.GetComponent<IInterectable>().OnInterect();
             }
         }
+    }
+
+    public object CaptureState()
+    {
+        PlayerData data = new PlayerData();
+        data.inventory = GetComponent<Inventory>().GetData();
+        return data;
+    }
+
+    public void RestoreState(object state)
+    {
+        PlayerData data = (PlayerData)state;
+        GetComponent<Inventory>().SetData(data.inventory);
+    }
+    [System.Serializable]
+    struct PlayerData {
+        public object inventory;
     }
 }

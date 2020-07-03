@@ -6,12 +6,13 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] protected List<InventorySlotUI> slotsUI = new List<InventorySlotUI>();
-    [SerializeField] protected Inventory inventory;
+    [SerializeField] protected Inventory inventory; //TIRAR O SERIALIZEFIELD
     protected int slotOnFocusIndex;
 
     virtual protected void Awake() {
         if(GetComponent<Inventory>()){
-            SetInventory(GetComponent<Inventory>());
+            inventory = GetComponent<Inventory>();
+            inventory.onInventoryUpdate += UpdateInventoryUI;
         }
     }
    

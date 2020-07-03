@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {   [SerializeField] protected int slotsAmount = 40;
-    protected List<Slot> slots = new List<Slot>();
+    protected List<Slot> slots;
     protected int slotSelected = 0;
 
 
@@ -18,6 +18,8 @@ public class Inventory : MonoBehaviour
 
     private void InitializeInventory()
     {
+        if(slots != null) return;
+        slots = new List<Slot>();
         for (int i = 0; i < slotsAmount; i++)
         {
             slots.Add(new Slot(null, 0));
@@ -81,5 +83,39 @@ public class Inventory : MonoBehaviour
         {
             slots[i] = new Slot(null, 0);
         }
+    }
+
+    public InventorySlotData[] GetData(){
+        InventorySlotData[] inventorySlotDatas = new InventorySlotData[slots.Count];
+        int i = 0;
+        foreach (Slot slot in slots)
+        {
+            inventorySlotDatas[i].itemID = slot != null && slot.item != null ? slot.item.id : 0;
+            inventorySlotDatas[i].amount = slot != null ? slot.amount : 0;
+            i++;
+        }
+        return inventorySlotDatas;
+    }
+
+    public void SetData(object state){
+        InventorySlotData[] data = (InventorySlotData[])state;
+        if(data == null) {
+            print(null);
+            return;
+        }
+        List<Slot> slotsData = new List<Slot>(slotsAmount);        
+        int k = 0;
+        foreach (InventorySlotData slotData in data)
+        {
+            slotsData.Add(new Slot(GM.instance.items.items[slotData.itemID], slotData.amount));
+            k++;
+        }
+        SetInventory(slotsData);
+    }
+
+    [System.Serializable]
+    public struct InventorySlotData{
+        public int itemID;
+        public int amount;
     }
 }
