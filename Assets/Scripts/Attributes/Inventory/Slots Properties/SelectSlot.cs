@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SelectSlot : MonoBehaviour, IPointerClickHandler
+public class SelectSlot : MonoBehaviour
 {
     Color originalColor;
     Color selectedColor = Color.white;
@@ -19,10 +19,5 @@ public class SelectSlot : MonoBehaviour, IPointerClickHandler
         } else {
             GetComponent<Image>().color = originalColor;
         }
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        transform.parent.GetComponent<HootBarUI>().SetHootBarSlotSelected(transform.GetSiblingIndex());
     }
 }

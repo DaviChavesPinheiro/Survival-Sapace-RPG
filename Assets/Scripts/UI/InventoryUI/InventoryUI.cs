@@ -26,14 +26,14 @@ public class InventoryUI : MonoBehaviour
         UpdateInventoryUI();
     }
 
-    private void UpdateInventoryUI(){
+    virtual protected void UpdateInventoryUI(){
         for (int i = 0; i < inventory.GetSlots().Count; i++)
         {
             slotsUI[i].SetSlot(inventory.GetSlots()[i]);
         }
     }
 
-    public void UpdateInvetory(){
+    virtual public void UpdateInvetory(){
         List<Slot> slots = new List<Slot>();
         foreach (InventorySlotUI slotUI in slotsUI)
         {
@@ -43,7 +43,6 @@ public class InventoryUI : MonoBehaviour
     }
 
     public virtual void SetSlotOnFocusIndex(int slotIndex){
-        print(slotIndex);
         slotOnFocusIndex = slotIndex;
     }
 

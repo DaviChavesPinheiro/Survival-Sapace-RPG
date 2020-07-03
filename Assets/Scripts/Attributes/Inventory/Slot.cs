@@ -22,7 +22,7 @@ public class Slot
         return excess;
     }
 
-    public int RemoveAmount(int value){ // MUDAR DE NOME DPS
+    public int RemoveAmount(int value){
         int excess = amount - value;
         if(excess <= 0){
             item = null;

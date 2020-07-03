@@ -68,7 +68,10 @@ public class Inventory : MonoBehaviour
         slotSelected = index;
     }
     public Item GetActiveItem(){
-        return slots[slotSelected].item;
+        return slots[slotSelected] != null ? slots[slotSelected].item : null;
+    }
+    public Slot GetActiveSlot(){
+        return slots[slotSelected];
     }
     public void InventoryHasUpdated(){
         if(onInventoryUpdate != null) onInventoryUpdate();

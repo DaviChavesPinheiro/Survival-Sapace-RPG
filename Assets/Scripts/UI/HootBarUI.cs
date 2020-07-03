@@ -3,57 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HootBarUI : MonoBehaviour
+public class HootBarUI : InventoryUI
 {
-    List<Transform> hootBar = new List<Transform>();
-    Inventory inventory;
-    int hootBarSlotSelected = 0;
-    private void Awake() {
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-        InitializeHootBar();
-    }
-
-    private void OnEnable() {
-        inventory.onInventoryUpdate += UpdateHootBar;
-    }
-
-    private void OnDisable() {
-        inventory.onInventoryUpdate -= UpdateHootBar;
-    }
-
     private void Start()
     {
+        SetInventory(GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>());
         UpdateSelectedSlot();
     }
 
-    private void InitializeHootBar()
-    {
-        for (int i = 0; i < transform.childCount - 1; i++)
+    override protected void UpdateInventoryUI(){
+        for (int i = 0; i < slotsUI.Count; i++)
         {
-            hootBar.Add(transform.GetChild(i));
+            slotsUI[i].SetSlot(inventory.GetSlots()[i]);
         }
     }
 
-    private void UpdateHootBar()
-    {
-        for (int i = 0; i < hootBar.Count; i++)
+    override public void UpdateInvetory(){
+        List<Slot> slots = inventory.GetSlots();
+        int i = 0;
+        foreach (InventorySlotUI slotUI in slotsUI)
         {
-            hootBar[i].GetComponent<InventorySlotUI>().SetSlot(inventory.GetSlots()[i]);
-
+            slots[i] = slotUI.GetSlot();
+            i++;
         }
+        inventory.SetInventory(slots);
     }
 
-    public void SetHootBarSlotSelected(int index){
-        hootBarSlotSelected = index;
-        inventory.SetSlotSelected(hootBarSlotSelected);
+    override public void SetSlotOnFocusIndex(int slotIndex){
+        base.SetSlotOnFocusIndex(slotIndex);
+        inventory.SetSlotSelected(slotIndex);
         UpdateSelectedSlot();
     }
 
     private void UpdateSelectedSlot()
     {
-        for (int i = 0; i < hootBar.Count; i++)
+        for (int i = 0; i < slotsUI.Count; i++)
         {
-            hootBar[i].GetComponent<SelectSlot>().SetSelected(i == hootBarSlotSelected);
+            slotsUI[i].GetComponent<SelectSlot>().SetSelected(i == slotOnFocusIndex);
         }
     }
 }
