@@ -11,6 +11,7 @@ namespace RPG.Saving
 {
     public class SavingSystem : MonoBehaviour
     {
+        public event Action onSaving;
         public IEnumerator LoadLastScene(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);
@@ -25,6 +26,8 @@ namespace RPG.Saving
 
         public void Save(string saveFile)
         {
+            if(onSaving != null) onSaving();
+            print("Saving SavingSystem");
             Dictionary<string, object> state = LoadFile(saveFile);
             CaptureState(state);
             SaveFile(saveFile, state);

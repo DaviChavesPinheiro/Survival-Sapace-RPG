@@ -112,10 +112,9 @@ public class Inventory : MonoBehaviour
         }
         SetInventory(slotsData);
     }
-
-    [System.Serializable]
-    public struct InventorySlotData{
-        public int itemID;
-        public int amount;
-    }
+}
+[System.Serializable]
+public struct InventorySlotData{
+    public int itemID;
+    public int amount;
 }
