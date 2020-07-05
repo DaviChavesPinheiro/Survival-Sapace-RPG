@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SelectSlot : MonoBehaviour
+public class SelectSlot : MonoBehaviour, IPointerClickHandler
 {
     Color originalColor;
     Color selectedColor = Color.white;
@@ -19,5 +19,11 @@ public class SelectSlot : MonoBehaviour
         } else {
             GetComponent<Image>().color = originalColor;
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(!GetComponentInParent<InventoryUI>()) return;
+        GetComponentInParent<InventoryUI>().SetSlotOnFocusIndex(transform.GetSiblingIndex());
     }
 }

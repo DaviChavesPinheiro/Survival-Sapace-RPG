@@ -44,6 +44,7 @@ public class InventoryUI : MonoBehaviour
     }
 
     public virtual void SetSlotOnFocusIndex(int slotIndex){
+        print(gameObject.name + " SetSlotOnFocusIndex");
         slotOnFocusIndex = slotIndex;
     }
 

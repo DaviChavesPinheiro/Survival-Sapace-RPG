@@ -2520,6 +2520,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 200146835230176461, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: readOnly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 200146835230176461, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: canReceive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 362832511072393005, guid: 8763e4731c49ed34ca615d9b61f82ab5,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2630,6 +2640,16 @@ PrefabInstance:
       propertyPath: furnaceInventoryUI
       value: 
       objectReference: {fileID: 270366208}
+    - target: {fileID: 2268352502009203727, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: readOnly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268352502009203727, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: canReceive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2928826865611469193, guid: 8763e4731c49ed34ca615d9b61f82ab5,
         type: 3}
       propertyPath: m_IsActive
@@ -4315,6 +4335,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -61.822998
       objectReference: {fileID: 0}
+    - target: {fileID: 3567823994733527376, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_Radius
+      value: 84.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567823994733527376, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -43.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567823994733527376, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 42.9
+      objectReference: {fileID: 0}
     - target: {fileID: 3872584405546657775, guid: 8763e4731c49ed34ca615d9b61f82ab5,
         type: 3}
       propertyPath: m_Name
@@ -4500,6 +4535,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4943747936167737173, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_Radius
+      value: 62.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943747936167737173, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 31.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943747936167737173, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -45.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5527985465397162838, guid: 8763e4731c49ed34ca615d9b61f82ab5,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -4539,6 +4589,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925563467142136355, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: readOnly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925563467142136355, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: canReceive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6131727629149394076, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: readOnly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6131727629149394076, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: canReceive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6516480487472191750, guid: 8763e4731c49ed34ca615d9b61f82ab5,
         type: 3}
@@ -4585,9 +4655,34 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 47.06063
       objectReference: {fileID: 0}
+    - target: {fileID: 8686563586328291373, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_Radius
+      value: 61.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686563586328291373, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -18.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686563586328291373, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 44.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8731417373539016867, guid: 8763e4731c49ed34ca615d9b61f82ab5,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963796971811332071, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: readOnly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963796971811332071, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: canReceive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
