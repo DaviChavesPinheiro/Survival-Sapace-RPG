@@ -27,7 +27,6 @@ namespace RPG.Saving
         public void Save(string saveFile)
         {
             if(onSaving != null) onSaving();
-            print("Saving SavingSystem");
             Dictionary<string, object> state = LoadFile(saveFile);
             CaptureState(state);
             SaveFile(saveFile, state);

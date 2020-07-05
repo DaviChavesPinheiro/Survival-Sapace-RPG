@@ -16,7 +16,6 @@ public class FurnaceInventory : Inventory
 
     private void CheckIfCanMelt()
     {
-        print("CheckIfCanMelt");
         if(slots[0] == null || slots[0].item == null || !slots[0].item.isMelt) {
             if(isMelting) StopCoroutine(melting);
             return;

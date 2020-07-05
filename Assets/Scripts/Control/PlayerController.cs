@@ -105,6 +105,7 @@ public class PlayerController : MonoBehaviour, ISaveable
 
     public void RestoreState(object state)
     {
+        print("Player RestoreState");
         PlayerData data = (PlayerData)state;
         GetComponent<Inventory>().SetData(data.inventory);
     }

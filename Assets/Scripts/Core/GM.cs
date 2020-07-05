@@ -10,7 +10,6 @@ public class GM : MonoBehaviour
 
 	void Awake ()
 	{
-		print("GM AWAKE");
 		instance = this;
 		Crafts.Add(items.items[6].craftCode, items.items[6]);
 		Crafts.Add(items.items[7].craftCode, items.items[7]);

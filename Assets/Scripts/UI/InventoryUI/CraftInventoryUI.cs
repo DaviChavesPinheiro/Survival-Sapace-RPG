@@ -30,8 +30,6 @@ public class CraftInventoryUI : InventoryUI
     }
 
     public void OnPressAutoCraftButton(){
-        print(craftRecipesInventoryUI.GetSlotOnFocus().item.name);
-        print("Trycrafy: " + inventory.GetComponent<CraftInventory>().TryCraftItem(craftRecipesInventoryUI.GetSlotOnFocus().item));
-        // print(inventory.GetComponent<CraftInventory>().TryCraftItem());
+       inventory.GetComponent<CraftInventory>().TryCraftItem(craftRecipesInventoryUI.GetSlotOnFocus().item);
     }
 }

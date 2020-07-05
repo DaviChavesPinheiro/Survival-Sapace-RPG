@@ -100,17 +100,13 @@ public class Inventory : MonoBehaviour
     public void SetData(object state){
         InventorySlotData[] data = (InventorySlotData[])state;
         if(data == null) {
-            print(null);
             return;
         }
-        print("SetData Inventory: ");
-        print(data.Length);
         List<Slot> slotsData = new List<Slot>();        
         foreach (InventorySlotData slotData in data)
         {
             slotsData.Add(new Slot(GM.instance.items.items[slotData.itemID], slotData.amount));
         }
-        print(slotsData.Count);
         SetInventory(slotsData);
     }
 }
