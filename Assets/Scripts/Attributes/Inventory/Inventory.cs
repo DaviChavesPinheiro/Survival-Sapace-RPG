@@ -103,13 +103,14 @@ public class Inventory : MonoBehaviour
             print(null);
             return;
         }
-        List<Slot> slotsData = new List<Slot>(slotsAmount);        
-        int k = 0;
+        print("SetData Inventory: ");
+        print(data.Length);
+        List<Slot> slotsData = new List<Slot>();        
         foreach (InventorySlotData slotData in data)
         {
             slotsData.Add(new Slot(GM.instance.items.items[slotData.itemID], slotData.amount));
-            k++;
         }
+        print(slotsData.Count);
         SetInventory(slotsData);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using RPG.Saving;
 using UnityEngine;
 
@@ -82,12 +83,17 @@ public class ChunksController : MonoBehaviour, ISaveable
         {
             data[chunkCoord.ToString()] = ChunkController.MapToOneDimensionalMap(terrainChunkDictionary[chunkCoord].GetMap());
         }
+        print("CaptureState Chunks");
+        print(terrainChunkDictionary.Keys.ToArray().Length);
         return data;
     }
 
     public void RestoreState(object state)
     {
+        print("RestoreState Chunks");
+        print(terrainChunkDictionary.Keys.ToArray().Length);
         data = (Dictionary<string, int[]>)state;
+        print(data.Keys.ToArray().Length);
     }
 
     public static Vector2 StringToVector2(string sVector)

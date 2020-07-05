@@ -2560,6 +2560,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 493343771343141277, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_Radius
+      value: 30.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 493343771343141277, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -24.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 493343771343141277, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -25.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1178681236076426035, guid: 8763e4731c49ed34ca615d9b61f82ab5,
         type: 3}
       propertyPath: m_IsActive
@@ -4560,6 +4575,16 @@ PrefabInstance:
       propertyPath: craftRecipesInventoryUI
       value: 
       objectReference: {fileID: 1377236444}
+    - target: {fileID: 8484067148610291973, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 45.73919
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484067148610291973, guid: 8763e4731c49ed34ca615d9b61f82ab5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 47.06063
+      objectReference: {fileID: 0}
     - target: {fileID: 8731417373539016867, guid: 8763e4731c49ed34ca615d9b61f82ab5,
         type: 3}
       propertyPath: m_IsActive
