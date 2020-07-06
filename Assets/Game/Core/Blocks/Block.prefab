@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7278912176858542535}
   - component: {fileID: 385385864010507531}
   - component: {fileID: 4552134695761071054}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BreakingAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 2719474567640844709}
   - component: {fileID: -851582197592555563}
   - component: {fileID: -3194768027441790963}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Block
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  healthBar: {fileID: 0}
+  health: -1
 --- !u!114 &-3194768027441790963
 MonoBehaviour:
   m_ObjectHideFlags: 0
