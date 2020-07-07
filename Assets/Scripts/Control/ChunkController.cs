@@ -40,8 +40,13 @@ public class ChunkController : MonoBehaviour
     }
 
     public void SetBlock(Vector2 position, int id){
-        Vector2 localPosition = position - new Vector2(transform.position.x, transform.position.y);
+        Vector2 localPosition = position - (Vector2)transform.position;
         map[Mathf.FloorToInt(localPosition.x), Mathf.FloorToInt(localPosition.y)] = id;
+    }
+    
+    public int GetBlock(Vector2 position){
+        Vector2 localPosition = position - (Vector2)transform.position;
+        return map[Mathf.FloorToInt(localPosition.x), Mathf.FloorToInt(localPosition.y)];
     }
     
     public void GenereteMap(){
@@ -129,7 +134,7 @@ public class ChunkController : MonoBehaviour
     }
 
     public void RefreshBlock(Vector2 position){
-        Vector2 localPosition = position - new Vector2(transform.position.x, transform.position.y);
+        Vector2 localPosition = position - (Vector2)transform.position;
         Vector2Int blockPosition = new Vector2Int(Mathf.FloorToInt(localPosition.x), Mathf.FloorToInt(localPosition.y));
         GameObject blockInstance = Instantiate(GM.instance.items.items[map[blockPosition.x, blockPosition.y]].prefab, new Vector3(blockPosition.x + transform.position.x, blockPosition.y + transform.position.y, transform.position.z), transform.rotation) as GameObject;
         blockInstance.transform.SetParent(transform);

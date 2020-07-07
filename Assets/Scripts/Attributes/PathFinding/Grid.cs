@@ -21,6 +21,11 @@ public class Grid : MonoBehaviour
         CreateGrid();
     }
 
+    private void Update() {
+        transform.position = new Vector3Int(Mathf.FloorToInt(player.position.x - gridWorldSize.x/2), Mathf.FloorToInt(player.position.y - gridWorldSize.y/2), Mathf.FloorToInt(transform.position.z));
+        MapGrid();
+    }
+
     public int MaxSize {
 		get {
 			return gridSizeX * gridSizeY;
@@ -31,14 +36,29 @@ public class Grid : MonoBehaviour
     private void CreateGrid()
     {
         grid = new Node[gridSizeX, gridSizeY];
-
         for (int x = 0; x < gridSizeX; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
             {
-                Vector2 worldPosition = (Vector2)transform.position + new Vector2(x + nodeRadius, y + nodeRadius);
-                bool walkable = !(Physics2D.OverlapCircle(worldPosition, nodeRadius-.1f, unwalkableMask));
-                grid[x, y] = new Node(walkable, worldPosition, x, y);
+                Vector2 worldPosition = (Vector2)transform.position + new Vector2(x, y);
+                grid[x, y] = new Node(false, worldPosition + new Vector2(nodeRadius, nodeRadius), x, y);
+            }
+        }
+    }
+
+    private void MapGrid()
+    {
+        for (int x = 0; x < gridSizeX; x++)
+        {
+            for (int y = 0; y < gridSizeY; y++)
+            {
+                Vector2 worldPosition = (Vector2)transform.position + new Vector2(x, y);
+                ChunkController chunk = ChunksController.instance.GetChunk(worldPosition);
+                bool walkable = false;
+                if(chunk){
+                    walkable = chunk.GetBlock(worldPosition) == 0;
+                }
+                grid[x, y] = new Node(walkable, worldPosition + new Vector2(nodeRadius, nodeRadius), x, y);
             }
         }
     }

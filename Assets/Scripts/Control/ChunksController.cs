@@ -6,6 +6,13 @@ using UnityEngine;
 
 public class ChunksController : MonoBehaviour, ISaveable
 {
+    public static ChunksController instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
     public static int maxViewDst = 32;
     Transform player;
 

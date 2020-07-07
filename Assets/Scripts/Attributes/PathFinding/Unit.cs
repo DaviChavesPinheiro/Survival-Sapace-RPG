@@ -15,7 +15,7 @@ public class Unit : MonoBehaviour {
 
     IEnumerator Searching(){
         PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.2f);
         StartCoroutine(Searching());
     }
 
@@ -29,6 +29,7 @@ public class Unit : MonoBehaviour {
 	}
 
 	IEnumerator FollowPath() {
+        if(path == null || path.Length <= 0) StopCoroutine("FollowPath");
 		Vector3 currentWaypoint = path[0];
 		while (true) {
 			if (transform.position == currentWaypoint) {
@@ -51,7 +52,7 @@ public class Unit : MonoBehaviour {
 		if (path != null) {
 			for (int i = targetIndex; i < path.Length; i ++) {
 				Gizmos.color = Color.green;
-				Gizmos.DrawCube(path[i], Vector3.one);
+				Gizmos.DrawSphere(path[i], .2f);
 
 				if (i == targetIndex) {
 					Gizmos.DrawLine(transform.position, path[i]);
