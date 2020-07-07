@@ -66,16 +66,14 @@ public class Grid : MonoBehaviour
         y = Mathf.Min(y, gridSizeY - 1);
         return grid[x, y];
     }
-    public List<Node> path;
     private void OnDrawGizmosSelected() {
         Gizmos.DrawWireCube(transform.position + new Vector3(gridWorldSize.x / 2, gridWorldSize.y / 2, 0), new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
         if(grid != null) {
             Node playerNode = NodeFromWorldPoint(player.transform.position);
             foreach (Node node in grid)
             {
-                if(node.walkable && playerNode != node && path != null && !path.Contains(node)) continue;
+                if(node.walkable && playerNode != node) continue;
                 Gizmos.color = Color.red;
-                if(path != null && path.Contains(node)) Gizmos.color = Color.yellow;
                 if(playerNode == node) Gizmos.color = Color.cyan;
                 Gizmos.DrawCube(node.worldPosition, Vector3.one * (nodeDiameter - .1f));
             }
