@@ -38,6 +38,16 @@ PrefabInstance:
       propertyPath: rotation_speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5134366166965935534, guid: 008ea730ef92c424abdb44c2e8643c7e,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5134366166965935534, guid: 008ea730ef92c424abdb44c2e8643c7e,
+        type: 3}
+      propertyPath: rotation_speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5655374282543450349, guid: 008ea730ef92c424abdb44c2e8643c7e,
         type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size

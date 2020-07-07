@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8149443841942362002}
   - component: {fileID: -7103390876279194533}
   - component: {fileID: 3388729727314809583}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,6 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   demage: 5
   velocity: 15
-  life_time: 5
+  lifeTime: 5
   coolDown: 0.5
   friendlyTags: []

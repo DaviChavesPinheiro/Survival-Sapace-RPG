@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour, ISaveable
 {
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
     [SerializeField] TrailRenderer[] trails;
 
-    [SerializeField] int maxSpeed = 15;
+    [SerializeField] protected int maxSpeed = 15;
     [SerializeField] int force = 250;
     [SerializeField] float rotation_speed = 3;
     [SerializeField] float maxLinearDrag = 1;
@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour, ISaveable
     public bool isAccelerating = false;
     float lerpAngle;
 
-    void Awake()
+    virtual protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         trails = GetComponentsInChildren<TrailRenderer>();
@@ -61,7 +61,7 @@ public class Movement : MonoBehaviour, ISaveable
         }
     }
 
-    public void Accelerate()
+    virtual public void Accelerate()
     {
         rb.AddForce(transform.up * force * Time.fixedDeltaTime);
     }
@@ -76,10 +76,6 @@ public class Movement : MonoBehaviour, ISaveable
 
     public void RotateToPosition(Vector2 position){
         Rotate((position - new Vector2(transform.position.x, transform.position.y)).normalized);
-    }
-
-    public void RotateToPosition(Vector3 position){
-        Rotate((new Vector2(position.x, position.y) - new Vector2(transform.position.x, transform.position.y)).normalized);
     }
 
     public object CaptureState()

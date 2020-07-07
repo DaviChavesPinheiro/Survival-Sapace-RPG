@@ -1,33 +1,31 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Unit : MonoBehaviour {
-
-
-	[SerializeField] Transform target;
-	[SerializeField] float speed = 200;
+public class EnemyMoviment : Movement
+{
+    Transform target;
 	Vector3[] path;
 	int targetIndex;
-    Movement movement;
 
-    private void Awake() {
-        movement = GetComponent<Movement>();
+    override protected void Awake() {
+        base.Awake();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
-	void Start() {
-		StartCoroutine(Searching());
-	}
 
-    IEnumerator Searching(){
+    public void Search(){
         PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
-        yield return new WaitForSeconds(.2f);
-        StartCoroutine(Searching());
+    }
+
+    public void CancelSearch(){
+        StopCoroutine("FollowPath");
     }
 
 	public void OnPathFound(Vector3[] newPath, bool pathSuccessful) {
         StopCoroutine("FollowPath");
         path = newPath;
 		targetIndex = 0;
-		if (pathSuccessful) {
+		if (pathSuccessful && gameObject.activeSelf) {
 			StartCoroutine("FollowPath");
 		}
 	}
@@ -36,7 +34,7 @@ public class Unit : MonoBehaviour {
         if(path == null || path.Length <= 0) StopCoroutine("FollowPath");
 		Vector3 currentWaypoint = path[0];
 		while (true) {
-			if (transform.position == currentWaypoint) {
+			if (Vector2.Distance(transform.position, currentWaypoint) <= .25f) {
 				targetIndex ++;
 				if(targetIndex >= path.Length){
                     targetIndex = 0;
@@ -46,12 +44,16 @@ public class Unit : MonoBehaviour {
 				currentWaypoint = path[targetIndex];
 			}
 
-            movement.RotateToPosition(currentWaypoint);
-            // movement.rb.velocity = (currentWaypoint - transform.position).normalized * speed * Time.deltaTime;
+            RotateToPosition(currentWaypoint);
+            rb.velocity = (currentWaypoint - transform.position).normalized * maxSpeed * 30 * Time.deltaTime;
 			yield return null;
 
 		}
 	}
+
+    override public void Accelerate(){
+        rb.velocity = transform.up.normalized * maxSpeed * 30 * Time.deltaTime;
+    }
 
 	public void OnDrawGizmos() {
 		if (path != null) {
