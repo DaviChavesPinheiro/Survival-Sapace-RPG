@@ -7,7 +7,7 @@ public class EntitiesController : MonoBehaviour, ISaveable
 {
     public List<GameObject> entities = new List<GameObject>();
 	public static EntitiesController instance;
-    bool spawnning = true;
+    [SerializeField] bool spawnning = true;
 	void Awake ()
 	{
 		instance = this;

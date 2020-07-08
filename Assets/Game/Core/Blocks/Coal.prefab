@@ -16,7 +16,7 @@ PrefabInstance:
         type: 3}
       propertyPath: drops.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 0759ac105d316764492efaa954e9c15b,
+      objectReference: {fileID: 11400000, guid: 247d68baf686f4b4ebb65ac16fd2f114,
         type: 2}
     - target: {fileID: -851582197592555563, guid: 3b6e99fcb1facd446aedf0a4a4bab0e6,
         type: 3}

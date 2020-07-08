@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45f9a52de8b62094ba5ecb18f90463f0, type: 3}
-  m_Name: Gold
+  m_Name: Coal Ingot
   m_EditorClassIdentifier: 
-  id: 4
-  name: Gold
-  icon: {fileID: 3780607316460508611, guid: 9ee31b1abac49a243880818ddcb30dd6, type: 3}
-  prefab: {fileID: 8431452186926441662, guid: d0919f9087b6454428178e4581c29fd6, type: 3}
-  itemType: 1
+  id: 10
+  name: Coal Ingot
+  icon: {fileID: 21300034, guid: a45271a9b1641564c9426b00e0669bc6, type: 3}
+  prefab: {fileID: 0}
+  itemType: 0
   craftCode: 
   is4By4CraftAble: 0
-  isMelt: 1
-  isFuel: 0
-  fuelPotencial: 0
-  meltResult: {fileID: 11400000, guid: 1a01e2f7d690ee249b6ed9577e9af2f6, type: 2}
+  isMelt: 0
+  isFuel: 1
+  fuelPotencial: 32
+  meltResult: {fileID: 0}
   maxStackItem: 64

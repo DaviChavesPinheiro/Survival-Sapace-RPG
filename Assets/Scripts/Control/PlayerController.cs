@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour, ISaveable
 
     private void Start() {
         // inventory.AddItem(GM.instance.items.items[1], 64 * 12);
-        // inventory.AddItem(GM.instance.items.items[8], 5);
+        inventory.AddItem(GM.instance.items.items[4], 5);
         // inventory.AddItem(GM.instance.items.items[2], 32);
         // inventory.AddItem(GM.instance.items.items[7], 32);
         FindObjectOfType<PanelUIControl>().SetPlayerInventory(inventory);
