@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: {fileID: 11400000, guid: c5f19b60cf41b8149b93b7e9a7aa9a83, type: 2}
+  entities: {fileID: 11400000, guid: 5583c34a36bf3fb40aa224c8e582a395, type: 2}
 --- !u!114 &2053309053362082747
 MonoBehaviour:
   m_ObjectHideFlags: 0

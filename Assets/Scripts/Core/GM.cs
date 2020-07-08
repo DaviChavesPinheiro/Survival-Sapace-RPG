@@ -20,4 +20,6 @@ public class GM : MonoBehaviour
     public Items items;
 
 	public Dictionary<string, Item> Crafts = new Dictionary<string, Item>();
+
+	public Entities entities;
 }

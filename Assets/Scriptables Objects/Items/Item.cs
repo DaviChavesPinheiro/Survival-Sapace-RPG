@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Item", menuName = "Inventory/Item", order = 0)]
+[CreateAssetMenu(fileName = "Item", menuName = "Space Survival RPG/Item", order = 0)]
 public class Item : ScriptableObject {
     public int id;
     public new string name;
