@@ -342,6 +342,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   gridWorldSize: {x: 32, y: 32}
+  chunksViewRange: 1
   nodeRadius: 0.5
 --- !u!4 &143433107
 Transform:
@@ -1022,6 +1023,11 @@ PrefabInstance:
         type: 3}
       propertyPath: uniqueIdentifier
       value: f2640b8e-7f0c-4c85-8954-016f310f9ab4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336302967275792168, guid: d2dc77b51a6e65c4197e5efad848d5d0,
+        type: 3}
+      propertyPath: attackDistace
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4640468473746307205, guid: d2dc77b51a6e65c4197e5efad848d5d0,
         type: 3}
@@ -1741,6 +1747,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5770431403673110214, guid: 7b038154818e1944a8095dbd41592c80,
+        type: 3}
+      propertyPath: attackDistace
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7028638293596442486, guid: 7b038154818e1944a8095dbd41592c80,
         type: 3}
       propertyPath: uniqueIdentifier
@@ -2187,6 +2198,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6365181286623560809, guid: 76dec632fdb061f42b22f93def701917,
+        type: 3}
+      propertyPath: attackDistace
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7623370584363011545, guid: 76dec632fdb061f42b22f93def701917,
         type: 3}
       propertyPath: uniqueIdentifier
@@ -2376,6 +2392,11 @@ PrefabInstance:
         type: 3}
       propertyPath: uniqueIdentifier
       value: 3b68540e-34dd-4ec2-8f61-2dcd0bca1a19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679915347689504132, guid: cd7e3f9afccb779428af93adf405b057,
+        type: 3}
+      propertyPath: attackDistace
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd7e3f9afccb779428af93adf405b057, type: 3}

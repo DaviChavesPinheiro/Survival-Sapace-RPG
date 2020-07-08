@@ -8,6 +8,7 @@ public class Grid : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] LayerMask unwalkableMask;
     [SerializeField] Vector2 gridWorldSize;
+    [SerializeField] int chunksViewRange = 1;
     [SerializeField] float nodeRadius;
     Node[,] grid;
 
@@ -16,13 +17,15 @@ public class Grid : MonoBehaviour
 
     private void Awake() {
         nodeDiameter = nodeRadius * 2;
-        gridSizeX = Mathf.FloorToInt(gridWorldSize.x / nodeDiameter);
-        gridSizeY = Mathf.FloorToInt(gridWorldSize.y / nodeDiameter);
+        gridSizeX = ChunkController.width * (chunksViewRange * 2 + 1);
+        gridSizeY = ChunkController.height * (chunksViewRange * 2 + 1);
+        transform.position = new Vector2(Mathf.FloorToInt(player.position.x / ChunkController.width) * ChunkController.width - ChunkController.width * chunksViewRange, Mathf.FloorToInt(player.position.y / ChunkController.height) * ChunkController.height - ChunkController.height * chunksViewRange);
         CreateGrid();
+        
     }
 
     private void Update() {
-        transform.position = new Vector3Int(Mathf.FloorToInt(player.position.x - gridWorldSize.x/2), Mathf.FloorToInt(player.position.y - gridWorldSize.y/2), Mathf.FloorToInt(transform.position.z));
+        transform.position = new Vector2(Mathf.FloorToInt(player.position.x / ChunkController.width) * ChunkController.width - ChunkController.width * chunksViewRange, Mathf.FloorToInt(player.position.y / ChunkController.height) * ChunkController.height - ChunkController.height * chunksViewRange);
         MapGrid();
     }
 
@@ -31,7 +34,6 @@ public class Grid : MonoBehaviour
 			return gridSizeX * gridSizeY;
 		}
 	}
-
 
     private void CreateGrid()
     {
@@ -48,19 +50,24 @@ public class Grid : MonoBehaviour
 
     private void MapGrid()
     {
-        for (int x = 0; x < gridSizeX; x++)
+        for (int x = 0; x < gridSizeX; x += ChunkController.width)
         {
-            for (int y = 0; y < gridSizeY; y++)
+            for (int y = 0; y < gridSizeY; y += ChunkController.height)
             {
-                Vector2 worldPosition = (Vector2)transform.position + new Vector2(x, y);
-                ChunkController chunk = ChunksController.instance.GetChunk(worldPosition);
-                bool walkable = false;
-                if(chunk){
-                    walkable = chunk.GetBlock(worldPosition) == 0;
+                Vector2 worldChunkPosition = (Vector2)transform.position + new Vector2(x, y);
+                ChunkController chunk = ChunksController.instance.GetChunk(worldChunkPosition);
+                int[,] map = chunk?.GetMap();
+                for (int xx = 0; xx < ChunkController.width; xx++)
+                {
+                    for (int yy = 0; yy < ChunkController.height; yy++)
+                    {
+                        grid[x + xx, y + yy] = new Node(map?[xx, yy] == 0, worldChunkPosition + new Vector2(xx + nodeRadius, yy + nodeRadius), x + xx, y + yy);
+                    }
                 }
-                grid[x, y] = new Node(walkable, worldPosition + new Vector2(nodeRadius, nodeRadius), x, y);
+                
             }
         }
+        
     }
 
     public List<Node> GetNeighbours(Node node){
@@ -87,7 +94,7 @@ public class Grid : MonoBehaviour
         return grid[x, y];
     }
     private void OnDrawGizmosSelected() {
-        Gizmos.DrawWireCube(transform.position + new Vector3(gridWorldSize.x / 2, gridWorldSize.y / 2, 0), new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
+        Gizmos.DrawWireCube(transform.position + new Vector3((ChunkController.width * (chunksViewRange * 2 + 1)) / 2, (ChunkController.height * (chunksViewRange * 2 + 1)) / 2, 0), new Vector3(ChunkController.width * (chunksViewRange * 2 + 1), ChunkController.height * (chunksViewRange * 2 + 1), 1));
         if(grid != null) {
             Node playerNode = NodeFromWorldPoint(player.transform.position);
             foreach (Node node in grid)

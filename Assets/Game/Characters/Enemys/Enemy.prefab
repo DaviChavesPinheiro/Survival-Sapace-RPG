@@ -16,8 +16,8 @@ MonoBehaviour:
   viewLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  normalViewDistance: 5
-  suspiciusViewDistance: 10
+  normalViewDistance: 10
+  suspiciusViewDistance: 15
   attackDistace: 5
 --- !u!114 &5134366166965935534
 MonoBehaviour:
