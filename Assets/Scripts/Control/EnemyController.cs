@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {   
+    public int id;
     [SerializeField] Transform viewRayCast;
     [SerializeField] LayerMask viewLayerMask;
     [SerializeField] float normalViewDistance = 5f;
@@ -78,6 +79,7 @@ public class EnemyController : MonoBehaviour
 
     private void onEnemyDie()
     {
+        EntitiesController.instance.entities.Remove(gameObject);
         gameObject.SetActive(false);
     }
 }

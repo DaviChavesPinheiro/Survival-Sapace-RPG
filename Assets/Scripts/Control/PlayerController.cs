@@ -100,6 +100,8 @@ public class PlayerController : MonoBehaviour, ISaveable
     {
         PlayerData data = new PlayerData();
         data.inventory = GetComponent<Inventory>().GetData();
+        data.health = GetComponent<Health>().GetData();
+        data.movement = GetComponent<Movement>().GetData();
         return data;
     }
 
@@ -107,9 +109,13 @@ public class PlayerController : MonoBehaviour, ISaveable
     {
         PlayerData data = (PlayerData)state;
         GetComponent<Inventory>().SetData(data.inventory);
+        GetComponent<Health>().SetData(data.health);
+        GetComponent<Movement>().SetData(data.movement);
     }
     [System.Serializable]
     struct PlayerData {
         public object inventory;
+        public object health;
+        public object movement;
     }
 }

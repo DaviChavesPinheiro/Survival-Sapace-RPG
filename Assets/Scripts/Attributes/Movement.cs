@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using RPG.Saving;
 using UnityEngine;
 
-public class Movement : MonoBehaviour, ISaveable
+public class Movement : MonoBehaviour
 {
     protected Rigidbody2D rb;
     [SerializeField] TrailRenderer[] trails;
@@ -77,18 +77,15 @@ public class Movement : MonoBehaviour, ISaveable
     public void RotateToPosition(Vector2 position){
         Rotate((position - new Vector2(transform.position.x, transform.position.y)).normalized);
     }
-
-    public object CaptureState()
-    {
+    
+    public MovementSaveData GetData(){
         MovementSaveData data = new MovementSaveData();
         data.position = new SerializableVector3(transform.position);
         data.rotation = new SerializableVector3(transform.eulerAngles);
         data.acceleration = new SerializableVector3(new Vector3(rb.velocity.x, rb.velocity.y, 0));
         return data;
     }
-
-    public void RestoreState(object state)
-    {
+    public void SetData(object state){
         MovementSaveData data = (MovementSaveData)state;
         transform.position = data.position.ToVector();
         transform.eulerAngles = data.rotation.ToVector();
@@ -96,7 +93,7 @@ public class Movement : MonoBehaviour, ISaveable
     }
 
     [System.Serializable]
-    struct MovementSaveData{
+    public struct MovementSaveData{
         public SerializableVector3 position;
         public SerializableVector3 rotation;
         public SerializableVector3 acceleration;

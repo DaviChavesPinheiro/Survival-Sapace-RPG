@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using RPG.Saving;
 using UnityEngine;
 
-public class Health : MonoBehaviour, ISaveable
+public class Health : MonoBehaviour
 {
     public float maxHealth = 20f;
     public float health = -1f;
@@ -57,13 +57,11 @@ public class Health : MonoBehaviour, ISaveable
         return 100 * (health / maxHealth);
     }
 
-    public object CaptureState()
-    {
+    public float GetData(){
         return health;
     }
-
-    public void RestoreState(object state)
-    {
+    
+    public void SetData(object state){
         SetHealth((float)state);
     }
 
