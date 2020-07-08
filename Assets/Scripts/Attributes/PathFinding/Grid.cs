@@ -93,6 +93,11 @@ public class Grid : MonoBehaviour
         y = Mathf.Min(y, gridSizeY - 1);
         return grid[x, y];
     }
+
+    public Node[,] GetGrid(){
+        return grid;
+    }
+
     private void OnDrawGizmosSelected() {
         Gizmos.DrawWireCube(transform.position + new Vector3((ChunkController.width * (chunksViewRange * 2 + 1)) / 2, (ChunkController.height * (chunksViewRange * 2 + 1)) / 2, 0), new Vector3(ChunkController.width * (chunksViewRange * 2 + 1), ChunkController.height * (chunksViewRange * 2 + 1), 1));
         if(grid != null) {

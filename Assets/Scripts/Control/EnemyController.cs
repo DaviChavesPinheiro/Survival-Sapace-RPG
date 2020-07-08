@@ -29,12 +29,12 @@ public class EnemyController : MonoBehaviour
 
     private void OnEnable()
     {
-        GetComponent<Health>().onDie += onEnemyDie;
+        GetComponent<Health>().onDie += OnEnemyDie;
     }
 
     private void OnDisable()
     {
-        GetComponent<Health>().onDie -= onEnemyDie;
+        GetComponent<Health>().onDie -= OnEnemyDie;
     }
 
     void Update()
@@ -56,6 +56,10 @@ public class EnemyController : MonoBehaviour
             }
         } else {
             currentViewDistance = normalViewDistance;
+            if(Vector2.Distance(player.transform.position, transform.position) > currentViewDistance * 4)
+            {
+                OnEnemyDie();
+            }
         }
     }
 
@@ -77,7 +81,7 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, currentViewDistance);        
     }
 
-    private void onEnemyDie()
+    private void OnEnemyDie()
     {
         EntitiesController.instance.entities.Remove(gameObject);
         gameObject.SetActive(false);

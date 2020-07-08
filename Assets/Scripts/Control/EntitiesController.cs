@@ -7,18 +7,44 @@ public class EntitiesController : MonoBehaviour, ISaveable
 {
     public List<GameObject> entities = new List<GameObject>();
 	public static EntitiesController instance;
-
+    bool spawnning = true;
 	void Awake ()
 	{
 		instance = this;
 	}
 
     private void Start() {
-        for (int i = 0; i < 1 - entities.Count; i++)
-        {
-            GameObject entity = Instantiate(GM.instance.entities.entities[UnityEngine.Random.Range(0, 3)].prefab, Vector3.zero, Quaternion.identity, transform);
-            entities.Add(entity);
+        StartCoroutine(CheckForSpawnningEntities());
+    }
+
+    IEnumerator CheckForSpawnningEntities(){
+        if(spawnning){
+            print("Checking...");
+
+            Node[,] grid = (FindObjectOfType(typeof(Grid)) as Grid).GetGrid();
+            int entitiesToSpawn = 6 - entities.Count;
+            for (int i = 0; i < entitiesToSpawn; i++)
+            {
+                int startNodeIndex = UnityEngine.Random.Range(0, grid.Length - 1);
+                for (int n = startNodeIndex; n < grid.Length; n++)
+                {
+                    Node nodeToCheck = grid[n % grid.GetLength(1), Mathf.FloorToInt(n / grid.GetLength(1))];
+                    if(nodeToCheck.walkable)
+                    {
+                        SpawnEntity(nodeToCheck.worldPosition);
+                        break;
+                    }
+                }
+            }
         }
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(CheckForSpawnningEntities());
+    }
+
+    private void SpawnEntity(Vector2 position)
+    {
+        GameObject entity = Instantiate(GM.instance.entities.entities[UnityEngine.Random.Range(0, 3)].prefab, position, Quaternion.identity, transform);
+        entities.Add(entity);
     }
 
     public object CaptureState()
