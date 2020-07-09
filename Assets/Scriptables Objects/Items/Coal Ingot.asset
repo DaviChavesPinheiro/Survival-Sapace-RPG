@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 10
   name: Coal Ingot
-  icon: {fileID: 21300034, guid: a45271a9b1641564c9426b00e0669bc6, type: 3}
+  icon: {fileID: 21300000, guid: 8ec15580d5c1b454da5647322deafb08, type: 3}
   prefab: {fileID: 0}
   itemType: 0
   craftCode: 

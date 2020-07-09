@@ -31,23 +31,23 @@ public class EnemyMoviment : Movement
 	}
 
 	IEnumerator FollowPath() {
-        if(path == null || path.Length <= 0) StopCoroutine("FollowPath");
-		Vector3 currentWaypoint = path[0];
-		while (true) {
-			if (Vector2.Distance(transform.position, currentWaypoint) <= .25f) {
-				targetIndex ++;
-				if(targetIndex >= path.Length){
-                    targetIndex = 0;
-                    path = new Vector3[0];
-                    yield break;
-                }
-				currentWaypoint = path[targetIndex];
+        if(path != null && path.Length > 0){
+			Vector3 currentWaypoint = path[0];
+			while (true) {
+				if (Vector2.Distance(transform.position, currentWaypoint) <= .25f) {
+					targetIndex ++;
+					if(targetIndex >= path.Length){
+						targetIndex = 0;
+						path = new Vector3[0];
+						yield break;
+					}
+					currentWaypoint = path[targetIndex];
+				}
+
+				RotateToPosition(currentWaypoint);
+				rb.velocity = (currentWaypoint - transform.position).normalized * maxSpeed * 30 * Time.deltaTime;
+				yield return null;
 			}
-
-            RotateToPosition(currentWaypoint);
-            rb.velocity = (currentWaypoint - transform.position).normalized * maxSpeed * 30 * Time.deltaTime;
-			yield return null;
-
 		}
 	}
 

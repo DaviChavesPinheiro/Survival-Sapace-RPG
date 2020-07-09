@@ -40,6 +40,7 @@ public class PointerController : MonoBehaviour
 
     private void DestroyPointer()
     {
+        target.GetComponent<Health>().onDie -= DestroyPointer;
         transform.parent.GetComponent<RadarController>().DestroyPointer(target.gameObject);
         Destroy(gameObject);
     }

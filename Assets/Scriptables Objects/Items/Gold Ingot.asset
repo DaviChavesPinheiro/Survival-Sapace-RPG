@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 11
   name: Gold Ingot
-  icon: {fileID: 21300012, guid: a45271a9b1641564c9426b00e0669bc6, type: 3}
+  icon: {fileID: 21300000, guid: 2763b92da8072034980152207c7f267a, type: 3}
   prefab: {fileID: 0}
   itemType: 0
   craftCode: 

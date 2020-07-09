@@ -27,7 +27,6 @@ public class RadarController : MonoBehaviour
                 }
             }
         }
-        print(colliders?.Length);
     }
 
     public PointerController CreatePointer(Transform target) {
