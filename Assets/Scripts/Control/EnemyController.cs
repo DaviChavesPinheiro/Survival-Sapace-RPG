@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ public class EnemyController : MonoBehaviour
     EnemyMoviment moviment;
 
     float currentViewDistance;
-
+    
     void Awake()
     {
         health = GetComponent<Health>();

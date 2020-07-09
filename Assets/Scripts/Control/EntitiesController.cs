@@ -7,6 +7,7 @@ public class EntitiesController : MonoBehaviour, ISaveable
 {
     public List<GameObject> entities = new List<GameObject>();
 	public static EntitiesController instance;
+    [SerializeField] int entitiesAmount = 1;
     [SerializeField] bool spawnning = true;
 	void Awake ()
 	{
@@ -22,7 +23,7 @@ public class EntitiesController : MonoBehaviour, ISaveable
             print("Checking...");
 
             Node[,] grid = (FindObjectOfType(typeof(Grid)) as Grid).GetGrid();
-            int entitiesToSpawn = 6 - entities.Count;
+            int entitiesToSpawn = entitiesAmount - entities.Count;
             for (int i = 0; i < entitiesToSpawn; i++)
             {
                 int startNodeIndex = UnityEngine.Random.Range(0, grid.Length - 1);
