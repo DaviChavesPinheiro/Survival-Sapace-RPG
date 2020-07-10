@@ -27,10 +27,19 @@ public class DropSystem : MonoBehaviour
             Destroy(dropObj, 60);
         }
 
-        Slot[] slots = GetComponent<Inventory>()?.GetSlots().ToArray();
+        Inventory inventory = GetComponent<Inventory>();
+        if (inventory)
+        {
+            DropSlots(inventory);
+        }
+    }
+
+    private void DropSlots(Inventory inventory)
+    {
+        Slot[] slots = inventory.GetSlots().ToArray();
         foreach (Slot slot in slots)
         {
-            if(slot?.item == null) continue;
+            if (slot?.item == null) continue;
             GameObject dropObj = Instantiate(dropPrefab, transform.position, transform.rotation);
             dropObj.transform.position = new Vector3(Mathf.FloorToInt(transform.position.x) + UnityEngine.Random.value, Mathf.FloorToInt(transform.position.y) + UnityEngine.Random.value, transform.position.z);
             dropObj.GetComponent<DropController>().SetItem(slot.item, slot.amount);

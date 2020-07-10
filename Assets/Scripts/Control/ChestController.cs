@@ -8,13 +8,14 @@ public class ChestController : MonoBehaviour, IInterectable
 {
     private void Awake() {
         FindObjectOfType<SavingSystem>().onSaving += CaptureState;
+        FindObjectOfType<Health>().onDie += DeleteData;
         RestoreData();
     }
 
+
     public void CaptureState()
     {   
-        SavingBlockState savingBlockState = FindObjectOfType(typeof(SavingBlockState)) as SavingBlockState;
-        Dictionary<string, BlockData> blocksData = savingBlockState.blocksData;
+        Dictionary<string, BlockData> blocksData = SavingBlockState.instance.blocksData;
         BlockData blockData = new BlockData();
         blockData.inventory = GetComponent<Inventory>().GetData();
         Vector2Int blockPostion = new Vector2Int(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
@@ -29,10 +30,17 @@ public class ChestController : MonoBehaviour, IInterectable
     {   
         Dictionary<string, BlockData> blocksData = (FindObjectOfType(typeof(SavingBlockState)) as SavingBlockState).blocksData;
         Vector2Int blockPostion = new Vector2Int(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
-        if(!blocksData.ContainsKey(blockPostion.ToString())){
-            return;
-        }
+        if(!blocksData.ContainsKey(blockPostion.ToString())) return;
         GetComponent<Inventory>().SetData(blocksData[blockPostion.ToString()].inventory);
+    }
+
+    private void DeleteData()
+    {
+        string blockPostion = (new Vector2Int(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y))).ToString();
+
+        Dictionary<string, BlockData> blocksData = SavingBlockState.instance.blocksData;
+        blocksData.Remove(blockPostion);
+        FindObjectOfType<SavingSystem>().onSaving -= CaptureState;
     }
 
     public void OnInterect()
@@ -43,4 +51,5 @@ public class ChestController : MonoBehaviour, IInterectable
         panelUIControl.SetActiveUI(true);
         panelUIControl.SetChestInventory(GetComponent<Inventory>());
     }
+
 }
