@@ -21,6 +21,6 @@ MonoBehaviour:
   is4By4CraftAble: 0
   isMelt: 0
   isFuel: 1
-  fuelPotencial: 32
+  fuelPotencial: 8
   meltResult: {fileID: 0}
   maxStackItem: 64
