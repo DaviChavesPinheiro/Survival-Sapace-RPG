@@ -11,8 +11,8 @@ public class HealthBarController : StatusBar
     }
 
     private void Start() {
-		SetMaxHealth(health.maxHealth);
-		SetHealth(health.health);
+		SetMaxStatusValue(health.maxHealth);
+		SetStatusValue(health.health);
 	}
 
     private void OnEnable() {
@@ -25,6 +25,6 @@ public class HealthBarController : StatusBar
 
     private void OnHealthChange()
     {
-        SetHealth(health.health);
+        SetStatusValue(health.health);
     }
 }

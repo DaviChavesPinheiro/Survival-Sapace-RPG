@@ -69,6 +69,9 @@ public class PlayerController : MonoBehaviour, ISaveable
     private void onPlayerDie()
     {
         print("GAME OVER");
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

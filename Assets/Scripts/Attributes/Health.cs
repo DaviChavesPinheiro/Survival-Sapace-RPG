@@ -31,14 +31,16 @@ public class Health : MonoBehaviour
     }
 
     public void SetHealth(float value){
-        health = Mathf.Max(value, 0);
-        health = Mathf.Min(health, maxHealth);
-        
-        if(onHealthChange != null) onHealthChange();
-        
-        if (health == 0)
-        {
-            Die();
+        if(IsAlive() || health == -1f){
+            health = Mathf.Max(value, 0);
+            health = Mathf.Min(health, maxHealth);
+            
+            if(onHealthChange != null) onHealthChange();
+            
+            if (health == 0)
+            {
+                Die();
+            }
         }
     }
 
