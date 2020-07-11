@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b7030c642125d47bb96201d22c1ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyLossSpeed: 1
   maxEnergy: 100
   energy: -1
 --- !u!114 &2243405589356202019
@@ -55,6 +56,18 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &3262080542701323212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8808219964959094531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90b62194b8d7f0545af8675925e2db0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7727296180356767478
 PrefabInstance:
   m_ObjectHideFlags: 0

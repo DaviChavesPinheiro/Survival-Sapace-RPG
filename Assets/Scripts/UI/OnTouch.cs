@@ -7,11 +7,13 @@ public class OnTouch : MonoBehaviour {
 
     [SerializeField] Buttons button;
     GameObject player;
+	PlayerController playerController;
 	Movement movement;
 	Shooter shooter;
 
 	void Awake () {
 		player = GameObject.FindGameObjectWithTag("Player");
+		playerController = player.GetComponent<PlayerController>();
 		movement = player.GetComponent<Movement>();
 		shooter = player.GetComponent<Shooter>();
 	}
@@ -23,7 +25,7 @@ public class OnTouch : MonoBehaviour {
             movement.Accelerate();
 			break;
 		case Buttons.fire:
-			shooter.Shoot();
+			playerController.UseItem();
 			break;
 		}
 	}

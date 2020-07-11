@@ -8,12 +8,18 @@ public class PlayerController : MonoBehaviour, ISaveable
 {
     [SerializeField] Joystick joystick;
     Health health;
+    Energy energy;
     Movement movement;
+    Shooter shooter;
     Inventory inventory;
+    Consume consume;
     Transform interact;
     void Awake()
     {
         health = GetComponent<Health>();
+        energy = GetComponent<Energy>();
+        shooter = GetComponent<Shooter>();
+        consume = GetComponent<Consume>();
         movement = GetComponent<Movement>();
         inventory = GetComponent<Inventory>();
         interact = transform.Find("Interact");
@@ -22,19 +28,19 @@ public class PlayerController : MonoBehaviour, ISaveable
     private void Start() {
         // inventory.AddItem(GM.instance.items.items[1], 64 * 12);
         inventory.AddItem(GM.instance.items.items[4], 5);
-        // inventory.AddItem(GM.instance.items.items[2], 32);
+        inventory.AddItem(GM.instance.items.items[8], 5);
         // inventory.AddItem(GM.instance.items.items[7], 32);
         FindObjectOfType<PanelUIControl>().SetPlayerInventory(inventory);
     }
 
     private void OnEnable()
     {
-        GetComponent<Health>().onDie += onPlayerDie;
+        GetComponent<Health>().onDie += OnPlayerDie;
     }
 
     private void OnDisable()
     {
-        GetComponent<Health>().onDie -= onPlayerDie;
+        GetComponent<Health>().onDie -= OnPlayerDie;
     }
 
     void Update()
@@ -42,7 +48,7 @@ public class PlayerController : MonoBehaviour, ISaveable
         if (!health.IsAlive()) return;
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            GetComponent<Shooter>().Shoot();
+            UseItem();
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -66,7 +72,7 @@ public class PlayerController : MonoBehaviour, ISaveable
         }
     }
 
-    private void onPlayerDie()
+    private void OnPlayerDie()
     {
         print("GAME OVER");
         GetComponent<Collider2D>().enabled = false;
@@ -99,11 +105,22 @@ public class PlayerController : MonoBehaviour, ISaveable
         }
     }
 
+    public void UseItem(){
+        print(inventory.GetActiveSlot().item);
+        if(inventory.GetActiveSlot()?.item?.itemType == ItemType.food && energy.energy < energy.maxEnergy * 0.95f){
+            consume.ConsumeItem();
+        } else {
+            print(2);
+            shooter.Shoot();
+        }
+    }
+
     public object CaptureState()
     {
         PlayerData data = new PlayerData();
         data.inventory = GetComponent<Inventory>().GetData();
         data.health = GetComponent<Health>().GetData();
+        data.energy = GetComponent<Energy>().GetData();
         data.movement = GetComponent<Movement>().GetData();
         return data;
     }
@@ -113,12 +130,14 @@ public class PlayerController : MonoBehaviour, ISaveable
         PlayerData data = (PlayerData)state;
         GetComponent<Inventory>().SetData(data.inventory);
         GetComponent<Health>().SetData(data.health);
+        GetComponent<Energy>().SetData(data.energy);
         GetComponent<Movement>().SetData(data.movement);
     }
     [System.Serializable]
     struct PlayerData {
         public object inventory;
         public object health;
+        public object energy;
         public object movement;
     }
 }

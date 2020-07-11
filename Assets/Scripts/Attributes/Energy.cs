@@ -8,9 +8,14 @@ public class Energy : MonoBehaviour
     [SerializeField] float energyLossSpeed = 1;
     public float maxEnergy = 20f;
     public float energy = -1f;
+    Health health;
 
     public event Action onEndEnergy;
     public event Action onEnergyChange;
+
+    private void Awake() {
+        health = GetComponent<Health>();
+    }
 
     void Start()
     {
@@ -27,6 +32,9 @@ public class Energy : MonoBehaviour
 
     private void Update() {
         TakeEnergy(energyLossSpeed / 10f * Time.deltaTime);
+        if(energy/maxEnergy > .95f){
+            health?.GainHealth(4 * Time.deltaTime);
+        }
     }
 
     public void TakeEnergy(float value)
@@ -55,10 +63,8 @@ public class Energy : MonoBehaviour
     {
         if(onEndEnergy != null) onEndEnergy();
         print(gameObject.name + " EndEnergy!");
-        Health health = GetComponent<Health>();
-        if(health){
-            health.TakeDamage(4 * Time.deltaTime);
-        }
+        
+        health?.TakeDamage(4 * Time.deltaTime);
     }
 
     public bool IsNotEmpty(){
@@ -75,6 +81,7 @@ public class Energy : MonoBehaviour
     }
     
     public void SetData(object state){
-        SetEnergy((float)state);
+        if(state != null)
+            SetEnergy((float)state);
     }
 }

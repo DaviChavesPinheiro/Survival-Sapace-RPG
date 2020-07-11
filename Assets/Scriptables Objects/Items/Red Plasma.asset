@@ -16,5 +16,12 @@ MonoBehaviour:
   name: Red Plasma
   icon: {fileID: 21300048, guid: a45271a9b1641564c9426b00e0669bc6, type: 3}
   prefab: {fileID: 0}
-  itemType: 0
+  itemType: 3
+  craftCode: 
+  is4By4CraftAble: 0
+  isMelt: 0
+  isFuel: 0
+  fuelPotencial: 0
+  meltResult: {fileID: 0}
   maxStackItem: 64
+  energyRestoration: 10

@@ -14,6 +14,7 @@ public class Item : ScriptableObject {
     public int fuelPotencial;
     public Item meltResult;
     public int maxStackItem = 64;
+    public int energyRestoration = 10;
 }
 
 public enum ItemType{

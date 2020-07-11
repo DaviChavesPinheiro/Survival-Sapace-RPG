@@ -30,6 +30,11 @@ public class Health : MonoBehaviour
         SetHealth(health - damage);
     }
 
+    public void GainHealth(float value)
+    {
+        SetHealth(health + value);
+    }
+
     public void SetHealth(float value){
         if(IsAlive() || health == -1f){
             health = Mathf.Max(value, 0);
@@ -64,7 +69,8 @@ public class Health : MonoBehaviour
     }
     
     public void SetData(object state){
-        SetHealth((float)state);
+        if(state != null)
+            SetHealth((float)state);
     }
 
 }
