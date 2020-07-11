@@ -54,6 +54,19 @@ public class Inventory : MonoBehaviour
         return amount;
     }
 
+    public static bool TryRemoveItems(Inventory inventory, Item item, int amount){
+        int i = 0;
+        foreach (Slot slot in inventory.GetSlots())
+        {
+            if(amount <= 0) return true;
+            if(slot == null || slot.item == null || slot.item.id != item.id) continue;
+            int excess = amount - slot.amount;
+            amount = excess;
+            i++;
+        }
+        return false;
+    }
+
     public List<Slot> GetSlots(){
         return slots;
     }

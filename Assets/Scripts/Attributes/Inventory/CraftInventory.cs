@@ -79,12 +79,12 @@ public class CraftInventory : Inventory
         if(item == null || slots[slots.Count - 1].item != null && slots[slots.Count - 1].item.id != item.id || slots[slots.Count - 1].amount + 1 > slots[slots.Count - 1].maxAmount) return false;
         Slot[] craftSlots = CraftRecipesInventoryUI.GetRecipeSlots(item.craftCode);
         craftSlots = ReduceSlots(craftSlots);
+        Inventory playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         foreach (Slot slot in craftSlots)
         {
-            if(!TryRemoveItems(slot.item, slot.amount)) return false;
+            if(!TryRemoveItems(playerInventory, slot.item, slot.amount)) return false;
         }
         
-        Inventory playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         foreach (Slot slot in craftSlots)
         {
             playerInventory.RemoveItem(slot.item, slot.amount);
@@ -114,19 +114,6 @@ public class CraftInventory : Inventory
             }
         }
         return reduceSlots.Values.ToArray();
-    }
-
-    public bool TryRemoveItems(Item item, int amount){
-        int i = 0;
-        foreach (Slot slot in GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().GetSlots())
-        {
-            if(amount <= 0) return true;
-            if(slot == null || slot.item == null || slot.item.id != item.id) continue;
-            int excess = amount - slot.amount;
-            amount = excess;
-            i++;
-        }
-        return false;
     }
     
 }

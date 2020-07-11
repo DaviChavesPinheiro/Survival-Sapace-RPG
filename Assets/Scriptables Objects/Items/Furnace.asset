@@ -17,7 +17,7 @@ MonoBehaviour:
   icon: {fileID: 7365754141397733293, guid: 9ee31b1abac49a243880818ddcb30dd6, type: 3}
   prefab: {fileID: 8719396766757247349, guid: a9d830573cb5d234182ede71e6873526, type: 3}
   itemType: 1
-  craftCode: 
+  craftCode: 1|1|1|1|0|1|1|1|1
   is4By4CraftAble: 0
   isMelt: 0
   isFuel: 0
