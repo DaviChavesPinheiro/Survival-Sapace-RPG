@@ -2408,7 +2408,7 @@ MonoBehaviour:
   spawnning: 1
   dayTime: 10
   currentTimeBar: {fileID: 1213227696}
-  currentTime: 300
+  currentTime: 0
 --- !u!4 &2050540852
 Transform:
   m_ObjectHideFlags: 0

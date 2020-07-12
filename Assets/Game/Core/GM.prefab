@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2151690bbf9550343bf985611d271c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultSaveFile: 
 --- !u!114 &1052850232010983949
 MonoBehaviour:
   m_ObjectHideFlags: 0

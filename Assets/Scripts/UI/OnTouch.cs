@@ -32,7 +32,7 @@ public class OnTouch : MonoBehaviour {
 	public void OnTouchBegan(){
 		switch (button) {
 		case Buttons.save:
-			GameObject.FindObjectOfType<SavingSystem>().Save("save");
+			GameObject.FindObjectOfType<SavingWrapper>().Save();
 			break;
 		case Buttons.inventory:
 			GameObject.FindObjectOfType<PanelUIControl>().OpenInventory();

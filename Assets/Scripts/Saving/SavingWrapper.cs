@@ -6,11 +6,14 @@ namespace RPG.Saving
 {
     public class SavingWrapper : MonoBehaviour
     {
-        const string defaultSaveFile = "save";
+        [SerializeField] string defaultSaveFile;
 
         private void Awake()
         {
-           Load();
+            if(defaultSaveFile == null || defaultSaveFile == ""){
+                defaultSaveFile = MainMenuGM.instance.world.name;
+            }
+            Load();
         }
 
         void Update()
@@ -41,6 +44,10 @@ namespace RPG.Saving
         public void Delete()
         {
             GetComponent<SavingSystem>().Delete(defaultSaveFile);
+        }
+        public void Delete(string fileName)
+        {
+            GetComponent<SavingSystem>().Delete(fileName);
         }
     }
 }
