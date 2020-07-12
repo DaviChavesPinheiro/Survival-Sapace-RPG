@@ -19,6 +19,8 @@ public class EnemyMoviment : Movement
 
     public void CancelSearch(){
         StopCoroutine("FollowPath");
+		targetIndex = 0;
+		path = new Vector3[0];
     }
 
 	public void OnPathFound(Vector3[] newPath, bool pathSuccessful) {
@@ -26,6 +28,7 @@ public class EnemyMoviment : Movement
         path = newPath;
 		targetIndex = 0;
 		if (pathSuccessful && gameObject.activeSelf) {
+			print(path?.Length);
 			StartCoroutine("FollowPath");
 		}
 	}

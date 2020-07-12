@@ -2404,11 +2404,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entities: []
-  entitiesAmount: 5
+  entitiesAmount: 1
   spawnning: 1
   dayTime: 10
   currentTimeBar: {fileID: 1213227696}
-  currentTime: 0
+  currentTime: 300
 --- !u!4 &2050540852
 Transform:
   m_ObjectHideFlags: 0
@@ -40635,7 +40635,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 80, y: 80}
+  m_SizeDelta: {x: 96, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4121175532848787184
 GameObject:
@@ -40674,8 +40674,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 110, y: 110}
-  m_SizeDelta: {x: 160, y: 160}
+  m_AnchoredPosition: {x: 164, y: 146}
+  m_SizeDelta: {x: 192, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4121175532848787186
 MonoBehaviour:
