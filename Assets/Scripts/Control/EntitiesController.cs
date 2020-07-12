@@ -7,8 +7,11 @@ public class EntitiesController : MonoBehaviour, ISaveable
 {
     public List<GameObject> entities = new List<GameObject>();
 	public static EntitiesController instance;
-    [SerializeField] int entitiesAmount = 1;
-    [SerializeField] bool spawnning = true;
+    [SerializeField] int entitiesAmount = 5;
+    [SerializeField] bool spawnning;
+    [SerializeField] float dayTime = 10f;
+    [SerializeField] CurrentTimeBarController currentTimeBar;
+    public float currentTime = 0f;
 	void Awake ()
 	{
 		instance = this;
@@ -16,6 +19,21 @@ public class EntitiesController : MonoBehaviour, ISaveable
 
     private void Start() {
         StartCoroutine(CheckForSpawnningEntities());
+    }
+
+    private void Update() {
+        currentTime += Time.deltaTime;
+        if(currentTime < dayTime * 60 / 2){
+            //Dia
+            spawnning = false;
+        } else {
+            //Noite
+            spawnning = true;
+            if(currentTime < dayTime * 60){
+                currentTime = 0;
+            }
+        }
+        currentTimeBar.SetOffset(currentTime / (dayTime * 60));
     }
 
     IEnumerator CheckForSpawnningEntities(){
@@ -50,6 +68,7 @@ public class EntitiesController : MonoBehaviour, ISaveable
 
     public object CaptureState()
     {
+        Data data = new Data();
         List<EntityData> entitiesData = new List<EntityData>();
         foreach (GameObject entity in entities)
         {
@@ -60,12 +79,15 @@ public class EntitiesController : MonoBehaviour, ISaveable
             entityData.movement = entity.GetComponent<Movement>().GetData();
             entitiesData.Add(entityData);
         }
-        return entitiesData;
+        data.entitiesData = entitiesData;
+        data.currentTime = currentTime;
+        return data;
     }
 
     public void RestoreState(object state)
     {
-        List<EntityData> entitiesData = (List<EntityData>)state;
+        Data data = (Data)state;
+        List<EntityData> entitiesData = data.entitiesData;
         foreach (EntityData entityData in entitiesData)
         {
             GameObject entity = Instantiate(GM.instance.entities.entities[entityData.id].prefab, Vector3.zero, Quaternion.identity, transform);
@@ -74,12 +96,20 @@ public class EntitiesController : MonoBehaviour, ISaveable
             entity.GetComponent<Movement>().SetData(entityData.movement);
             entities.Add(entity);
         }
+        currentTime = data.currentTime;
     }
 }
 
+
+[System.Serializable]
+public struct Data {
+    public List<EntityData> entitiesData;
+    public float currentTime;
+}
 [System.Serializable]
 public struct EntityData {
     public int id;
+    public float currentTime;
     public bool isActive;
     public object health;
     public object movement;

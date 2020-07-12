@@ -7,15 +7,13 @@ public class Space : MonoBehaviour
     Material meterialFundo;
 	Vector2 offset;
 	PlayerController player;
-    [SerializeField]
-	float velocity;
-	// Use this for initialization
+    [SerializeField] float velocity;
+	
 	void Start () {
 		meterialFundo = GetComponent<Renderer>().material;
 		player = FindObjectOfType (typeof(PlayerController)) as PlayerController;
 	}
 
-	// Update is called once per frame
 	void FixedUpdate () {
 		transform.position = new Vector3 (player.transform.position.x, player.transform.position.y, transform.position.z);
 
