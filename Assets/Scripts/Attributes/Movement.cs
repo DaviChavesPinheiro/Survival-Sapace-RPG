@@ -42,6 +42,7 @@ public class Movement : MonoBehaviour
             rb.drag = minLinearDrag;
         }
         UpdateTrails();
+        isAccelerating = false;
     }
 
     public void Rotate(Vector2 direction)

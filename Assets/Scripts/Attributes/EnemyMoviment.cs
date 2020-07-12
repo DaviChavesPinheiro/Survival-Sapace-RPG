@@ -53,6 +53,7 @@ public class EnemyMoviment : Movement
 
     override public void Accelerate(){
         rb.velocity = transform.up.normalized * maxSpeed * 30 * Time.deltaTime;
+		isAccelerating = true;
     }
 
 	public void OnDrawGizmos() {

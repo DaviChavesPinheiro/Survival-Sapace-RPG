@@ -29,7 +29,7 @@ public class EntitiesController : MonoBehaviour, ISaveable
         } else {
             //Noite
             spawnning = true;
-            if(currentTime < dayTime * 60){
+            if(currentTime > dayTime * 60){
                 currentTime = 0;
             }
         }
