@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: id
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1298470269834355055, guid: 008ea730ef92c424abdb44c2e8643c7e,
+        type: 3}
+      propertyPath: attackDistace
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1951805546028728434, guid: 008ea730ef92c424abdb44c2e8643c7e,
         type: 3}
       propertyPath: characterClass
@@ -649,13 +654,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6868183229578172997, guid: 008ea730ef92c424abdb44c2e8643c7e,
         type: 3}
-      propertyPath: health
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6868183229578172997, guid: 008ea730ef92c424abdb44c2e8643c7e,
-        type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6919498749648559807, guid: 008ea730ef92c424abdb44c2e8643c7e,
         type: 3}

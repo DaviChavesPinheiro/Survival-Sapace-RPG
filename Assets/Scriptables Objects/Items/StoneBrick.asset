@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45f9a52de8b62094ba5ecb18f90463f0, type: 3}
-  m_Name: Rock
+  m_Name: StoneBrick
   m_EditorClassIdentifier: 
-  id: 1
-  name: Rock
-  icon: {fileID: 5327466440983001720, guid: 9ee31b1abac49a243880818ddcb30dd6, type: 3}
-  prefab: {fileID: 8431452186926441662, guid: 1c086ed0edcfeb04b9c062241448fa0d, type: 3}
+  id: 12
+  name: StoneBrick
+  icon: {fileID: -8327657826380708006, guid: 9ee31b1abac49a243880818ddcb30dd6, type: 3}
+  prefab: {fileID: 8431452186926441662, guid: 872a21e10f1994742858afc46389f8a0, type: 3}
   itemType: 1
-  craftCode: 
+  craftCode: 1|1|1|1|1|1|1|1|1
   is4By4CraftAble: 0
   isMelt: 0
   isFuel: 0

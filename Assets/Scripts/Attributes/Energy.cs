@@ -33,7 +33,7 @@ public class Energy : MonoBehaviour
     private void Update() {
         TakeEnergy(energyLossSpeed / 10f * Time.deltaTime);
         if(energy/maxEnergy > .95f){
-            health?.GainHealth(4 * Time.deltaTime);
+            health?.GainHealth(1.5f * Time.deltaTime);
         }
     }
 

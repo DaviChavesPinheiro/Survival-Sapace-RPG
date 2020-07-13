@@ -44,7 +44,7 @@ public class EntitiesController : MonoBehaviour, ISaveable
             int entitiesToSpawn = entitiesAmount - entities.Count;
             for (int i = 0; i < entitiesToSpawn; i++)
             {
-                int startNodeIndex = UnityEngine.Random.Range(0, grid.Length - 1);
+                int startNodeIndex = UnityEngine.Random.Range(0, grid.Length);
                 for (int n = startNodeIndex; n < grid.Length; n++)
                 {
                     Node nodeToCheck = grid[n % grid.GetLength(1), Mathf.FloorToInt(n / grid.GetLength(1))];

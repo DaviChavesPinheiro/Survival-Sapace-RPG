@@ -22,5 +22,6 @@ MonoBehaviour:
   isMelt: 1
   isFuel: 0
   fuelPotencial: 0
-  meltResult: {fileID: 11400000, guid: b90b6aae393d7c448be2a9ca7500b1a2, type: 2}
+  meltResult: {fileID: 11400000, guid: cd1a24203c1b62b4ea4f74f33da3edf6, type: 2}
   maxStackItem: 64
+  energyRestoration: 10

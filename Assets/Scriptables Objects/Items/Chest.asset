@@ -17,10 +17,11 @@ MonoBehaviour:
   icon: {fileID: -4078763317427943674, guid: 9ee31b1abac49a243880818ddcb30dd6, type: 3}
   prefab: {fileID: 8719396766757247349, guid: e13a53c6e3ed2fe46bc38f740865963a, type: 3}
   itemType: 1
-  craftCode: 1|1|1|1|8|1|1|1|1
+  craftCode: 13|13|13|13|0|13|13|13|13
   is4By4CraftAble: 0
   isMelt: 0
-  isFuel: 1
-  fuelPotencial: 10
+  isFuel: 0
+  fuelPotencial: 0
   meltResult: {fileID: 0}
   maxStackItem: 64
+  energyRestoration: 10
