@@ -7,6 +7,7 @@ public class PointerController : MonoBehaviour
     Transform target;
     RectTransform rectTransform;
     float borderSize = 15f;
+    float visibleDistance = Mathf.Infinity;
 
     private void Awake() {
         rectTransform = GetComponent<RectTransform>();
@@ -14,7 +15,12 @@ public class PointerController : MonoBehaviour
 
     public void SetTarget(Transform target) {
         this.target = target;
-        target.GetComponent<Health>().onDie += DestroyPointer;
+        if(target.GetComponent<Health>())
+            target.GetComponent<Health>().onDie += DestroyPointer;
+    }
+
+    public void SetVisibleDistance(float value){
+        visibleDistance = value;
     }
     
     public void Update() {
@@ -22,7 +28,7 @@ public class PointerController : MonoBehaviour
         bool isOffScreen = targetPositionScreenPoint.x <= borderSize || targetPositionScreenPoint.x >= Screen.width - borderSize || targetPositionScreenPoint.y <= borderSize || targetPositionScreenPoint.y >= Screen.height - borderSize;
 
         if (isOffScreen) {
-            if(Vector2.Distance(target.position, transform.parent.position) > 30f) DestroyPointer();
+            if(Vector2.Distance(target.position, transform.parent.position) > visibleDistance) DestroyPointer();
             RotatePointerTowardsTargetPosition();
 
             Vector3 cappedTargetScreenPosition = targetPositionScreenPoint;
@@ -40,8 +46,9 @@ public class PointerController : MonoBehaviour
 
     private void DestroyPointer()
     {
-        target.GetComponent<Health>().onDie -= DestroyPointer;
-        transform.parent.GetComponent<RadarController>().DestroyPointer(target.gameObject);
+        if(target.GetComponent<Health>())
+            target.GetComponent<Health>().onDie -= DestroyPointer;
+        transform.parent.GetComponent<PointersController>().DestroyPointer(target);
         Destroy(gameObject);
     }
 
