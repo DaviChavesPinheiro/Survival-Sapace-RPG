@@ -66,9 +66,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ec754e98c56234f8ba6268b36c97ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
+  mask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 289
 --- !u!1001 &7727296180356767478
 PrefabInstance:
   m_ObjectHideFlags: 0
