@@ -29,4 +29,8 @@ public class BlockController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public static Vector2 BlockPositionFromWorld(Vector2 position){
+        return new Vector2(Mathf.FloorToInt(position.x), Mathf.FloorToInt(position.y));
+    }
+
 }
