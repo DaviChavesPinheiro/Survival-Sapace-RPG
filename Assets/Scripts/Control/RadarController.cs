@@ -17,7 +17,7 @@ public class RadarController : MonoBehaviour
         foreach (Collider2D collider in colliders)
         {
             if(collider.tag == "Enemy"){
-                pointersController.AddPointer(collider.transform, 30f);
+                pointersController.AddPointer(collider.transform, Color.red , 30f);
             }
         }
     }

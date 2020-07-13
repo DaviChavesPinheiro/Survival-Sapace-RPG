@@ -25,8 +25,6 @@ public class Constructor : MonoBehaviour
 		} else if (Input.GetMouseButton(0)){
             Vector2 virtualBlockPosition = BlockController.BlockPositionFromWorld(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             Collider2D collider = Physics2D.OverlapBox(virtualBlockPosition + (Vector2.one/2f), Vector2.one * 0.95f, 0, mask);
-            print(collider?.name);
-            print(collider?.gameObject.layer);
             if(collider == null){
                 PutBlock(virtualBlockPosition);
             }

@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PointerController : MonoBehaviour
 {
+    Image image;
     Transform target;
     RectTransform rectTransform;
     float borderSize = 15f;
@@ -11,6 +13,7 @@ public class PointerController : MonoBehaviour
 
     private void Awake() {
         rectTransform = GetComponent<RectTransform>();
+        image = GetComponent<Image>();
     }
 
     public void SetTarget(Transform target) {
@@ -22,12 +25,17 @@ public class PointerController : MonoBehaviour
     public void SetVisibleDistance(float value){
         visibleDistance = value;
     }
+
+    public void SetColor(Color color){
+        GetComponent<Image>().color = color;
+    }
     
     public void Update() {
         Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(target.position);
         bool isOffScreen = targetPositionScreenPoint.x <= borderSize || targetPositionScreenPoint.x >= Screen.width - borderSize || targetPositionScreenPoint.y <= borderSize || targetPositionScreenPoint.y >= Screen.height - borderSize;
 
         if (isOffScreen) {
+            image.enabled = true;
             if(Vector2.Distance(target.position, transform.parent.position) > visibleDistance) DestroyPointer();
             RotatePointerTowardsTargetPosition();
 
@@ -40,11 +48,11 @@ public class PointerController : MonoBehaviour
             rectTransform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, 0f);
         } else
         {
-            DestroyPointer();
+            image.enabled = false;
         }
     }
 
-    private void DestroyPointer()
+    public void DestroyPointer()
     {
         if(target.GetComponent<Health>())
             target.GetComponent<Health>().onDie -= DestroyPointer;

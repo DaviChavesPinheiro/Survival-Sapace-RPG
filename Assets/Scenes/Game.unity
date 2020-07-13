@@ -3571,6 +3571,7 @@ MonoBehaviour:
   checkPointObject: {fileID: 4244537626067317375, guid: 41541de209d3eef46a4c4a8ef0d3fdbb,
     type: 3}
   checkPointsContainer: {fileID: 351759398}
+  pointersController: {fileID: 1630261983}
 --- !u!114 &863578849
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -64,6 +64,7 @@ public class Movement : MonoBehaviour
 
     virtual public void Accelerate()
     {
+        if (rb.velocity.magnitude > maxSpeed) return;
         rb.AddForce(transform.up * force * Time.fixedDeltaTime);
     }
 

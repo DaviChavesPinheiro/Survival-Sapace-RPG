@@ -7,6 +7,7 @@ public class MenuController : MonoBehaviour, ISaveable
 {
     public static MenuController instance;
     [SerializeField] CheckPointsMenuController checkPointsMenuController;
+
     private void Awake() {
         instance = this;
     }

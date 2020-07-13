@@ -7,6 +7,8 @@ public class CheckPointsMenuController : MonoBehaviour
     [SerializeField] GameObject checkPointObject;
     [SerializeField] Transform checkPointsContainer;
     List<CheckPoint> checkPoints = new List<CheckPoint>();
+    [SerializeField] PointersController pointersController;
+
     private void OnEnable()
     {
         RefreshList();
@@ -42,6 +44,25 @@ public class CheckPointsMenuController : MonoBehaviour
                 checkPoints[i] = checkPoint;
             }
         }
+        if(checkPoint.marked){
+            Vector3 color = checkPoint.color.ToVector();
+            pointersController.AddPointer(checkPoint.position.ToVector(), new Color(color.x, color.y, color.z));
+        } else {
+            pointersController.DestroyPointer(checkPoint.position.ToVector());
+        }
+    }
+
+    public void SpawnCheckPointers()
+    {
+        foreach (CheckPoint checkPoint in checkPoints)
+        {
+            if (checkPoint.marked)
+            {
+                print("CheckPoint " + checkPoint.position.ToVector().ToString());
+                Vector3 color = checkPoint.color.ToVector();
+                pointersController.AddPointer(checkPoint.position.ToVector(), new Color(color.x, color.y, color.z));
+            }
+        }
     }
 
     public List<CheckPoint> GetCheckPoints(){
@@ -50,6 +71,7 @@ public class CheckPointsMenuController : MonoBehaviour
 
     public void SetData(object data){
         checkPoints = (List<CheckPoint>)data;
+        SpawnCheckPointers();
     }
 
     public List<CheckPoint> GetData(){
