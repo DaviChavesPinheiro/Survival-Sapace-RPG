@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988aca02e5c3e284b87e08e9a921d766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   viewRayCast: {fileID: 8662078448116979001}
   viewLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 23
   normalViewDistance: 10
   suspiciusViewDistance: 15
   attackDistace: 5

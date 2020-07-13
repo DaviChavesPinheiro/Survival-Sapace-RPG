@@ -17,6 +17,11 @@ PrefabInstance:
       propertyPath: attackDistace
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1298470269834355055, guid: 008ea730ef92c424abdb44c2e8643c7e,
+        type: 3}
+      propertyPath: suspiciusViewDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1951805546028728434, guid: 008ea730ef92c424abdb44c2e8643c7e,
         type: 3}
       propertyPath: characterClass

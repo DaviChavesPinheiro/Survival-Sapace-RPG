@@ -43,17 +43,12 @@ public class EnemyController : MonoBehaviour
         if(!health.IsAlive()) return;
         if(InViewRange()){
             currentViewDistance = suspiciusViewDistance;
-
-            if(InView()){
-                moviment.CancelSearch();
-                moviment.Accelerate();
-                moviment.RotateToPosition(player.transform.position);
-            } else {
-                moviment.Search();
-            }
-
+            moviment.Accelerate();
+            moviment.RotateToPosition(player.transform.position);
+            
             if(InAttackRange()){
-                GetComponent<Shooter>().Shoot();
+                if(InView())
+                    GetComponent<Shooter>().Shoot();
             }
         } else {
             currentViewDistance = normalViewDistance;
@@ -72,7 +67,12 @@ public class EnemyController : MonoBehaviour
     }
 
     private bool InView(){
-        return !Physics2D.Raycast(viewRayCast.position, player.transform.position - transform.position, currentViewDistance, viewLayerMask);
+        RaycastHit2D[] raycastHits =  Physics2D.RaycastAll(viewRayCast.position, player.transform.position - transform.position, currentViewDistance, viewLayerMask);
+        foreach (RaycastHit2D hit in raycastHits)
+        {
+            if(hit.transform.tag == "Player") return true;
+        }
+        return false;
     }
 
     void OnDrawGizmosSelected()
